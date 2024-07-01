@@ -1,3 +1,87 @@
+:root{
+    --primary:rgb(57, 197, 143);
+}
+
 body{
-    /* background-color: azure; */
+    background-color: white;
+    max-width: 1440px;
+    margin: auto auto;
+}
+
+.landing{
+    padding: 1em 2em;
+    padding-bottom: 5em;
+}
+
+.landing .section1 .cont{
+    margin-top: 2em;
+    background-color: rgba(248, 4, 4, 0.041);
+    border-radius: 1em;
+    padding: 4em;
+    width: 55%;
+}
+
+.ft{
+    font-size: 14px;
+}
+
+.cl{
+    color: var(--primary);
+}
+
+.landing .section1 .cont h1{
+    font-size: 4.5em;
+}
+
+.landing .section1 .input_container{
+    background-color: white;
+    padding: 2em 1em;
+}
+
+.landing .section1 .input_container input, .landing .section1 select{
+    border: 1px solid rgb(219, 219, 219);
+    padding: .7em;
+    outline: none;
+    width: 49%;
+}
+
+.landing .section1 .input_container button{
+    background-color: var(--primary);
+    color: white;
+    width: 100%;
+    padding: .9em;
+}
+
+.landing .section2 .cont{
+    /* border: 1px solid rgb(228, 228, 228); */
+    padding: 3em 1em;
+    background-color: whitesmoke;
+    margin-bottom: 3em;
+    margin: .5em;
+    width: 270px;
+    min-width: 270px;
+    border-radius: 3px;
+}
+
+.landing .section3 .tg{
+    font-size: 18px;
+    color: grey;
+    height: fit-content;
+    padding: .5em 1em;
+    white-space: nowrap;
+    transition: .1s;
+}
+
+.landing .section3 .tg:hover{
+    background-color: var(--primary);
+    color: white;
+    cursor: pointer;
+    transition: .1s;
+    border-radius: 10px;
+}
+
+.landing .section3 .tg.active{
+    background-color: var(--primary);
+    color: white;
+    border-radius: 10px;
 }
