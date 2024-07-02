@@ -29,6 +29,18 @@ HR | Job Board
 				<button class="btn mt-3">Find Now</button>
 			</div>
 		</div>
+
+		<div class="posit_ mt-3">
+			<img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/banner/congratulation.svg" alt="" class="sec">
+			<img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/banner/web-dev.svg" alt="" class="third">
+			<img class="larg" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/banner/banner.png" alt="">
+		</div>
+		<div class="posit_">
+			<img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/banner/docs.svg" alt="" class="fourth">
+		</div>
+		<div class="posit_ mt-5 pt-5">
+			<img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/banner/tick.svg" alt="" class="fif">
+		</div>
 	</div>
 
 	

@@ -33,9 +33,96 @@ body{
     background-color: var(--primary);
 }
 
+.landing .section1 {
+    position: relative;
+}
 
 .landing .section1 .cont h1{
     font-size: 4.5em;
+}
+
+.posit_{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.posit_ .sec{
+    position: absolute;
+    animation: sec infinite 6s;
+    z-index: 100;
+
+}
+
+.posit_ .fif{
+    animation: fif infinite 7s;
+    z-index: 100;
+    margin-top: 5em;
+
+}
+
+.posit_ .fourth{
+    animation: fouth infinite 8s;
+    z-index: 100;
+    margin-top: 5em;
+
+}
+
+.posit_ .larg{
+    width: 450px;
+    min-width: 200px;
+    animation: treeshake infinite 5s;
+}
+
+@keyframes fouth {
+    0%{
+        transform: translateY(-40px);
+    }
+    50%{
+        transform: translateY(-90px);
+    }
+    100%{
+        transform: translateY(-40px);
+    }
+}
+
+
+@keyframes fif {
+    0%{
+        transform: translateY(40px);
+    }
+    50%{
+        transform: translateY(90px);
+    }
+    100%{
+        transform: translateY(40px);
+    }
+}
+
+
+
+@keyframes sec {
+    0%{
+        transform: translateX(40px);
+    }
+    50%{
+        transform: translateX(90px);
+    }
+    100%{
+        transform: translateX(40px);
+    }
+}
+
+@keyframes treeshake {
+    0%{
+        transform: translateY(-20px);
+    }
+    50%{
+        transform: translateY(-40px);
+    }
+    100%{
+        transform: translateY(-20px);
+    }
 }
 
 .landing .section1 .input_container{
