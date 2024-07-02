@@ -29,6 +29,11 @@ body{
     color: var(--primary);
 }
 
+.bg_{
+    background-color: var(--primary);
+}
+
+
 .landing .section1 .cont h1{
     font-size: 4.5em;
 }
@@ -113,4 +118,19 @@ body{
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.landing .section5 .img_{
+    overflow: hidden;
+}
+
+._cbg{
+    background-image: url("../img/patern.svg");
+    background-repeat: no-repeat;
+}
+
+.landing .section5 .img_ img{
+    width: 80%;
+    object-fit: contain;
+    margin-left: 4em;
 }
