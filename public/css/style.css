@@ -85,3 +85,32 @@ body{
     color: white;
     border-radius: 10px;
 }
+
+.section3 .cont_{
+    border: 1px solid rgb(197, 196, 196);
+    margin-bottom: 3em;
+    border-radius: 10px;
+    margin-right: 2em;
+    overflow: hidden;
+    width: 360px !important;
+}
+
+.section4 .cont_{
+    width: 340px !important;
+}
+
+::-webkit-scrollbar{
+    display: none !important;
+}
+
+.section3 .cont_ .img{
+    width: 100%;
+    overflow: hidden;
+    height: 300px;
+}
+
+.section3 .cont_ .img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
