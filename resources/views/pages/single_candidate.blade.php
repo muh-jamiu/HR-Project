@@ -3,6 +3,7 @@
 @php
 $user = $data["user"] ?? [];
 $skills__ = explode(",", $user->skills);
+use Carbon\Carbon;
 @endphp
 
 @section('title')
@@ -122,10 +123,10 @@ Candidate-{{$user->username ?? ""}} | HR
             <p class="mb-4 text-muted text-capitalize">{{$user->state}}, {{$user->country}}</p>
 
             <p class="fw-bold text-muted mb-1"><i class="fa-solid fa-sack-dollar"></i> Salary</p>
-            <p class="mb-4 text-muted text-capitalize">{{$user->salary ?? "$0"}}</p>
+            <p class="mb-4 text-muted text-capitalize">($) {{$user->salary ?? "$0"}}</p>
 
             <p class="fw-bold text-muted mb-1"><i class="fa-regular fa-clock"></i> Member since</p>
-            <p class="mb-4 text-muted">{{$user->created_at}}</p>
+            <p class="mb-4 text-muted">{{Carbon::create($user->created_at)->format('l F j, Y')}}</p>
             <hr style="color: rgb(172, 172, 172)">
 
             <p class="fw-bold text-muted mb-2">Contact Info</p>
