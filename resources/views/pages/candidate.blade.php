@@ -2,6 +2,7 @@
 
 @php
 $iscand = true;
+$users = $data["users"] ?? [];
 @endphp
 
 @section('title')
@@ -95,34 +96,39 @@ Platform Candidates | HR
             </div>
             <div class="section3 section4">        
                 <div class="d-flex justify-content- mt-3 flex-wrap">
-                    @for ($i = 0; $i < 9; $i++)                    
-			        <a href="/candidate/{{$i}}" class="text-decoration-none text-dark">
+                    @foreach ($users as $user)    
+                    @if ($user->role == "candidate")             
+			        <a href="/candidate/{{$user->id}}?username={{$user->username}}&name={{$user->first_name}}" class="text-decoration-none text-dark">
                         <div class="cont_">
-                            <div class="img">
-                                <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
+                            <div class="text-center mt-3" >
+                                <img style="width: 100px; height: 100px; object-fit:cover; border-radius:50%"  object-fit:contain" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
                             </div>
-                            <div class="p-3">
-                                <div class="d-flex flex-wrap mt-2 mb-4 justify-content-between">
-                                    <p class="mb-2 text-muted mt-1 ">
-                                        <img class="mx-2" width="20" height="20" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">Company Name</p>
-                                    <button style="background-color: rgba(45, 249, 45, 0.088); height:fit-content" class="btn text-success ft px-4 py-1">Fulltime</button>
+                            <div class="p-3 text-center">
+                                <p class="fw-bold mb-1 text-capitalize">{{$user->first_name}} {{$user->last_name}}</p>
+                                <p class="text-muted mb-1 ft text-capitalize">{{$user->title ?? "N/A"}}</p>
+                                <div class="d-flex mt-3 justify-content-evenly">
+                                    <p class="text-muted ft mb-0 text-capitalize"><i class="fa-solid text-muted fa-location-dot"></i> {{$user->state ?? "n/a"}}</p>
+                                    <p class="text-muted ft mb-0 text-capitalize"><i class="fa-solid text-muted fa-layer-group"></i> {{$user->country ?? "n/a"}}</p>
                                 </div>
-                                <p class="mt-3 mb-3">Senior Full Stack Engineer, Creator Success Full Time</p>
-                                <div class="d-flex">
-                                    <p class="ft text-muted"><i class="fa-regular fa-clock"></i> 3 mins ago</p>
-                                    <p class="ft text-muted mx-3"><i class="fa-solid fa-location-dot"></i> Chicago</p>
-                                </div>
-                                <div class="d-flex mt-2 mb-3 justify-content-between">
-                                    <p class="text-muted"><span class="cl fw-bold">$3200</span>/Month</p>
-                                    <div class="d-flex mt-1">
-                                        <i class="fa-regular btn text-primary fa-thumbs-up"></i>
-                                        <i class="fa-regular btn text-danger fa-thumbs-down"></i>
-                                    </div>
-                                </div>
+                            </div>
+
+                            @php
+                                $skills__ = explode(",", $user->skills);
+                            @endphp
+
+                            <div class="d-flex flex-wrap mb-3 justify-content-evenly px-3">
+                                @foreach ($skills__ as $item)
+                                <p style="background-color: rgba(9, 252, 199, 0.053); border-radius:6px; font-size:12px" class=" text-capitalize text-muted py-2 mb-2 px-4">{{$item}}</p>                       
+                                @endforeach
+                            </div>
+                            
+                            <div class="text-center mb-3">
+                                <button class="btn ft btn-outline-dark">View Profile</button>
                             </div>
                         </div>	
-                    </a>			
-                    @endfor
+                    </a>	                        
+                    @endif   		
+                    @endforeach
                 </div>
             </div>
         </div>

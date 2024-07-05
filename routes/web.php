@@ -31,9 +31,7 @@ Route::get('/get-started', function () {
     return view("pages.biz_type");
 })->middleware("isLogin");
 
-Route::get('/candidates', function () {
-    return view("pages.candidate");
-});
+Route::get('/candidates', [UserController::class, 'candidateAll']);
 
 Route::get('/contact-us', function () {
     return view("pages.contact");
@@ -56,10 +54,7 @@ Route::get('/job/{job_title}/{id}', function ($job_title) {
     return view("pages.job_single", compact("data"));
 });
 
-Route::get('/candidate/{candidate_username}/', function ($candidate_username) {
-    $data["username"] = str_replace("_", " ", $candidate_username);
-    return view("pages.single_candidate", compact("data"));
-});
+Route::get('/candidate/{id}/', [UserController::class, 'candidateSingle']);
 
 Route::get('/employer/{employer_username}/', function ($employer_username) {
     $data["username"] = str_replace("_", " ", $employer_username);
