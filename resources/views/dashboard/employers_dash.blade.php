@@ -86,6 +86,7 @@ Employer Dashboard | HR
                 <li class="list-unstyled active" data-bs-toggle="tab" href="#home"><a href="#" class="text-decoration-none text-muted">Overview</a></li>
                 <li class="list-unstyled" data-bs-toggle="tab" href="#jobs"><a href="#" class="text-decoration-none text-muted">My Jobs</a></li>
                 <li class="list-unstyled" data-bs-toggle="tab" href="#profile"><a href="#" class="text-decoration-none text-muted">Company Profile</a></li>
+                <li class="list-unstyled" data-bs-toggle="tab" href="#new_job"><a href="#" class="text-decoration-none text-muted">Add New Job</a></li>
                 <li class="list-unstyled" data-bs-toggle="tab" href="#price"><a href="#" class="text-decoration-none text-muted">Pricing</a></li>
             </div>
 
@@ -265,6 +266,8 @@ Employer Dashboard | HR
 
                     </form>
                 </div>
+
+                <div class="tab-pane container fade" id="new_job">new_job</div>
 
                 <div class="tab-pane container fade" id="price">price</div>
             </div>
