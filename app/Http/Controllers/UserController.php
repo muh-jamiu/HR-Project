@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Job;
 use App\Models\User;
 use Carbon\Carbon;
 use Cloudinary\Cloudinary;
@@ -221,12 +222,22 @@ class UserController extends Controller
         return $user;
     }
 
+    public function getJobs(){  
+        $job = Job::paginate(12);
+        return $job;
+    }
+
     public function employersSingle($unique_id){
         $data["user"] = $this->getUserByCompany($unique_id);
         if(!$data["user"]){
             return back();
         }
         return view("pages.single_employer", compact("data"));;
+    }
+
+    public function browse_job(){
+        $data["jobs"] = $this->getJobs();
+        return view("pages.jobs", compact("data"));;
     }
 
     // public function postCode($code, $id){

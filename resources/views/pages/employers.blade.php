@@ -3,6 +3,7 @@
 @php
 $is_employ = true;
 $users = $data["users"] ?? [];
+$emp_ =  App\Models\User::where('role', "company")->get();
 @endphp
 
 @section('title')
@@ -14,7 +15,7 @@ Job Employers | HR
 	<x-main-nav :isemploy="$is_employ"></x-main-nav>
 
     <div class="section1">
-        <h1 class="fw-bold mt-4">There Are 968 Companies Here For you!</h1>
+        <h1 class="fw-bold mt-4">There Are {{number_format(count($emp_))}}  Companies Here For you!</h1>
         <p class="fs-5 text-muted mt-3 mb-5">Discover your next career move, freelance gig, or internship</p>
         <div class="input_cont mb-3">
             <input type="text" placeholder="search job...">
@@ -92,7 +93,7 @@ Job Employers | HR
 
         <div class="second">
             <div class="d-flex justify-content-between">
-                <p class="mb-0 ft text-muted">Showing <strong>1-10</strong> of <strong>{{count($users)}}</strong> employers</p>
+                <p class="mb-0 ft text-muted">Showing <strong>1-10</strong> of <strong>{{number_format(count($emp_))}}</strong> employers</p>
             </div>
             <div class="section3 section4">        
                 <div class="d-flex justify-content- mt-3 flex-wrap">

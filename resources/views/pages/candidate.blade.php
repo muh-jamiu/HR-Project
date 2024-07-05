@@ -3,6 +3,7 @@
 @php
 $iscand = true;
 $users = $data["users"] ?? [];
+$cand_ =  App\Models\User::where('role', "candidate")->get();
 @endphp
 
 @section('title')
@@ -14,7 +15,7 @@ Platform Candidates | HR
 	<x-main-nav :iscand="$iscand"></x-main-nav>
 
     <div class="section1">
-        <h1 class="fw-bold mt-4">There Are 968 Candidates Here For You!</h1>
+        <h1 class="fw-bold mt-4">There Are {{number_format(count($cand_))}}  Candidates Here For You!</h1>
         <p class="fs-5 text-muted mt-3 mb-5">Discover your next career move, freelance gig, or internship</p>
         <div class="input_cont mb-3">
             <input type="text" placeholder="search job...">
@@ -92,7 +93,7 @@ Platform Candidates | HR
 
         <div class="second">
             <div class="d-flex justify-content-between">
-                <p class="mb-0 ft text-muted">Showing <strong>41-60</strong> of <strong>944</strong> jobs</p>
+                <p class="mb-0 ft text-muted">Showing <strong>1-10</strong> of <strong>{{number_format(count($cand_))}} </strong> jobs</p>
             </div>
             <div class="section3 section4">        
                 <div class="d-flex justify-content- mt-3 flex-wrap">

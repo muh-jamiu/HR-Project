@@ -19,9 +19,7 @@ Route::get('/', function () {
     return view("index");
 });
 
-Route::get('/browse-jobs', function () {
-    return view("pages.jobs");
-});
+Route::get('/browse-jobs', [UserController::class, 'browse_job']);
 
 Route::get('/employers', [UserController::class, 'employersAll']);
 

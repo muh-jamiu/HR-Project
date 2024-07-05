@@ -2,6 +2,9 @@
 
 @php
 $is_jobs = true;
+$jobs = $data["jobs"] ?? [];
+$job_ =  App\Models\Job::all();
+use Carbon\Carbon;
 @endphp
 
 @section('title')
@@ -13,7 +16,7 @@ Browse All Jobs | HR
 	<x-main-nav :isjobs="$is_jobs"></x-main-nav>
 
     <div class="section1">
-        <h1 class="fw-bold mt-4">There Are 65,866 Jobs Here For you!</h1>
+        <h1 class="fw-bold mt-4">There Are {{number_format(count($job_))}} Jobs Here For you!</h1>
         <p class="fs-5 text-muted mt-3 mb-5">Discover your next career move, freelance gig, or internship</p>
         <div class="input_cont mb-3">
             <input type="text" placeholder="search job...">
@@ -91,29 +94,29 @@ Browse All Jobs | HR
 
         <div class="second">
             <div class="d-flex justify-content-between">
-                <p class="mb-0 ft text-muted">Showing <strong>41-60</strong> of <strong>944</strong> jobs</p>
+                <p class="mb-0 ft text-muted">Showing <strong>1-10</strong> of <strong> {{number_format(count($job_))}}</strong> jobs</p>
             </div>
             <div class="section3 section4">        
                 <div class="d-flex justify-content- mt-3 flex-wrap">
-                    @for ($i = 0; $i < 9; $i++)
-                    <a href="/job/title/{{$i}}" class="text-decoration-none text-dark">
+                    @foreach ($jobs as $job)
+                    <a href="/job/{{$job->title}}/{{$job->id}}" class="text-decoration-none text-dark">
                         <div class="cont_">
                             <div class="img">
                                 <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
                             </div>
                             <div class="p-3">
-                                <div class="d-flex flex-wrap mt-2 mb-4 justify-content-between">
+                                {{-- <div class="d-flex flex-wrap mt-2 mb-4 justify-content-between">
                                     <p class="mb-2 text-muted mt-1 ">
                                         <img class="mx-2" width="20" height="20" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">Company Name</p>
-                                    <button style="background-color: rgba(45, 249, 45, 0.088); height:fit-content" class="btn text-success ft px-4 py-1">Fulltime</button>
-                                </div>
-                                <p class="mt-3 mb-3">Senior Full Stack Engineer, Creator Success Full Time</p>
+                                    <button style="background-color: rgba(45, 249, 45, 0.088); height:fit-content" class="btn text-success ft px-4 py-1">{{$job->job_title}}</button>
+                                </div> --}}
+                                <p class="mt-3 mb-3">{{$job->title}}</p>
                                 <div class="d-flex">
-                                    <p class="ft text-muted"><i class="fa-regular fa-clock"></i> 3 mins ago</p>
-                                    <p class="ft text-muted mx-3"><i class="fa-solid fa-location-dot"></i> Chicago</p>
+                                    <p class="ft text-muted"><i class="fa-regular fa-clock"></i> {{Carbon::create($job->created_at)->format('l F j, Y')}}</p>
+                                    <p class="ft text-muted mx-3"><i class="fa-solid fa-location-dot"></i> {{$job->county}}</p>
                                 </div>
                                 <div class="d-flex mt-2 mb-3 justify-content-between">
-                                    <p class="text-muted"><span class="cl fw-bold">$3200</span>/Month</p>
+                                    <p class="text-muted"><span class="cl fw-bold">${{number_format((int)$job->salary)}}</span>/Month</p>
                                     <div class="d-flex mt-1">
                                         <i class="fa-regular btn text-primary fa-thumbs-up"></i>
                                         <i class="fa-regular btn text-danger fa-thumbs-down"></i>
@@ -122,17 +125,14 @@ Browse All Jobs | HR
                             </div>
                         </div>		
                     </a>		
-                    @endfor
+                    @endforeach                    
+                    <div class="text-center px-2">
+                        <div class="" style="">            
+                            {{ $jobs->links() }}
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="pag_">
-        <div class="d-flex justify-content-evenly">
-            @for ($i = 1; $i < 10; $i++)
-            <li class="list-unstyled"><a href="" class="text-decoration-none">{{$i}}</a></li>                
-            @endfor
         </div>
     </div>
 
