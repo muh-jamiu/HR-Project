@@ -15,7 +15,7 @@ class isLogin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->session()->has("admyrer_id")) {
+        if ($request->session()->has("hr_id")) {
             return redirect('/find-matches');
         }
         return $next($request);

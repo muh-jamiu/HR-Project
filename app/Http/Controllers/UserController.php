@@ -12,7 +12,8 @@ class UserController extends Controller
 {
 
     public function candidateDash(){
-        return view("dashboard.candidate_dash");
+        $data["user"] = $this->getUser(session("hr_id"));
+        return view("dashboard.candidate_dash", compact("data"));
     }
 
     
@@ -29,8 +30,7 @@ class UserController extends Controller
 
         if(Hash::check(request()->password, $existingUser->password)){ 
             session()->put("hr_id", $existingUser->id);
-            dd("login");
-            // return redirect("/find-matches")->with("first", "first");      
+            return redirect("/candidate-dashboard");      
         }
 
         return back()->with("msg", "Password or Email is not correct!");     
@@ -44,7 +44,7 @@ class UserController extends Controller
         ]);
 
 
-        $role = request()->query("role") ?? "user";
+        $role = request()->query("role") ?? "candidate";
         $user->first_name = request()->first_name;
         $user->last_name = request()->last_name;
         $user->username = request()->username;
@@ -59,7 +59,7 @@ class UserController extends Controller
         if($user){
             session()->put("hr_id", $user->id);
             // $this->sendMail($request, $user->id);
-            return redirect("/steps");
+            return redirect("/candidate-dashboard");   
         }
         
         return back()->with("msg", "something went wrong");
@@ -86,7 +86,7 @@ class UserController extends Controller
  
     public function logOut(){
          session()->pull("hr_id");
-         return redirect("/");
+         return redirect("/login");
     }
  
     public function getAllUser(){        

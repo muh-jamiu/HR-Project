@@ -11,7 +11,9 @@
         "$5,000 - $10,000",
         "$10,000 - $50,000",
         "$50,000 Above",
-    ]
+];
+
+    $user = $data["user"] ?? [];
 @endphp
 
 @section('title')
@@ -30,8 +32,9 @@ Candidate Dashboard | HR
 
         <div class="text-center mt-4">
             <img class=""  width="150" height="150" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/page/candidates/img-candidate.png" alt="">
-            <p class="mb-1 mt-3">Ganiu Jamiu</p>
-            <p class="ft">ganiujamiu-3@gmail.com</p>
+            <p class="mb-1 mt-3 text-capitalize">{{$user->first_name}} {{$user->last_name}} </p>
+            <p class="ft mb-1">{{$user->email}}</p>
+            <p class="ft">{{$user->phone ?? ""}}</p>
         </div>
 
         <div class="mt-4">
@@ -45,7 +48,7 @@ Candidate Dashboard | HR
             <li class="list-unstyled"><a href="" class="text-decoration-none">
                 <i class="fa-solid fa-hand-holding-dollar"></i> Pricing
            </a></li>
-            <li class="list-unstyled fw-bold"><a href="" class="text-decoration-none text-danger">
+            <li class="list-unstyled fw-bold"><a href="/logOut" class="text-decoration-none text-danger">
                 <i class="fa-solid fa-right-from-bracket"></i> Log Out
             </a></li>
         </div>
@@ -64,14 +67,14 @@ Candidate Dashboard | HR
             <div class="d-flex">
                 <img  width="80" height="80" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/page/candidates/img-candidate.png" alt="">
                 <div class="mt-0 mx-2">
-                    <h4 class="fw-bold mb-1">Welcome Back, Ganiu</h4>
+                    <h4 class="fw-bold mb-1 text-capitalize">Welcome Back, {{$user->first_name}}</h4>
                     <div class="d_skills mb-2 mt-2 d-flex">
                         <p class="text-muted mb-0">Python</p>
                         <p class="text-muted mb-0">Python</p>
                         <p class="text-muted mb-0">Python</p>
                     </div>
                     <div class="d-flex">
-                        <p class="text-muted ft">Candidate | Software Developer</p>
+                        <p class="text-muted ft text-capitalize">Candidate | {{$user->title ?? "N/A"}}</p>
                     </div>
                 </div>
             </div>

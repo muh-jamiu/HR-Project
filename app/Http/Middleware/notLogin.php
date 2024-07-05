@@ -15,8 +15,8 @@ class notLogin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!$request->session()->has("admyrer_id")) {
-            return redirect('/');
+        if (!$request->session()->has("hr_id")) {
+            return redirect('/login');
         }
         return $next($request);
     }

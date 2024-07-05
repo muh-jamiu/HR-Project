@@ -66,8 +66,9 @@ Route::get('/employer/{employer_username}/', function ($employer_username) {
     return view("pages.single_employer", compact("data"));
 });
 
-Route::get('/candidate-dashboard', [UserController::class, 'candidateDash']);
+Route::get('/candidate-dashboard', [UserController::class, 'candidateDash'])->middleware("notLogin");
 
 Route::post('/login', [UserController::class, 'loginUser']);
+Route::get('/logOut', [UserController::class, 'logOut']);
 Route::post('/register', [UserController::class, 'registerUser']);
 
