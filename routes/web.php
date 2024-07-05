@@ -27,6 +27,10 @@ Route::get('/employers', function () {
     return view("pages.employers");
 });
 
+Route::get('/get-started', function () {
+    return view("pages.biz_type");
+});
+
 Route::get('/candidates', function () {
     return view("pages.candidate");
 });

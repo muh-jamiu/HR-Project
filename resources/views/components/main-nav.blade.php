@@ -13,7 +13,7 @@
     <li class="list-unstyled {{$isjobs ? "active" : ""}}"><a href="/browse-jobs" class="text-dark text-decoration-none">Browse Jobs</a></li>
     <li class="list-unstyled {{$isemploy ? "active" : ""}}" ><a href="/employers" class="text-dark text-decoration-none">Employers</a></li>
     <li class="list-unstyled {{$iscand ? "active" : ""}}"><a href="/candidates" class="text-dark text-decoration-none">Candidates</a></li>
-    <li class="list-unstyled"><a href="/signup" class="text-dark text-decoration-none">Get Started</a></li>
+    <li class="list-unstyled"><a href="/get-started" class="text-dark text-decoration-none">Get Started</a></li>
     <li class="list-unstyled {{$iscontact ? "active" : ""}}"><a href="/contact-us" class="text-dark text-decoration-none">Contact Us</a></li>
     <li class="list-unstyled {{$isabout ? "active" : ""}} "><a href="/about-us" class="text-dark text-decoration-none">About Us</a></li>
 </div>
