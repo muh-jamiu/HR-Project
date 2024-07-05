@@ -29,7 +29,7 @@ Route::get('/employers', function () {
 
 Route::get('/get-started', function () {
     return view("pages.biz_type");
-});
+})->middleware("isLogin");
 
 Route::get('/candidates', function () {
     return view("pages.candidate");
@@ -45,11 +45,11 @@ Route::get('/about-us', function () {
 
 Route::get('/login', function () {
     return view("pages.login");
-});
+})->middleware("isLogin");
 
 Route::get('/signup', function () {
     return view("pages.register");
-});
+})->middleware("isLogin");
 
 Route::get('/job/{job_title}/{id}', function ($job_title) {
     $data["title"] = str_replace("_", " ", $job_title);
@@ -67,6 +67,8 @@ Route::get('/employer/{employer_username}/', function ($employer_username) {
 });
 
 Route::get('/candidate-dashboard', [UserController::class, 'candidateDash'])->middleware("notLogin");
+
+Route::get('/check', [UserController::class, 'check'])->middleware("notLogin");
 
 Route::post('/login', [UserController::class, 'loginUser']);
 Route::get('/logOut', [UserController::class, 'logOut']);

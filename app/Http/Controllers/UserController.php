@@ -16,6 +16,16 @@ class UserController extends Controller
         return view("dashboard.candidate_dash", compact("data"));
     }
 
+    public function check(){
+        $user = $this->getUser(session("hr_id"));
+        $role = $user->role;
+
+        if($role == "company"){
+            return redirect("/candidate-dashboard");   
+        }else{
+            return redirect("/candidate-dashboard"); 
+        }
+    }
     
     public function loginUser(User $user){
         request()->validate([
@@ -30,7 +40,7 @@ class UserController extends Controller
 
         if(Hash::check(request()->password, $existingUser->password)){ 
             session()->put("hr_id", $existingUser->id);
-            return redirect("/candidate-dashboard");      
+            return redirect("/check");      
         }
 
         return back()->with("msg", "Password or Email is not correct!");     
@@ -59,7 +69,7 @@ class UserController extends Controller
         if($user){
             session()->put("hr_id", $user->id);
             // $this->sendMail($request, $user->id);
-            return redirect("/candidate-dashboard");   
+            return redirect("/check");   
         }
         
         return back()->with("msg", "something went wrong");
