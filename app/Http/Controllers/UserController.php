@@ -192,12 +192,12 @@ class UserController extends Controller
     }
 
     public function newRoleAll($role){  
-        $user = User::where('role', $role)->paginate(12);
+        $user = User::where('role', $role)->inRandomOrder()->paginate(12);
         return $user;
     }
 
     public function newCandAll($role){  
-        $user = User::where('role', $role)->paginate(9);
+        $user = User::where('role', $role)->inRandomOrder()->paginate(9);
         return $user;
     }
 
@@ -223,7 +223,7 @@ class UserController extends Controller
     }
 
     public function getJobs(){  
-        $job = Job::paginate(12);
+        $job = Job::inRandomOrder()->paginate(12);
         return $job;
     }
 
