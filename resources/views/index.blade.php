@@ -1,4 +1,7 @@
 @extends("layouts.app")
+@php
+$ishome = true;
+@endphp
 
 @section('title')
 HR | Job Board
@@ -6,15 +9,7 @@ HR | Job Board
 
 @section("content")
 <div class="landing">
-	<div class="navbar d-flex flex-start">
-		<h3 class="fw-bold"><a href="/" class="text-dark text-decoration-none"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""> Logo</a></h3>
-		<li class="list-unstyled"><a href="/" class="text-dark text-decoration-none">Home</a></li>
-		<li class="list-unstyled"><a href="" class="text-dark text-decoration-none">Browse Jobs</a></li>
-		<li class="list-unstyled"><a href="" class="text-dark text-decoration-none">Employers</a></li>
-		<li class="list-unstyled"><a href="" class="text-dark text-decoration-none">Candidates</a></li>
-		<li class="list-unstyled"><a href="" class="text-dark text-decoration-none">Contact Us</a></li>
-		<li class="list-unstyled"><a href="" class="text-dark text-decoration-none">About Us</a></li>
-	</div>
+	<x-main-nav :ishome="$ishome"></x-main-nav>
 
 	<div class="section1 mb-4">
 		<div class="cont">
@@ -60,30 +55,32 @@ HR | Job Board
 
 		<div class="d-flex mt-3" style="overflow: scroll">
 			@for ($i = 0; $i < 8; $i++)
-			<div class="col-sm-4 cont_">
-				<div class="img">
-					<img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
-				</div>
-				<div class="p-3">
-					<div class="d-flex mt-2 mb-4 justify-content-between">
-						<h6 class="mb-0 text-muted mt-1 ">
-							<img class="mx-2" width="20" height="20" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">Company Name</h6>
-						<button style="background-color: rgba(45, 249, 45, 0.088)" class="btn text-success ft px-4 py-1">Fulltime</button>
+			<a href="/job/title/{{$i}}" class="text-decoration-none text-dark">
+				<div class="col-sm-4 cont_">
+					<div class="img">
+						<img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
 					</div>
-					<h4 class="mt-3 mb-3">Senior Full Stack Engineer, Creator Success Full Time</h4>
-					<div class="d-flex">
-						<p class="ft text-muted"><i class="fa-regular fa-clock"></i> 3 mins ago</p>
-						<p class="ft text-muted mx-3"><i class="fa-solid fa-location-dot"></i> Chicago</p>
-					</div>
-					<div class="d-flex mt-2 mb-3 justify-content-between">
-						<p class="fs-5 text-muted"><span class="cl fw-bold">$3200</span>/Month</p>
-						<div class="d-flex mt-1">
-							<i class="fa-regular btn text-primary fa-thumbs-up"></i>
-							<i class="fa-regular btn text-danger fa-thumbs-down"></i>
+					<div class="p-3">
+						<div class="d-flex mt-2 mb-4 justify-content-between">
+							<h6 class="mb-0 text-muted mt-1 ">
+								<img class="mx-2" width="20" height="20" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">Company Name</h6>
+							<button style="background-color: rgba(45, 249, 45, 0.088)" class="btn text-success ft px-4 py-1">Fulltime</button>
+						</div>
+						<h4 class="mt-3 mb-3">Senior Full Stack Engineer, Creator Success Full Time</h4>
+						<div class="d-flex">
+							<p class="ft text-muted"><i class="fa-regular fa-clock"></i> 3 mins ago</p>
+							<p class="ft text-muted mx-3"><i class="fa-solid fa-location-dot"></i> Chicago</p>
+						</div>
+						<div class="d-flex mt-2 mb-3 justify-content-between">
+							<p class="fs-5 text-muted"><span class="cl fw-bold">$3200</span>/Month</p>
+							<div class="d-flex mt-1">
+								<i class="fa-regular btn text-primary fa-thumbs-up"></i>
+								<i class="fa-regular btn text-danger fa-thumbs-down"></i>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>				
+				</div>	
+			</a>			
 			@endfor
 		</div>
 	</div>
@@ -136,63 +133,39 @@ HR | Job Board
 
 		<div class="d-flex justify-content-evenly mt-3 flex-wrap">
 			@for ($i = 0; $i < 6; $i++)
-			<div class="col-sm-4 cont_">
-				<div class="img">
-					<img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
-				</div>
-				<div class="p-3">
-					<div class="d-flex mt-2 mb-4 justify-content-between">
-						<h6 class="mb-0 text-muted mt-1 ">
-							<img class="mx-2" width="20" height="20" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">Company Name</h6>
-						<button style="background-color: rgba(45, 249, 45, 0.088)" class="btn text-success ft px-4 py-1">Fulltime</button>
+			<a href="/job/title/{{$i}}" class="text-decoration-none text-dark">
+				<div class="col-sm-4 cont_">
+					<div class="img">
+						<img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
 					</div>
-					<h4 class="mt-3 mb-3">Senior Full Stack Engineer, Creator Success Full Time</h4>
-					<div class="d-flex">
-						<p class="ft text-muted"><i class="fa-regular fa-clock"></i> 3 mins ago</p>
-						<p class="ft text-muted mx-3"><i class="fa-solid fa-location-dot"></i> Chicago</p>
-					</div>
-					<div class="d-flex mt-2 mb-3 justify-content-between">
-						<p class="fs-5 text-muted"><span class="cl fw-bold">$3200</span>/Month</p>
-						<div class="d-flex mt-1">
-							<i class="fa-regular btn text-primary fa-thumbs-up"></i>
-							<i class="fa-regular btn text-danger fa-thumbs-down"></i>
+					<div class="p-3">
+						<div class="d-flex mt-2 mb-4 justify-content-between">
+							<h6 class="mb-0 text-muted mt-1 ">
+								<img class="mx-2" width="20" height="20" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">Company Name</h6>
+							<button style="background-color: rgba(45, 249, 45, 0.088)" class="btn text-success ft px-4 py-1">Fulltime</button>
+						</div>
+						<h4 class="mt-3 mb-3">Senior Full Stack Engineer, Creator Success Full Time</h4>
+						<div class="d-flex">
+							<p class="ft text-muted"><i class="fa-regular fa-clock"></i> 3 mins ago</p>
+							<p class="ft text-muted mx-3"><i class="fa-solid fa-location-dot"></i> Chicago</p>
+						</div>
+						<div class="d-flex mt-2 mb-3 justify-content-between">
+							<p class="fs-5 text-muted"><span class="cl fw-bold">$3200</span>/Month</p>
+							<div class="d-flex mt-1">
+								<i class="fa-regular btn text-primary fa-thumbs-up"></i>
+								<i class="fa-regular btn text-danger fa-thumbs-down"></i>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div>				
+				</div>		
+			</a>		
 			@endfor
 		</div>
 	</div>
 
 	<hr style="color: rgb(183, 183, 183)">
 
-	<footer class="d-flex mt-5 justify-content-evenly">
-		<div class="logo_" style="width: 40%">
-			<h3 class="fw-bold mb-3"><a href="/" class="text-dark text-decoration-none"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""> Logo</a></h3>
-			<p class="ft text-muted">Jobhub is the heart of the design community and the best resource to discover and connect with designers and jobs worldwide.</p>			
-		</div>
-		<div class="" style="width: 15%">
-			<li class="list-unstyled fw-bold mb-3">Company</li>
-			<li class="list-unstyled mb-2 text-muted"><a class="text-decoration-none  text-muted" href="/">About Us</a></li>
-			<li class="list-unstyled mb-2 text-muted"><a class="text-decoration-none  text-muted" href="/">Our Team</a></li>
-			<li class="list-unstyled mb-2 text-muted"><a class="text-decoration-none  text-muted" href="/">Contact Us</a></li>
-			<li class="list-unstyled mb-2 text-muted"><a class="text-decoration-none  text-muted" href="/">Products</a></li>
-		</div>
-		<div class="" style="width: 15%">
-			<li class="list-unstyled fw-bold mb-3">Product</li>
-			<li class="list-unstyled mb-2 text-muted"><a class="text-decoration-none  text-muted" href="/">Feature</a></li>
-			<li class="list-unstyled mb-2 text-muted"><a class="text-decoration-none  text-muted" href="/">FAQ</a></li>
-		</div>
-		<div class="" style="width: 15%">
-			<li class="list-unstyled fw-bold mb-3">Support</li>
-			<li class="list-unstyled mb-2 text-muted"><a class="text-decoration-none  text-muted" href="/">Privacy</a></li>
-			<li class="list-unstyled mb-2 text-muted"><a class="text-decoration-none  text-muted" href="/">Help</a></li>
-			<li class="list-unstyled mb-2 text-muted"><a class="text-decoration-none  text-muted" href="/">Terms</a></li>
-			<li class="list-unstyled mb-2 text-muted"><a class="text-decoration-none  text-muted" href="/">FAQ</a></li>
-		</div>
-	</footer>
-
-
+	<x-footer></x-footer>
 </div>
 
     
