@@ -216,50 +216,52 @@ Candidate Dashboard | HR
                 </div>
 
                 <div class="tab-pane container fade" id="profile">
-                    <form action="">
-                        <h4 class="fw-bold mb-4">Edit Profile</h4>
+                    <form action="/update-profile" method="POST">
+                        @csrf
+                        <div class="d-flex justify-content-between">
+                            <h4 class="fw-bold mb-4">Edit Profile</h4>                        
+                            <button class="btn mt-3 mb-2 btn-dark px-4">Save Changes</button>
+                        </div>
+
                         <hr style="color: grey">
                         <p class="fw-bold mb-2">Basic Information</p>
                         <div class="d-flex justify-content-evenly mb-3">
-                            <input type="text" placeholder="First name">
-                            <input type="text" placeholder="Last name">
+                            <input name="first_name" type="text" placeholder="First name" value="{{$user->first_name}}">
+                            <input name="last_name" type="text" placeholder="Last name" value="{{$user->last_name}}">
                         </div>
                         <div class="d-flex justify-content-evenly mb-3">
-                            <input type="text" placeholder="Email Address">
-                            <input type="text" placeholder="Phone number">
+                            <input name="email" type="text" placeholder="Email Address" value="{{$user->email}}">
+                            <input name="phone" type="text" placeholder="Phone number" value="{{$user->phone}}">
                         </div>
-                        <textarea class="mb-3" name="" placeholder="Bio" id="" cols="5" rows="5"></textarea>
-                        <button class="btn mb-2 btn-dark px-4">Save Changes</button>
+                        <textarea class="mb-3" name="bio" placeholder="Bio" id="" cols="5" rows="5">{{$user->bio}}</textarea>
                         <br>
 
                         <hr style="color: grey">
                         <br>
                         <p class="fw-bold mb-2">Location</p>
                         <div class="d-flex justify-content-evenly mb-3">
-                            <input type="text" placeholder="Country">
-                            <input type="text" placeholder="State">
+                            <input name="country" type="text" placeholder="Country" value="{{$user->country}}">
+                            <input name="state" type="text" placeholder="State" value="{{$user->state}}">
                         </div>
                         <div class="d-flex justify-content-evenly mb-3">
-                            <input type="text" placeholder="City">
-                            <input type="text" placeholder="Full address">
+                            <input name="city" type="text" placeholder="City" value="{{$user->city}}">
+                            <input name="address" type="text" placeholder="Full address" value="{{$user->address}}">
                         </div>
-                        <button class="btn mb-2 btn-dark px-4">Save Changes</button>
                         <br>
                         <hr style="color: grey">
 
                         <br>
                         <p class="fw-bold mb-2">Other Information</p>
                         <div class="d-flex justify-content-evenly mb-3">
-                            <input type="text" placeholder="Work title (eg) software developer, designer, marketer">
-                            <select name="" id="">
-                                <option value="">Salary range</option>
+                            <input name="title" value="{{$user->title}}" type="text" placeholder="Work title (eg) software developer, designer, marketer">
+                            <select name="salary" id="" value="{{$user->salary}}">
+                                <option value="">{{$user->salary ?? "Select Salary range"}}</option>
                                 @foreach ($salary as $item)
                                     <option value="{{$item}}">{{$item}}</option>                                    
                                 @endforeach
                             </select>
                         </div>
-                        <textarea class="mb-3" name="" placeholder="Professional skills, comma(,) seperated..." id="" cols="5" rows="5"></textarea>
-                        <button class="btn mb-2 btn-dark px-4">Save Changes</button>
+                        <textarea class="mb-3" name="skills" placeholder="Professional skills, comma(,) seperated..." id="" cols="5" rows="5">{{$user->skills}}</textarea>
                         <br>
 
                     </form>

@@ -128,7 +128,7 @@ class UserController extends Controller
         $user->city = $request->city ?? $user->city;
         $user->unique_id = $request->unique_id ?? $user->unique_id;
         $user->bio = $request->bio ?? $user->bio;
-        $user->location = $request->location ?? $user->location;
+        $user->address = $request->address ?? $user->address;
         $user->phone = $request->phone ?? $user->phone;
         $user->company_name = $request->company_name ?? $user->company_name;
         $user->company_branch = $request->company_branch ?? $user->company_branch;
@@ -136,7 +136,7 @@ class UserController extends Controller
         $user->title = $request->title ?? $user->title;
         $user->education = $request->education ?? $user->education;
         $user->is_verified = $request->is_verified ?? $user->is_verified;
-        $user->comapny_type = $request->comapny_type ?? $user->comapny_type;
+        $user->company_type = $request->company_type ?? $user->company_type;
         $user->role = $request->role ?? $user->role;
         $user->cv = $request->cv ?? $user->cv;
         $user->experience = $request->experience ?? $user->experience;
@@ -147,7 +147,7 @@ class UserController extends Controller
         }
 
         $user->update();        
-        return true;
+        return back()->with("msg", "Profile updated successfully");
     }
 
     public function uploadImage(){    

@@ -71,6 +71,10 @@ Route::get('/candidate-dashboard', [UserController::class, 'candidateDash'])->mi
 Route::get('/check', [UserController::class, 'check'])->middleware("notLogin");
 
 Route::post('/login', [UserController::class, 'loginUser']);
+
 Route::get('/logOut', [UserController::class, 'logOut']);
+
 Route::post('/register', [UserController::class, 'registerUser']);
+
+Route::post('/update-profile', [UserController::class, 'updateUser']);
 
