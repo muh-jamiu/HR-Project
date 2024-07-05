@@ -65,13 +65,16 @@ Candidate Dashboard | HR
 
         <div class="d_section1 p-4">
             <div class="d-flex">
+                @php
+                    $skills__ = explode(",", $user->skills);
+                @endphp
                 <img  width="80" height="80" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/page/candidates/img-candidate.png" alt="">
                 <div class="mt-0 mx-2">
                     <h4 class="fw-bold mb-1 text-capitalize">Welcome Back, {{$user->first_name}}</h4>
                     <div class="d_skills mb-2 mt-2 d-flex">
-                        <p class="text-muted mb-0">Python</p>
-                        <p class="text-muted mb-0">Python</p>
-                        <p class="text-muted mb-0">Python</p>
+                        @foreach ($skills__ as $item)
+                        <p class="text-muted mb-0">{{$item}}</p>                            
+                        @endforeach
                     </div>
                     <div class="d-flex">
                         <p class="text-muted ft text-capitalize">Candidate | {{$user->title ?? "N/A"}}</p>
