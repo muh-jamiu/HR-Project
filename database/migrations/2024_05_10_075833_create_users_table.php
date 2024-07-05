@@ -31,7 +31,6 @@ return new class extends Migration
             $table->string("salary")->nullable();
             $table->string("phone")->nullable();
             $table->string("title")->nullable();
-            $table->string("bio")->nullable();
             $table->string("education")->nullable();
             $table->string("gender")->nullable();
             $table->boolean("is_verified")->default(false);

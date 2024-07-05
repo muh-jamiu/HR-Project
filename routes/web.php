@@ -68,3 +68,6 @@ Route::get('/employer/{employer_username}/', function ($employer_username) {
 
 Route::get('/candidate-dashboard', [UserController::class, 'candidateDash']);
 
+Route::post('/login', [UserController::class, 'loginUser']);
+Route::post('/register', [UserController::class, 'registerUser']);
+
