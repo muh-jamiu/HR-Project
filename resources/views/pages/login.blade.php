@@ -31,7 +31,7 @@ Login to continue | HR
                         <li style="width: fit-content" class="list-unstyled">{{session("msg")}}</li>
                     </div>
                 @endif
-                <input name="email" required type="email" placeholder="Enter email address">
+                <input name="email" value="{{old('email')}}" required type="email" placeholder="Enter email address">
                 <input name="password" type="password" placeholder="********">
             </div>
             <br>

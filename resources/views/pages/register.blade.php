@@ -15,7 +15,7 @@ Sign up to continue | HR
         <form action="/register" method="POST">
             @csrf
             <div class="text-center">
-                <h4 class="text-center mb-1 text-white" >Sign up to continue</h4>
+                <h4 class="text-center mb-2 text-white" >Sign up to continue</h4>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         @foreach ($errors->all() as $error)
@@ -28,12 +28,12 @@ Sign up to continue | HR
                         <li style="width: fit-content" class="list-unstyled">{{session("msg")}}</li>
                     </div>
                 @endif
-                
-                <input required type="text" placeholder="First Name">
-                <input required type="text" placeholder="Last Name">
-                <input required type="text" placeholder="Phone Number">
-                <input required type="email" placeholder="Enter email address">
-                <input required type="password" placeholder="Password">
+
+                <input name="first_name" required type="text" placeholder="First Name" value="{{old('first_name')}}">
+                <input name="last_name" required value="{{old('last_name')}}" type="text" placeholder="Last Name">
+                <input name="username" required value="{{old('username')}}" type="text" placeholder="Username">
+                <input name="email" required value="{{old('email')}}" type="email" placeholder="Enter email address">
+                <input name="password" required type="password" placeholder="Password">
             </div>
             <br>
             <button class="btn px-5 mx-5 btn-outline-light">Sign up</button>

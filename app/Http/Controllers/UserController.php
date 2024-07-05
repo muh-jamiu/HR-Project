@@ -43,15 +43,10 @@ class UserController extends Controller
             "username" => "required|min:5|unique:users",
         ]);
 
-        if(request()->c_password != request()->password){
-            return back()->with("msg", "password does not match");
-        }
-
         $user->first_name = request()->first_name;
         $user->last_name = request()->last_name;
         $user->username = request()->username;
         $user->email = request()->email;
-        $user->username = request()->username;
         $user->password = request()->password;
         $user->save();
 
