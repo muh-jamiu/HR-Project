@@ -2,6 +2,7 @@
 
 @php
 $is_employ = true;
+$users = $data["users"] ?? [];
 @endphp
 
 @section('title')
@@ -95,34 +96,36 @@ Job Employers | HR
             </div>
             <div class="section3 section4">        
                 <div class="d-flex justify-content- mt-3 flex-wrap">
-                    @for ($i = 0; $i < 9; $i++)                    
-                    <a href="/employer/{{$i}}" class="text-decoration-none text-dark">
-                        <div class="cont_">
-                            <div class="img">
-                                <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
-                            </div>
-                            <div class="p-3">
-                                <div class="d-flex flex-wrap mt-2 mb-4 justify-content-between">
-                                    <p class="mb-2 text-muted mt-1 ">
-                                        <img class="mx-2" width="20" height="20" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">Company Name</p>
-                                    <button style="background-color: rgba(45, 249, 45, 0.088); height:fit-content" class="btn text-success ft px-4 py-1">Fulltime</button>
+                    @foreach ($users as $user)    
+                    @if ($user->role == "company")                  
+                        <a href="/employer/{{$user->company_name}}" class="text-decoration-none text-dark">
+                            <div class="cont_">
+                                <div class="img">
+                                    <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
                                 </div>
-                                <p class="mt-3 mb-3">Senior Full Stack Engineer, Creator Success Full Time</p>
-                                <div class="d-flex">
-                                    <p class="ft text-muted"><i class="fa-regular fa-clock"></i> 3 mins ago</p>
-                                    <p class="ft text-muted mx-3"><i class="fa-solid fa-location-dot"></i> Chicago</p>
-                                </div>
-                                <div class="d-flex mt-2 mb-3 justify-content-between">
-                                    <p class="text-muted"><span class="cl fw-bold">$3200</span>/Month</p>
-                                    <div class="d-flex mt-1">
-                                        <i class="fa-regular btn text-primary fa-thumbs-up"></i>
-                                        <i class="fa-regular btn text-danger fa-thumbs-down"></i>
+                                <div class="p-3">
+                                    <div class="d-flex flex-wrap mt-2 mb-4 justify-content-between">
+                                        <p class="mb-2 text-muted mt-1 ">
+                                            <img class="mx-2" width="20" height="20" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">Company Name</p>
+                                        <button style="background-color: rgba(45, 249, 45, 0.088); height:fit-content" class="btn text-success ft px-4 py-1">Fulltime</button>
+                                    </div>
+                                    <p class="mt-3 mb-3">Senior Full Stack Engineer, Creator Success Full Time</p>
+                                    <div class="d-flex">
+                                        <p class="ft text-muted"><i class="fa-regular fa-clock"></i> 3 mins ago</p>
+                                        <p class="ft text-muted mx-3"><i class="fa-solid fa-location-dot"></i> Chicago</p>
+                                    </div>
+                                    <div class="d-flex mt-2 mb-3 justify-content-between">
+                                        <p class="text-muted"><span class="cl fw-bold">$3200</span>/Month</p>
+                                        <div class="d-flex mt-1">
+                                            <i class="fa-regular btn text-primary fa-thumbs-up"></i>
+                                            <i class="fa-regular btn text-danger fa-thumbs-down"></i>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>	
-                    </a>			
-                    @endfor
+                            </div>	
+                        </a>
+                    @endif			
+                    @endforeach
                 </div>
             </div>
         </div>

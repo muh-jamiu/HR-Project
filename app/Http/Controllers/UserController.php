@@ -188,6 +188,22 @@ class UserController extends Controller
         return view("pages.single_candidate", compact("data"));;
     }
 
+    public function employersAll(){
+        $data["users"] = $this->getAllUser();
+        return view("pages.employers", compact("data"));
+    }
+
+    public function getUserByCompany($company_name){  
+        $user = User::where('company_name', $company_name)->first();
+        return $user;
+    }
+
+    public function employersSingle($company_name){
+        $data["user"] = $this->getUserByCompany($company_name);
+        dd($data);
+        return view("pages.single_employer", compact("data"));;
+    }
+
     // public function postCode($code, $id){
     //     $verify = new accountVerify();
     //     $verify->userId = session("admyrer_id") ?? $id;

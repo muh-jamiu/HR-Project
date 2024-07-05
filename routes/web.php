@@ -23,9 +23,7 @@ Route::get('/browse-jobs', function () {
     return view("pages.jobs");
 });
 
-Route::get('/employers', function () {
-    return view("pages.employers");
-});
+Route::get('/employers', [UserController::class, 'employersAll']);
 
 Route::get('/get-started', function () {
     return view("pages.biz_type");
@@ -56,10 +54,7 @@ Route::get('/job/{job_title}/{id}', function ($job_title) {
 
 Route::get('/candidate/{id}/', [UserController::class, 'candidateSingle']);
 
-Route::get('/employer/{employer_username}/', function ($employer_username) {
-    $data["username"] = str_replace("_", " ", $employer_username);
-    return view("pages.single_employer", compact("data"));
-});
+Route::get('/employer/{employer_username}/', [UserController::class, 'employersSingle']);
 
 Route::get('/candidate-dashboard', [UserController::class, 'candidateDash'])->middleware("notLogin");
 
