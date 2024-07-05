@@ -45,4 +45,36 @@ Sign up to continue | HR
         <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/blog/img-blog-2.png" alt="">
     </div>
 </div>
+
+<p class="d-none bang">{{$role}}</p>
+
 @endsection
+
+@push('javascript')
+    <script>
+        var role = document.querySelector(".bang").innerHTML
+        if(role == "company"){
+            role = "Company"
+        }else{
+            role = "Candidate"
+        }
+        
+        function show__(){
+            Swal.fire({
+                title: "Are you sure?",
+                text: `You are signing up as a ${role}`,
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Continue!"
+            }).then((result) => {
+            });
+        }
+        
+        setTimeout(() => {
+            show__();
+        }, 1000);
+        
+    </script>
+@endpush
