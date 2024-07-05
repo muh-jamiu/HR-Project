@@ -133,7 +133,12 @@ Candidate Dashboard | HR
                     <div class="tab-content mb-5 mt-4" id="ddd_">
 
                         <div class="tab-pane container active" id="all_j">
-                           <div class="section3_d">
+                            <div class="text-center mt-5">
+                                <h4>Empty</h4>
+                                <p class="text-muted ft">You don't have any application at the momemt.</p>
+                                <a href="/browse-jobs" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
+                            </div>
+                           {{-- <div class="section3_d">
                             <div class="d-flex justify-content-evenly mt-3 flex-wrap">
                                 @for ($i = 0; $i < 5; $i++)
                                 <a href="/job/title/{{$i}}" class="text-decoration-none text-dark">
@@ -153,28 +158,30 @@ Candidate Dashboard | HR
                                 </a>		
                                 @endfor
                             </div>	
-                           </div>
+                           </div> --}}
                         </div>
 
                         <div class="tab-pane container fade" id="active_j">
                             <div class="text-center mt-5">
                                 <h4>Empty</h4>
                                 <p class="text-muted ft">You don't have any active application at the momemt.</p>
-                                <a href="" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
+                                <a href="/browse-jobs" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
                             </div>
                         </div>
+                        
                         <div class="tab-pane container fade" id="decline_j">
                             <div class="text-center mt-5">
                                 <h4>Empty</h4>
                                 <p class="text-muted ft">You don't have any decline application at the momemt.</p>
-                                <a href="" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
+                                <a href="/browse-jobs" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
                             </div>
                         </div>
+
                         <div class="tab-pane container fade" id="pending_j">
                             <div class="text-center mt-5">
                                 <h4>Empty</h4>
                                 <p class="text-muted ft">You don't have any pending application at the momemt.</p>
-                                <a href="" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
+                                <a href="/browse-jobs" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
                             </div>
                         </div>
                     </div>

@@ -488,3 +488,16 @@ body{
     margin-right: .5em;
     font-size: 12px;
 }
+
+.job_single #apply__ input{
+    width: 100%;
+    padding: .7em;
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 6px;
+    margin-bottom: 1em;
+    outline: none;
+}
+
+.job_single #apply__ input::placeholder{
+    font-size: 14px;
+}
