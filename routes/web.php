@@ -68,6 +68,8 @@ Route::get('/employer/{employer_username}/', function ($employer_username) {
 
 Route::get('/candidate-dashboard', [UserController::class, 'candidateDash'])->middleware("notLogin");
 
+Route::get('/employer-dashboard', [UserController::class, 'employersDash'])->middleware("notLogin");
+
 Route::get('/account-check', [UserController::class, 'check'])->middleware("notLogin");
 
 Route::post('/login', [UserController::class, 'loginUser']);

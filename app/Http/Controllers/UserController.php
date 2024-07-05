@@ -16,13 +16,17 @@ class UserController extends Controller
         return view("dashboard.candidate_dash", compact("data"));
     }
 
+    public function employersDash(){
+        $data["user"] = $this->getUser(session("hr_id"));
+        return view("dashboard.employers_dash", compact("data"));
+    }
+
     public function check(){
         $user = $this->getUser(session("hr_id"));
         $role = $user->role;
 
         if($role == "company"){
-            dd("company");
-            return redirect("/candidate-dashboard");   
+            return redirect("/employer-dashboard");   
         }else{
             return redirect("/candidate-dashboard"); 
         }
@@ -51,7 +55,6 @@ class UserController extends Controller
         request()->validate([
             "email" => "required|email|unique:users",
             "password" => "required|min:5|max:20",
-            "username" => "required|min:5|unique:users",
         ]);
 
 
