@@ -52,6 +52,7 @@ class UserController extends Controller
         $user->password = request()->password;
         $user->company_name = request()->company_name;
         $user->company_type = request()->company_type;
+        $user->phone = request()->phone;
         $user->role = $role;
         $user->save();
 

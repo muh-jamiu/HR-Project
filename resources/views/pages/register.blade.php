@@ -33,11 +33,12 @@ Sign up to continue | HR
                 @if ($role == "company")
                 <input name="company_name" required type="text" placeholder="Company Name" value="{{old('company_name')}}">
                 <input name="company_type" required type="text" placeholder="Company Type" value="{{old('company_type')}}">                    
+                <input name="phone" required type="text" placeholder="Phone Number" value="{{old('phone')}}">                    
                 @else
                 <input name="first_name" required type="text" placeholder="First Name" value="{{old('first_name')}}">
-                <input name="last_name" required value="{{old('last_name')}}" type="text" placeholder="Last Name">                    
+                <input name="last_name" required value="{{old('last_name')}}" type="text" placeholder="Last Name">       
+                <input name="username" required value="{{old('username')}}" type="text" placeholder="Username">             
                 @endif
-                <input name="username" required value="{{old('username')}}" type="text" placeholder="Username">
                 <input name="email" required value="{{old('email')}}" type="email" placeholder="Enter email address">
                 <input name="password" required type="password" placeholder="Password">
             </div>
