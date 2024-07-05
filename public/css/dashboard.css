@@ -108,3 +108,15 @@
     width: 100%;
     resize: none;
 }
+
+.dashboard_ .d_cv{
+    float: right;
+}
+
+.d_section1 .d_skills p{
+    background-color: rgba(0, 0, 255, 0.073);
+    padding: .3em 1em;
+    border-radius: 3px;
+    margin-right: 1em;
+    font-size: 12px;
+}

@@ -63,16 +63,20 @@ Candidate Dashboard | HR
         <div class="d_section1 p-4">
             <div class="d-flex">
                 <img  width="80" height="80" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/page/candidates/img-candidate.png" alt="">
-                <div class="mt-2 mx-2">
+                <div class="mt-0 mx-2">
                     <h4 class="fw-bold mb-1">Welcome Back, Ganiu</h4>
-                    <div class="d_skills d-flex">
-                        <p class="mb-0">Python</p>
-                        <p class="mb-0">Python</p>
-                        <p class="mb-0">Python</p>
+                    <div class="d_skills mb-2 mt-2 d-flex">
+                        <p class="text-muted mb-0">Python</p>
+                        <p class="text-muted mb-0">Python</p>
+                        <p class="text-muted mb-0">Python</p>
                     </div>
-                    <p class="text-muted ft">You have 2 new messages and 15 new tasks</p>
+                    <div class="d-flex">
+                        <p class="text-muted ft">Candidate | Software Developer</p>
+                    </div>
                 </div>
             </div>
+            <button class="btn-info px-4 mx-4 ft btn d_cv">Upload Profile Picture</button>
+            <button class="btn-primary px-4 ft btn d_cv">Upload CV</button>
         </div>
 
         <div class="d_section2 mt-4">
@@ -118,6 +122,63 @@ Candidate Dashboard | HR
                             </div>
                         </div>
                     </div>
+
+                    <div class="__nav nav d-flex nav-tabs mt-4">
+                        <li class="list-unstyled active" data-bs-toggle="tab" href="#all_j"><a href="#ddd_" class="text-decoration-none text-muted">All Application</a></li>
+                        <li class="list-unstyled" data-bs-toggle="tab" href="#active_j"><a href="#ddd_" class="text-decoration-none text-muted">Active Application</a></li>
+                        <li class="list-unstyled" data-bs-toggle="tab" href="#decline_j"><a href="#ddd_" class="text-decoration-none text-muted">Decline Application</a></li>
+                        <li class="list-unstyled" data-bs-toggle="tab" href="#pending_j"><a href="#ddd_" class="text-decoration-none text-muted">Pending Application</a></li>
+                    </div>
+
+                    <div class="tab-content mb-5 mt-4" id="ddd_">
+
+                        <div class="tab-pane container active" id="all_j">
+                           <div class="section3_d">
+                            <div class="d-flex justify-content-evenly mt-3 flex-wrap">
+                                @for ($i = 0; $i < 5; $i++)
+                                <a href="/job/title/{{$i}}" class="text-decoration-none text-dark">
+                                    <div class="cont_ bg-white">
+                                        <div class="img" style="height: 150px">
+                                            <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
+                                        </div>
+                                        <div class="p-3">
+                                            <div class="d-flex flex-wrap mt-2 mb-4 justify-content-between">
+                                                <p class="mb-2 text-muted mt-1 ">
+                                                    <img class="mx-2" width="20" height="20" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">Company Name</p>
+                                                <button style="background-color: rgba(45, 249, 45, 0.088); height:fit-content" class="btn text-success ft px-4 py-1">Fulltime</button>
+                                            </div>
+                                            <p class="mt-3 mb-3">Senior Full Stack Engineer, Creator Success Full Time</p>
+                                        </div>
+                                    </div>		
+                                </a>		
+                                @endfor
+                            </div>	
+                           </div>
+                        </div>
+
+                        <div class="tab-pane container fade" id="active_j">
+                            <div class="text-center mt-5">
+                                <h4>Empty</h4>
+                                <p class="text-muted ft">You don't have any active application at the momemt.</p>
+                                <a href="" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
+                            </div>
+                        </div>
+                        <div class="tab-pane container fade" id="decline_j">
+                            <div class="text-center mt-5">
+                                <h4>Empty</h4>
+                                <p class="text-muted ft">You don't have any decline application at the momemt.</p>
+                                <a href="" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
+                            </div>
+                        </div>
+                        <div class="tab-pane container fade" id="pending_j">
+                            <div class="text-center mt-5">
+                                <h4>Empty</h4>
+                                <p class="text-muted ft">You don't have any pending application at the momemt.</p>
+                                <a href="" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="tab-pane container fade" id="jobs">
