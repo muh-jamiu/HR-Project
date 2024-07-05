@@ -92,34 +92,26 @@ Job Employers | HR
 
         <div class="second">
             <div class="d-flex justify-content-between">
-                <p class="mb-0 ft text-muted">Showing <strong>41-60</strong> of <strong>944</strong> jobs</p>
+                <p class="mb-0 ft text-muted">Showing <strong>1-10</strong> of <strong>{{count($users)}}</strong> employers</p>
             </div>
             <div class="section3 section4">        
                 <div class="d-flex justify-content- mt-3 flex-wrap">
-                    @foreach ($users as $user)    
+                    @foreach ($users as $key => $user)    
                     @if ($user->role == "company")                  
                         <a href="/employer/{{$user->company_name}}" class="text-decoration-none text-dark">
                             <div class="cont_">
-                                <div class="img">
-                                    <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
+                                <div class="text-center mt-3" >
+                                    <img style="width: 100px; height: 100px; object-fit:cover; border-radius:50%; object-fit:cover" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
                                 </div>
-                                <div class="p-3">
-                                    <div class="d-flex flex-wrap mt-2 mb-4 justify-content-between">
-                                        <p class="mb-2 text-muted mt-1 ">
-                                            <img class="mx-2" width="20" height="20" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">Company Name</p>
-                                        <button style="background-color: rgba(45, 249, 45, 0.088); height:fit-content" class="btn text-success ft px-4 py-1">Fulltime</button>
+                                <div class="p-3 text-center">
+                                    <p class="fw-bold mb-1 text-capitalize">{{$user->company_name}}</p>
+                                    <p class="text-muted mb-1 ft text-capitalize">{{$user->company_type ?? "N/A"}}</p>
+                                    <div class="d-flex mt-3 justify-content-evenly">
+                                        <p class="text-muted ft mb-0 text-capitalize"><i class="fa-solid text-muted fa-location-dot"></i> {{$user->state ?? "n/a"}}</p>
+                                        <p class="text-muted ft mb-0 text-capitalize"><i class="fa-solid text-muted fa-layer-group"></i> {{$user->country ?? "n/a"}}</p>
                                     </div>
-                                    <p class="mt-3 mb-3">Senior Full Stack Engineer, Creator Success Full Time</p>
-                                    <div class="d-flex">
-                                        <p class="ft text-muted"><i class="fa-regular fa-clock"></i> 3 mins ago</p>
-                                        <p class="ft text-muted mx-3"><i class="fa-solid fa-location-dot"></i> Chicago</p>
-                                    </div>
-                                    <div class="d-flex mt-2 mb-3 justify-content-between">
-                                        <p class="text-muted"><span class="cl fw-bold">$3200</span>/Month</p>
-                                        <div class="d-flex mt-1">
-                                            <i class="fa-regular btn text-primary fa-thumbs-up"></i>
-                                            <i class="fa-regular btn text-danger fa-thumbs-down"></i>
-                                        </div>
+                                    <div class="text-center mb-3">
+                                        <button class="btn ft btn-outline-dark mt-4">View Employer</button>
                                     </div>
                                 </div>
                             </div>	

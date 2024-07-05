@@ -101,7 +101,7 @@ Platform Candidates | HR
 			        <a href="/candidate/{{$user->id}}?username={{$user->username}}&name={{$user->first_name}}" class="text-decoration-none text-dark">
                         <div class="cont_">
                             <div class="text-center mt-3" >
-                                <img style="width: 100px; height: 100px; object-fit:cover; border-radius:50%"  object-fit:contain" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
+                                <img style="width: 100px; height: 100px; object-fit:cover; border-radius:50%; object-fit:cover" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
                             </div>
                             <div class="p-3 text-center">
                                 <p class="fw-bold mb-1 text-capitalize">{{$user->first_name}} {{$user->last_name}}</p>

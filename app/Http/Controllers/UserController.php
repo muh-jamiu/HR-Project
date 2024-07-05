@@ -200,7 +200,6 @@ class UserController extends Controller
 
     public function employersSingle($company_name){
         $data["user"] = $this->getUserByCompany($company_name);
-        dd($data);
         return view("pages.single_employer", compact("data"));;
     }
 
