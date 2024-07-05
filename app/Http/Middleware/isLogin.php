@@ -16,7 +16,7 @@ class isLogin
     public function handle(Request $request, Closure $next): Response
     {
         if ($request->session()->has("hr_id")) {
-            return redirect('/check');
+            return redirect('/account-check');
         }
         return $next($request);
     }

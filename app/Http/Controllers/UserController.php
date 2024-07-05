@@ -21,6 +21,7 @@ class UserController extends Controller
         $role = $user->role;
 
         if($role == "company"){
+            dd("company");
             return redirect("/candidate-dashboard");   
         }else{
             return redirect("/candidate-dashboard"); 
@@ -40,7 +41,7 @@ class UserController extends Controller
 
         if(Hash::check(request()->password, $existingUser->password)){ 
             session()->put("hr_id", $existingUser->id);
-            return redirect("/check");      
+            return redirect("/account-check");      
         }
 
         return back()->with("msg", "Password or Email is not correct!");     
@@ -69,7 +70,7 @@ class UserController extends Controller
         if($user){
             session()->put("hr_id", $user->id);
             // $this->sendMail($request, $user->id);
-            return redirect("/check");   
+            return redirect("/account-check");   
         }
         
         return back()->with("msg", "something went wrong");
