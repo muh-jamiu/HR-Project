@@ -52,9 +52,9 @@ Route::get('/job/{job_title}/{id}', function ($job_title) {
     return view("pages.job_single", compact("data"));
 });
 
-Route::get('/candidate/{id}/', [UserController::class, 'candidateSingle']);
+Route::get('/candidate/{unique_id}/{candidate_name}', [UserController::class, 'candidateSingle']);
 
-Route::get('/employer/{employer_username}/', [UserController::class, 'employersSingle']);
+Route::get('/employer/{unique_id}/{employer_username}', [UserController::class, 'employersSingle']);
 
 Route::get('/candidate-dashboard', [UserController::class, 'candidateDash'])->middleware("notLogin");
 

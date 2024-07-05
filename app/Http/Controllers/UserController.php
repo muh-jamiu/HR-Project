@@ -51,6 +51,16 @@ class UserController extends Controller
         return back()->with("msg", "Password or Email is not correct!");     
     }
 
+    function generateRandomKey($length = 25) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomKey = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomKey .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomKey;
+    }
+
     public function registerUser(User $user, Request $request){
         request()->validate([
             "email" => "required|email|unique:users",
@@ -66,6 +76,7 @@ class UserController extends Controller
         $user->password = request()->password;
         $user->company_name = request()->company_name;
         $user->company_type = request()->company_type;
+        $user->unique_id = $this->generateRandomKey();
         $user->phone = request()->phone;
         $user->role = $role;
         $user->save();
@@ -183,8 +194,8 @@ class UserController extends Controller
         return view("pages.candidate", compact("data"));
     }
 
-    public function candidateSingle($id){
-        $data["user"] = $this->getUser($id);
+    public function candidateSingle($unique_id){
+        $data["user"] = $this->getUserByCompany($unique_id);
         return view("pages.single_candidate", compact("data"));;
     }
 
@@ -193,13 +204,16 @@ class UserController extends Controller
         return view("pages.employers", compact("data"));
     }
 
-    public function getUserByCompany($company_name){  
-        $user = User::where('company_name', $company_name)->first();
+    public function getUserByCompany($unique_id){  
+        $user = User::where('unique_id', $unique_id)->first();
         return $user;
     }
 
-    public function employersSingle($company_name){
-        $data["user"] = $this->getUserByCompany($company_name);
+    public function employersSingle($unique_id){
+        $data["user"] = $this->getUserByCompany($unique_id);
+        if(!$data["user"]){
+            return back();
+        }
         return view("pages.single_employer", compact("data"));;
     }
 
