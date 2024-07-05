@@ -2,6 +2,7 @@
 
 @php
 $iscontact = true;
+$role = request()->query("role");
 @endphp
 
 @section('title')
@@ -12,7 +13,7 @@ Sign up to continue | HR
 <div class="d-flex login">
     <div class="form" style="height: 100vh; overflow:scroll">
         <br>
-        <form action="/register" method="POST">
+        <form action="/register?role={{$role}}" method="POST">
             @csrf
             <div class="text-center">
                 <h4 class="text-center mb-2 text-white" >Sign up to continue</h4>

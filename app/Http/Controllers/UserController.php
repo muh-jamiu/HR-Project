@@ -43,11 +43,14 @@ class UserController extends Controller
             "username" => "required|min:5|unique:users",
         ]);
 
+
+        $role = request()->query("role") ?? "user";
         $user->first_name = request()->first_name;
         $user->last_name = request()->last_name;
         $user->username = request()->username;
         $user->email = request()->email;
         $user->password = request()->password;
+        $user->role = $role;
         $user->save();
 
         if($user){
