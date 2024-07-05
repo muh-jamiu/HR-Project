@@ -16,8 +16,12 @@ Candidate-{{$user->username ?? ""}} | HR
     <div class="section1">
         <button class="btn btn-primary _cv_">Download CV</button>
        <div class="d-flex mt-3">
-        <div class="img__">
-            <img  width="150" height="150" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/page/candidates/img-candidate.png" alt="">
+        <div class="img__" style="">
+            @if ($user->avatar)
+            <img  width="150" height="150" style="border-radius: 50% ; background-color: rgb(226, 226, 226)" src="{{$user->avatar}}" alt="">                                       
+            @else
+            <img  width="150" height="150" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/page/candidates/img-candidate.png" alt="">                                     
+            @endif
         </div>
         <div class="mx-3 mt-3">
             <h3 class="fw-bold text-capitalize">{{$user->first_name}} {{$user->last_name}}</h3>

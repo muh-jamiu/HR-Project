@@ -101,7 +101,11 @@ Platform Candidates | HR
 			        <a href="/candidate/{{$user->unique_id}}/{{$user->first_name}}" class="text-decoration-none text-dark">
                         <div class="cont_">
                             <div class="text-center mt-3" >
-                                <img style="width: 100px; height: 100px; object-fit:cover; border-radius:50%; object-fit:cover" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
+                                @if ($user->avatar)
+                                    <img loading="lazy" lazy style="width: 100px; height: 100px; object-fit:cover; border-radius:50%; object-fit:cover" src="{{$user->avatar}}" alt="">                                        
+                                @else
+                                    <img style="width: 100px; height: 100px; object-fit:cover; border-radius:50%; object-fit:cover" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">                                        
+                                @endif
                             </div>
                             <div class="p-3 text-center">
                                 <p class="fw-bold mb-1 text-capitalize">{{$user->first_name}} {{$user->last_name}}</p>
@@ -129,18 +133,16 @@ Platform Candidates | HR
                     </a>	                        
                     @endif   		
                     @endforeach
+                    <div class="text-center px-2">
+                        <div class="" style="">            
+                            {{ $users->links() }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="pag_">
-        <div class="d-flex justify-content-evenly">
-            @for ($i = 1; $i < 10; $i++)
-            <li class="list-unstyled"><a href="" class="text-decoration-none">{{$i}}</a></li>                
-            @endfor
-        </div>
-    </div>
 
 	<hr style="color: rgb(183, 183, 183)">
 

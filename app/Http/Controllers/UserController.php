@@ -189,8 +189,19 @@ class UserController extends Controller
         return true;
     }
 
+    public function newRoleAll($role){  
+        $user = User::where('role', $role)->paginate(12);
+        return $user;
+    }
+
+    public function newCandAll($role){  
+        $user = User::where('role', $role)->paginate(9);
+        return $user;
+    }
+
+
     public function candidateAll(){
-        $data["users"] = $this->getAllUser();
+        $data["users"] = $this->newCandAll("candidate");
         return view("pages.candidate", compact("data"));
     }
 
@@ -200,7 +211,7 @@ class UserController extends Controller
     }
 
     public function employersAll(){
-        $data["users"] = $this->getAllUser();
+        $data["users"] = $this->newRoleAll("company");
         return view("pages.employers", compact("data"));
     }
 
