@@ -50,6 +50,8 @@ class UserController extends Controller
         $user->username = request()->username;
         $user->email = request()->email;
         $user->password = request()->password;
+        $user->company_name = request()->company_name;
+        $user->company_type = request()->company_type;
         $user->role = $role;
         $user->save();
 
