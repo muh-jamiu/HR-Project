@@ -16,11 +16,6 @@ class UserController extends Controller
 
     public function candidateDash(){
         $data["applications"] = Application::where(["company_id" => session("hr_id")])->get();
-        $data["company"] = [];
-        foreach ($data["applications"] as $key => $value) {
-            $data["company"][$key] = Job::where("id", $value->job_id)->get();
-        }
-
         $data["user"] = $this->getUser(session("hr_id"));
         return view("dashboard.candidate_dash", compact("data"));
     }

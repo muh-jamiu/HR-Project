@@ -15,7 +15,6 @@
 
 $user = $data["user"] ?? [];
 $applications = $data["applications"] ?? [];
-$company = $data["company"] ?? [];
 @endphp
 
 @section('title')
@@ -214,24 +213,28 @@ Candidate Dashboard | HR
                 <div class="tab-pane container fade" id="jobs">
                     <div class="section3_d" style="margin-bottom: 0 !important">
                         <div class="d-flex justify-content- mt-3 flex-wrap">
-                            @foreach ($company as $cp)
-                            <a href="/job/{{str_replace(" ", "_", $cp[0]->title)}}/{{$cp[0]->id}}" class="text-decoration-none text-dark">
+                            @foreach ($applications as $cp)
+                            @php
+                                $jobs = App\Models\Job::where(["id" => $cp->job_id])->first();
+                                $company_ = App\Models\User::where(["id" => $jobs->company_id])->first();
+                            @endphp
+                            <a href="/job/{{str_replace(" ", "_", $cp->job_title)}}/{{$jobs->id}}" class="text-decoration-none text-dark">
                                 <div class="cont_ bg-white">
                                     <div class="img" style="height: 150px">
-                                        <img src="{{$cp[0]->avatar ?? "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png"}}" alt="">
+                                        <img src="{{$jobs->avatar ?? "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png"}}" alt="">
                                     </div>
                                     <div class="p-3">
                                         <div class="d-fle flex-wrap mt-2 mb-4 justify-content-between">
                                             <p class="mb-2 text-muted ft mt-1 ">
-                                                <img class="mx-2" width="20" height="20" style="border-radius: 50%" src="{{$cp[0]->avatar ?? "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png"}}" alt="">{{$cp[0]->employment_type}}</p>
-                                            <button style="background-color: rgba(45, 249, 45, 0.088); height:fit-content" class="btn text-success ft px-4 py-1  text-capitalize">{{$cp[0]->employment_type}}</button>
+                                                <img class="mx-2" width="20" height="20" style="border-radius: 50%" src="{{$jobs->avatar ?? "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png"}}" alt="">{{$company_->company_name}}</p>
+                                            <button style="background-color: rgba(45, 249, 45, 0.088); height:fit-content" class="btn text-success ft px-4 py-1  text-capitalize">{{$jobs->employment_type}}</button>
                                         </div>
-                                        <p class="mt-3 text-capitalize fw-semibold mb-2">{{$cp[0]->title}}</p>
-                                        <p class="text-capitalize ft text-muted mb-1">{{$cp[0]->level}}</p>
-                                        <p class="text-capitalize ft text-muted mb-1">{{$cp[0]->phone}}</p>
-                                        <p class="text-capitalize ft text-muted mb-1">{{$cp[0]->country}}</p>
-                                        <p class="ft text-muted mb-3">{{$cp[0]->email}}</p>
-                                        <p style="background-color: rgba(0, 0, 255, 0.047); border-radius:13px; width:fit-content; font-size:12px" class="px-3 py-2 text-muted mb-1">{{$cp[0]->status}}</p>
+                                        <p class="mt-3 text-capitalize fw-semibold mb-2">{{$cp->job_title}}</p>
+                                        <p class="text-capitalize ft text-muted mb-1">{{$jobs->level}}</p>
+                                        <p class="text-capitalize ft text-muted mb-1">{{$jobs->phone}}</p>
+                                        <p class="text-capitalize ft text-muted mb-1">{{$jobs->country}}</p>
+                                        <p class="ft text-muted mb-3">{{$jobs->email}}</p>
+                                        <p style="background-color: rgba(0, 0, 255, 0.047); border-radius:13px; width:fit-content; font-size:12px" class="px-3 py-2 text-muted mb-1">{{$cp->status}}</p>
                                     </div>
                                 </div>		
                             </a>		
