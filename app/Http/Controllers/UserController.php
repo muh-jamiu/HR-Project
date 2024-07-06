@@ -97,17 +97,30 @@ class UserController extends Controller
         return $user;
     }
  
-    public function searchUser(){  
+    public function searchUser($page_name){  
         $query = request()->search;   
-        $user = User::where("username", "like", "%$query%")
-        ->orWhere("first_name", "like", "%$query%")
-        ->orWhere("last_name", "like", "%$query%")
-        ->orWhere("country", "like", "%$query%")
-        ->get()
-        ;
-        $data["searchUser"] = $user;
+        $location = request()->location;
+        if($location){            
+            $user = User::where("username", "like", "%$query%")
+            ->orWhere("first_name", "like", "%$query%")
+            ->orWhere("last_name", "like", "%$query%")
+            ->orWhere("country", "like", "%$location%")
+            ->orWhere("state", "like", "%$location%")
+            ->orWhere("title", "like", "%$query%")
+            ->paginate(10);
+        }else{
+            $user = User::where("username", "like", "%$query%")
+            ->orWhere("first_name", "like", "%$query%")
+            ->orWhere("last_name", "like", "%$query%")
+            ->orWhere("country", "like", "%$query%")
+            ->orWhere("state", "like", "%$query%")
+            ->orWhere("title", "like", "%$query%")
+            ->paginate(10);
+        }
+
+        $data["users"] = $user;
         $data["isSearch"] = true;
-        return view("pages.find-matches", compact("data"));
+        return view("pages.$page_name", compact("data"));
     }
   
  
