@@ -72,7 +72,7 @@ use Carbon\Carbon;
             </div>  
             <hr>
             
-            <div class="mt-5 text-capitalize"> <h4>{{$company->company_name}}</h4></div>
+            <div class="mt-5 text-capitalize"> <a class="text-decoration-none" href="/employer/{{$company->unique_id}}/{{str_replace(" ", "_", $company->company_name)}}"><h4>Visit {{$company->company_name}} Page</h4></a></div>
             <hr style="color: rgb(198, 198, 198)">
             
             <div class="d-flex">
@@ -85,7 +85,7 @@ use Carbon\Carbon;
         <div class="j_sec">
             <div class="d-flex pt-2" style="border-bottom: 1px solid rgb(235, 235, 235)">
                 <img style="border-radius: 50%; object-fit:cover" width="30" height="30" src="{{$company->avatar}}" alt="">
-                <p class="mb-3 mx-2 fw-bold text-capitalize">{{$company->company_name}}</p>
+                <p class="mb-3 mx-2 fw-bold text-capitalize"> <a class="text-decoration-none text-muted" href="/employer/{{$company->unique_id}}/{{str_replace(" ", "_", $company->company_name)}}">{{$company->company_name}}</a></p>
             </div>
             <p class="text-muted mt-3">We're looking to add more candidate to our growing teams.</p>
             <div class="d-flex">
