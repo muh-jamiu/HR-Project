@@ -3,6 +3,7 @@
 @php
 $iscand = true;
 $users = $data["users"] ?? [];
+$isSearch = $data["isSearch"] ?? false;
 $cand_ =  App\Models\User::where('role', "candidate")->get();
 $_countries = [
     "Afghanistan",
@@ -299,7 +300,11 @@ Platform Candidates | HR
 
         <div class="second">
             <div class="d-flex justify-content-between">
-                <p class="mb-0 ft text-muted">Showing <strong>1-10</strong> of <strong>{{number_format(count($cand_))}} </strong> jobs</p>
+                @if ($isSearch)
+                    <p class="mb-0 ft text-muted">Search result found <strong>1-10</strong> of <strong>{{number_format(count($users))}} </strong> candidate</p>                    
+                @else
+                    <p class="mb-0 ft text-muted">Showing <strong>1-10</strong> of <strong>{{number_format(count($cand_))}} </strong> candidate</p>                    
+                @endif
             </div>
             <div class="section3 section4">        
                 <div class="d-flex justify-content- mt-3 flex-wrap">
