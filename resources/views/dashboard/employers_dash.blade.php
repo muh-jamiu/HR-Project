@@ -74,7 +74,7 @@ Employer Dashboard | HR
                         @endforeach
                     </div>
                     <div class="d-flex">
-                        <p class="text-muted ft text-capitalize">Employer | {{$user->title ?? "N/A"}}</p>
+                        <p class="text-muted ft text-capitalize">Employer | {{$user->company_type ?? "N/A"}}</p>
                     </div>
                 </div>
             </div>
@@ -87,6 +87,7 @@ Employer Dashboard | HR
                 <li class="list-unstyled" data-bs-toggle="tab" href="#jobs"><a href="#" class="text-decoration-none text-muted">My Jobs</a></li>
                 <li class="list-unstyled" data-bs-toggle="tab" href="#profile"><a href="#" class="text-decoration-none text-muted">Company Profile</a></li>
                 <li class="list-unstyled" data-bs-toggle="tab" href="#new_job"><a href="#" class="text-decoration-none text-muted">Add New Job</a></li>
+                <li class="list-unstyled" data-bs-toggle="tab" href="#applicant"><a href="#" class="text-decoration-none text-muted">Job Applicant</a></li>
                 <li class="list-unstyled" data-bs-toggle="tab" href="#price"><a href="#" class="text-decoration-none text-muted">Pricing</a></li>
             </div>
 
@@ -94,7 +95,7 @@ Employer Dashboard | HR
                 <div class="tab-pane container active" id="home">
                     <div class="justify-content-evenly  d-flex flex-wrap">
                         <div class="box_">
-                            <p class="mt-2 ft text-info">Overall Application</p>
+                            <p class="mt-2 ft text-info">Overall Jobs</p>
                             <div class="text-center mt-4">
                                 <h1 style="font-size: 3em" class="fw-bold text-info">420</h1>
                                 <p class="text-muted ft mt-5">From Yesterday</p>
@@ -102,7 +103,7 @@ Employer Dashboard | HR
                         </div>
     
                         <div class="box_">
-                            <p class="mt-2 ft text-success">Approved Application</p>
+                            <p class="mt-2 ft text-success">Approved Jobs</p>
                             <div class="text-center mt-4">
                                 <h1 style="font-size: 3em" class="fw-bold text-success">12</h1>
                                 <p class="text-muted ft mt-5">From Yesterday</p>
@@ -110,7 +111,7 @@ Employer Dashboard | HR
                         </div>
     
                         <div class="box_">
-                            <p class="ft mt-2 text-danger">Decline Application</p>
+                            <p class="ft mt-2 text-danger">Decline Jobs</p>
                             <div class="text-center mt-4">
                                 <h1 style="font-size: 3em" class="fw-bold text-danger">0</h1>
                                 <p class="text-muted ft mt-5">From Yesterday</p>
@@ -118,7 +119,7 @@ Employer Dashboard | HR
                         </div>
     
                         <div class="box_">
-                            <p class="mt-2 ft text-warning">Pending Application</p>
+                            <p class="mt-2 ft text-warning">Pending Jobs</p>
                             <div class="text-center mt-4">
                                 <h1 style="font-size: 3em" class="fw-bold text-warning">420</h1>
                                 <p class="text-muted ft mt-5">From Yesterday</p>
@@ -127,10 +128,10 @@ Employer Dashboard | HR
                     </div>
 
                     <div class="__nav nav d-flex nav-tabs mt-4">
-                        <li class="list-unstyled active" data-bs-toggle="tab" href="#all_j"><a href="#ddd_" class="text-decoration-none text-muted">All Application</a></li>
-                        <li class="list-unstyled" data-bs-toggle="tab" href="#active_j"><a href="#ddd_" class="text-decoration-none text-muted">Active Application</a></li>
-                        <li class="list-unstyled" data-bs-toggle="tab" href="#decline_j"><a href="#ddd_" class="text-decoration-none text-muted">Decline Application</a></li>
-                        <li class="list-unstyled" data-bs-toggle="tab" href="#pending_j"><a href="#ddd_" class="text-decoration-none text-muted">Pending Application</a></li>
+                        <li class="list-unstyled active" data-bs-toggle="tab" href="#all_j"><a href="#ddd_" class="text-decoration-none text-muted">All Jobs</a></li>
+                        <li class="list-unstyled" data-bs-toggle="tab" href="#active_j"><a href="#ddd_" class="text-decoration-none text-muted">Active Jobs</a></li>
+                        <li class="list-unstyled" data-bs-toggle="tab" href="#decline_j"><a href="#ddd_" class="text-decoration-none text-muted">Decline Jobs</a></li>
+                        <li class="list-unstyled" data-bs-toggle="tab" href="#pending_j"><a href="#ddd_" class="text-decoration-none text-muted">Pending Jobs</a></li>
                     </div>
 
                     <div class="tab-content mb-5 mt-4" id="ddd_">
@@ -138,7 +139,7 @@ Employer Dashboard | HR
                         <div class="tab-pane container active" id="all_j">
                             <div class="text-center mt-5">
                                 <h4>Empty</h4>
-                                <p class="text-muted ft">You don't have any application at the momemt.</p>
+                                <p class="text-muted ft">You don't have any Jobs at the momemt.</p>
                                 <a href="/browse-jobs" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
                             </div>
                            {{-- <div class="section3_d">
@@ -167,7 +168,7 @@ Employer Dashboard | HR
                         <div class="tab-pane container fade" id="active_j">
                             <div class="text-center mt-5">
                                 <h4>Empty</h4>
-                                <p class="text-muted ft">You don't have any active application at the momemt.</p>
+                                <p class="text-muted ft">You don't have any active Jobs at the momemt.</p>
                                 <a href="/browse-jobs" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
                             </div>
                         </div>
@@ -175,7 +176,7 @@ Employer Dashboard | HR
                         <div class="tab-pane container fade" id="decline_j">
                             <div class="text-center mt-5">
                                 <h4>Empty</h4>
-                                <p class="text-muted ft">You don't have any decline application at the momemt.</p>
+                                <p class="text-muted ft">You don't have any decline Jobs at the momemt.</p>
                                 <a href="/browse-jobs" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
                             </div>
                         </div>
@@ -183,7 +184,7 @@ Employer Dashboard | HR
                         <div class="tab-pane container fade" id="pending_j">
                             <div class="text-center mt-5">
                                 <h4>Empty</h4>
-                                <p class="text-muted ft">You don't have any pending application at the momemt.</p>
+                                <p class="text-muted ft">You don't have any pending Jobs at the momemt.</p>
                                 <a href="/browse-jobs" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
                             </div>
                         </div>
@@ -215,7 +216,7 @@ Employer Dashboard | HR
                     </div>
                 </div>
 
-                <div class="tab-pane container fade" id="profile">
+                <div class="tab-pane container all_input fade" id="profile">
                     <form action="/update-profile" method="POST">
                         @csrf
                         <div class="d-flex justify-content-between">
@@ -226,14 +227,14 @@ Employer Dashboard | HR
                         <hr style="color: grey">
                         <p class="fw-bold mb-2">Basic Information</p>
                         <div class="d-flex justify-content-evenly mb-3">
-                            <input name="first_name" type="text" placeholder="First name" value="{{$user->company_name}}">
-                            <input name="last_name" type="text" placeholder="Last name" value="{{$user->company_type}}">
+                            <input name="company_name" type="text" placeholder="Company name" value="{{$user->company_name}}">
+                            <input name="company_type" type="text" placeholder="Company type" value="{{$user->company_type}}">
                         </div>
                         <div class="d-flex justify-content-evenly mb-3">
                             <input name="email" type="text" placeholder="Email Address" value="{{$user->email}}">
                             <input name="phone" type="text" placeholder="Phone number" value="{{$user->phone}}">
                         </div>
-                        <textarea class="mb-3" name="bio" placeholder="Bio" id="" cols="5" rows="5">{{$user->bio}}</textarea>
+                        <textarea class="mb-3" name="bio" placeholder="About Company" id="" cols="5" rows="5">{{$user->bio}}</textarea>
                         <br>
 
                         <hr style="color: grey">
@@ -245,7 +246,7 @@ Employer Dashboard | HR
                         </div>
                         <div class="d-flex justify-content-evenly mb-3">
                             <input name="city" type="text" placeholder="City" value="{{$user->city}}">
-                            <input name="address" type="text" placeholder="Full address" value="{{$user->address}}">
+                            <input name="address" type="text" placeholder="Company full address" value="{{$user->address}}">
                         </div>
                         <br>
                         <hr style="color: grey">
@@ -253,7 +254,7 @@ Employer Dashboard | HR
                         <br>
                         <p class="fw-bold mb-2">Other Information</p>
                         <div class="d-flex justify-content-evenly mb-3">
-                            <input name="title" value="{{$user->title}}" type="text" placeholder="Work Activity (eg) Remote/Hybrid">
+                            <input name="title" value="{{$user->title}}" type="text" placeholder="Company title (eg) Remote/Hybrid">
                             <select name="salary" id="" value="{{$user->salary}}">
                                 <option value="">{{$user->salary ?? "Select Salary range"}}</option>
                                 @foreach ($salary as $item)
@@ -267,7 +268,69 @@ Employer Dashboard | HR
                     </form>
                 </div>
 
-                <div class="tab-pane container fade" id="new_job">new_job</div>
+                <div class="tab-pane container all_input fade" id="new_job">
+                    <form action="" method="POST">
+                        @csrf
+                        <div class="d-flex justify-content-between">
+                            <h4 class="fw-bold mb-4">Post A Job</h4>                        
+                            {{-- <button class="btn mt-3 mb-2 btn-dark px-4">Save Changes</button> --}}
+                        </div>
+
+                        <hr style="color: grey">
+                        <p class="fw-bold mb-2">Basic Information</p>
+                        <div class="d-flex justify-content-evenly mb-3">
+                            <input name="job_title" type="text" placeholder="Job title">
+                            <input name="job_type" type="text" placeholder="Job type">
+                        </div>
+                        <div class="d-flex justify-content-evenly mb-3">
+                            <input name="email" type="text" placeholder="Contact Email Address">
+                            <input name="phone" type="text" placeholder="Contact Phone number">
+                        </div>
+                        <textarea class="mb-3" name="description" placeholder="Job description" id="" cols="5" rows="5"></textarea>
+                        <br>
+
+                        <hr style="color: grey">
+                        <br>
+                        <p class="fw-bold mb-2">Location</p>
+                        <div class="d-flex justify-content-evenly mb-3">
+                            <input name="country" type="text" placeholder="Country" value="{{$user->country}}">
+                            <input name="state" type="text" placeholder="State" value="{{$user->state}}">
+                        </div>
+                        <div class="d-flex justify-content-evenly mb-3">
+                            <input name="city" type="text" placeholder="City" value="{{$user->city}}">
+                            <input name="address" type="text" placeholder="Company full address" value="{{$user->address}}">
+                        </div>
+                        <br>
+                        <hr style="color: grey">
+
+                        <br>
+                        <p class="fw-bold mb-2">Other Information</p>
+                        <div class="d-flex justify-content-evenly mb-1">
+                            <input name="experience"  type="text" placeholder="Years of experience">
+                            <select name="salary" id="" >
+                                <option value="">{{"Select Salary range"}}</option>
+                                @foreach ($salary as $item)
+                                    <option value="{{$item}}">{{$item}}</option>                                    
+                                @endforeach
+                            </select>
+                        </div>
+                        <br>
+
+                        <div class="">
+                            <label style="background-color: rgba(214, 214, 214, 0.523); border-radius:10px" for="company_logo" class="mt-3 ft mb-2 py-2 px-4">Upload Job Logo</label>            
+                            <input type="file" name="company_logo" id="company_logo" class="d-none">               
+                        </div>
+
+                        <button style="float: right" class="btn mt-3 mb-2 btn-dark px-4">Publish Job</button>  
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+
+                    </form>
+                </div>
+
+                <div class="tab-pane container fade" id="applicant">applicant</div>
 
                 <div class="tab-pane container fade" id="price">price</div>
             </div>

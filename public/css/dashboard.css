@@ -91,7 +91,7 @@
     width: 260px !important;
 }
 
-.d_section2 #profile input, .d_section2 #profile select{
+.d_section2 .all_input input, .d_section2 .all_input select{
     border: none;
     padding: .9em;
     outline: none;
@@ -100,7 +100,7 @@
     margin-right: 1em;
 }
 
-.d_section2 #profile textarea{
+.d_section2 .all_input textarea{
     border: none;
     padding: .9em;
     outline: none;
