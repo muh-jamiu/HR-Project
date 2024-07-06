@@ -18,6 +18,7 @@ $jobs = $data["jobs"] ?? [];
 $approved_job = $data["approved_job"] ?? [];
 $pending_job = $data["pending_job"] ?? [];
 $decline_job = $data["decline_job"] ?? [];
+$applications = $data["applications"] ?? [];
 use Carbon\Carbon;
 @endphp
 
@@ -319,7 +320,39 @@ Employer Dashboard | HR
                     </form>
                 </div>
 
-                <div class="tab-pane container fade" id="applicant">applicant</div>
+                <div class="tab-pane container fade" id="applicant">
+                    <div class="section3_d" style="margin-bottom: 0 !important">
+                        @if (count($applications) == 0)
+                            <div class="text-center mt-5">
+                                <h4 class="fw-bold">Empty</h4>
+                                <p class="text-muted ft">You do not have any job applicant at the moment</p>
+                            </div>                            
+                        @endif
+                        <div class="d-flex justify-content- mt-3 flex-wrap">
+                            @foreach ($applications as $job)
+                            <a href="/candidate/{{$job->user_id}}/{{str_replace(" ", "_", $job->username)}}" class="text-decoration-none text-dark">
+                                <div class="cont_ bg-white">
+                                    <div class="img" style="height: 150px">
+                                        <img src="{{$job->avatar ?? "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png"}}" alt="">
+                                    </div>
+                                    <div class="p-3">
+                                        <div class="d-fle flex-wrap mt-2 mb-4 justify-content-between">
+                                            <p class="mb-2 text-muted ft mt-1 ">
+                                                <img class="mx-2" width="20" height="20" style="border-radius: 50%" src="{{$user->avatar ?? "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png"}}" alt="">{{$user->company_name}}</p>    </div>
+
+                                        <p class="mt-3 mb-2 fw-bold text-muted text-capitalize"><i class="fa-brands fa-cuttlefish"></i> {{$job->job_title}}</p>
+                                        <p class="mt-3 mb-3 fw-bold ft text-muted text-capitalize"><i class="fa-regular fa-user"></i> {{$job->username}}</p>
+                                        <p class="mb-2 ft text-muted text-capitalize text-muted"><i class="fa-solid fa-earth-americas"></i> {{$job->user_country}}</p>
+                                        <p class="mb-2 ft text-muted text-capitalize text-muted"><i class="fa-solid fa-phone"></i> {{$job->phone}}</p>
+                                        <p class="mb-2 ft text-muted text-muted"><i class="fa-regular fa-envelope"></i> {{$job->user_email}}</p>
+                                        <p class="mb-2 ft text-muted text-capitalize text-muted"><i class="fa-solid fa-sliders"></i> {{$job->user_education}}</p>
+                                    </div>
+                                </div>		
+                            </a>		
+                            @endforeach
+                        </div>	
+                    </div>
+                </div>
 
                 <div class="tab-pane container fade" id="price">price</div>
             </div>

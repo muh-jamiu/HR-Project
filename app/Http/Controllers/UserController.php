@@ -15,12 +15,13 @@ class UserController extends Controller
 {
 
     public function candidateDash(){
-        $data["applications"] = Application::where(["company_id" => session("hr_id")])->get();
+        $data["applications"] = Application::where(["userId" => session("hr_id")])->get();
         $data["user"] = $this->getUser(session("hr_id"));
         return view("dashboard.candidate_dash", compact("data"));
     }
 
     public function employersDash(){
+        $data["applications"] = Application::where(["company_id" => session("hr_id")])->get();
         $data["user"] = $this->getUser(session("hr_id"));
         $data["jobs"] = $this->getEmployerJob(session("hr_id"));
         $data["approved_job"] = Job::where(["company_id" => session("hr_id"), "status" => "approve"])->get();
@@ -333,8 +334,9 @@ class UserController extends Controller
         }
 
 
-        $application->company_id =  session("hr_id") ?? 0;
+        $application->company_id =  request()->company_id ?? 0;
         $application->user_id =  $user->unique_id ?? 0;
+        $application->userId =  session("hr_id") ?? 0;
         $application->job_id =  request()->job_id ?? 0;
         $application->user_email = request()->email;
         $application->phone = request()->phone;
