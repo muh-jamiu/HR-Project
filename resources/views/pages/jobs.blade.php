@@ -99,18 +99,19 @@ Browse All Jobs | HR
             <div class="section3 section4">        
                 <div class="d-flex justify-content- mt-3 flex-wrap">
                     @foreach ($jobs as $job)
-                    <a href="/job/{{$job->title}}/{{$job->id}}" class="text-decoration-none text-dark">
+                    <a href="/job/{{str_replace(" ", "_", $job->title)}}/{{$job->id}}" class="text-decoration-none text-dark">
                         <div class="cont_">
                             <div class="img">
                                 <img src="{{$job->avatar ?? "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-3.png"}}" alt="">
                             </div>
                             <div class="p-3">
-                                <p class="mt-3 mb-3">{{$job->title}}</p>
+                                <p class="mt-3 text-capitalize mb-0 fw-semibold">{{$job->title}}</p>
+                                <p class="text-capitalize mb-3 ft text-muted">{{$job->employment_type}}</p>
+                                <p class="ft text-muted"><i class="fa-regular fa-clock"></i> {{Carbon::create($job->created_at)->format('l F j, Y')}}</p>
                                 <div class="d-flex">
-                                    <p class="ft text-muted"><i class="fa-regular fa-clock"></i> {{Carbon::create($job->created_at)->format('l F j, Y')}}</p>
-                                    <p class="ft text-muted mx-3"><i class="fa-solid fa-location-dot"></i> {{$job->county}}</p>
+                                    <p class="ft text-muted text-capitalize"><i class="fa-solid fa-location-dot"></i> {{$job->state}}, {{$job->country}}</p>
                                 </div>
-                                <div class="d-flex mt-2 mb-3 justify-content-between">
+                                <div class="d-flex mt-2 mb-2 justify-content-between">
                                     <p class="text-muted"><span class="cl fw-bold">${{number_format((int)$job->salary)}}</span>/Month</p>
                                     <div class="d-flex mt-1">
                                         <i class="fa-regular btn text-primary fa-thumbs-up"></i>

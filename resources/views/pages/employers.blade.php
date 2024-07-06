@@ -311,7 +311,7 @@ Job Employers | HR
                 <div class="d-flex justify-content- mt-3 flex-wrap">
                     @foreach ($users as $key => $user)    
                     @if ($user->role == "company")                  
-                        <a href="/employer/{{$user->unique_id}}/{{$user->company_name}}" class="text-decoration-none text-dark">
+                        <a href="/employer/{{$user->unique_id}}/{{str_replace(" ", "_", $user->company_name)}}" class="text-decoration-none text-dark">
                             <div class="cont_">
                                 <div class="text-center mt-3" >
                                     @if ($user->avatar)
