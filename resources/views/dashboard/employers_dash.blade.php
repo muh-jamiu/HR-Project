@@ -24,14 +24,14 @@ Employer Dashboard | HR
 <div class="dashboard_ d-flex">
     <div class="sidebar__">
         <div class="d-flex justify-content-between">
-            <div class="logo"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""> </div>
+            <div class="logo"><a href="/"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""></a> </div>
             <div class="">
                 <p class="mb-0 btn text-white"><i class="fa-regular fa-bell"></i></p>
             </div>
         </div>
 
         <div class="text-center mt-4">
-            <img class=""  width="150" height="150" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/page/candidates/img-candidate.png" alt="">
+            <img class=""  width="150" height="150" style="border-radius: 50%" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS48f-GOfd7Vvaya0EWXRmDjamdDQs-FJdkWg&s" alt="">
             <p class="mb-1 mt-3 text-capitalize">{{$user->company_name}} </p>
             <p class="ft mb-1">{{$user->email}}</p>
             <p class="ft">{{$user->phone ?? ""}}</p>
@@ -65,7 +65,7 @@ Employer Dashboard | HR
                 @php
                     $skills__ = explode(",", $user->skills);
                 @endphp
-                <img  width="80" height="80" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/page/candidates/img-candidate.png" alt="">
+                <img  width="90" height="90" style="border-radius: 50%; object-fit:cover; background-color:grey" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS48f-GOfd7Vvaya0EWXRmDjamdDQs-FJdkWg&s" alt="">
                 <div class="mt-0 mx-2">
                     <h4 class="fw-bold mb-1 text-capitalize">Welcome Back, {{$user->company_name}}</h4>
                     <div class="d_skills mb-2 mt-2 d-flex">
@@ -279,26 +279,26 @@ Employer Dashboard | HR
                         <hr style="color: grey">
                         <p class="fw-bold mb-2">Basic Information</p>
                         <div class="d-flex justify-content-evenly mb-3">
-                            <input name="job_title" type="text" placeholder="Job title">
-                            <input name="job_type" type="text" placeholder="Job type">
+                            <input name="job_title" required type="text" placeholder="Job title">
+                            <input name="job_type" required type="text" placeholder="Job type">
                         </div>
                         <div class="d-flex justify-content-evenly mb-3">
-                            <input name="email" type="text" placeholder="Contact Email Address">
-                            <input name="phone" type="text" placeholder="Contact Phone number">
+                            <input name="email" required type="text" placeholder="Contact Email Address">
+                            <input name="phone" required type="text" placeholder="Contact Phone number">
                         </div>
-                        <textarea class="mb-3" name="description" placeholder="Job description" id="" cols="5" rows="5"></textarea>
+                        <textarea class="mb-3" required name="description" placeholder="Job description" id="" cols="5" rows="5"></textarea>
                         <br>
 
                         <hr style="color: grey">
                         <br>
                         <p class="fw-bold mb-2">Location</p>
                         <div class="d-flex justify-content-evenly mb-3">
-                            <input name="country" type="text" placeholder="Country" value="{{$user->country}}">
-                            <input name="state" type="text" placeholder="State" value="{{$user->state}}">
+                            <input name="country" required type="text" placeholder="Country" value="{{$user->country}}">
+                            <input name="state" required type="text" placeholder="State" value="{{$user->state}}">
                         </div>
                         <div class="d-flex justify-content-evenly mb-3">
-                            <input name="city" type="text" placeholder="City" value="{{$user->city}}">
-                            <input name="address" type="text" placeholder="Company full address" value="{{$user->address}}">
+                            <input name="city" required type="text" placeholder="City" value="{{$user->city}}">
+                            <input name="address" required type="text" placeholder="Company full address" value="{{$user->address}}">
                         </div>
                         <br>
                         <hr style="color: grey">
@@ -306,8 +306,8 @@ Employer Dashboard | HR
                         <br>
                         <p class="fw-bold mb-2">Other Information</p>
                         <div class="d-flex justify-content-evenly mb-1">
-                            <input name="salary" id="numberInput" type="text" placeholder="Salary per month">
-                            <select name="" id="" >
+                            <input name="salary" required id="numberInput" type="text" placeholder="Salary per month">
+                            <select required name="" id="" >
                                 <option value="">{{"Select Salary range"}}</option>
                                 @foreach ($salary as $item)
                                     <option value="{{$item}}">{{$item}}</option>                                    
