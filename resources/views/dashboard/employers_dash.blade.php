@@ -306,7 +306,7 @@ Employer Dashboard | HR
                         <br>
                         <p class="fw-bold mb-2">Other Information</p>
                         <div class="d-flex justify-content-evenly mb-1">
-                            <input name="salary"  type="text" placeholder="Salary per month">
+                            <input name="salary" id="numberInput" type="text" placeholder="Salary per month">
                             <select name="" id="" >
                                 <option value="">{{"Select Salary range"}}</option>
                                 @foreach ($salary as $item)

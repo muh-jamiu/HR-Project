@@ -225,13 +225,15 @@ class UserController extends Controller
     //jobs
 
     public function createJob(Job $job, Request $request){
-        dd($request->all(), session("hr_id"));
+        $salary = request()->salary;
+        $salary = str_replace("$ ", "", $salary);
+        $salary = str_replace(",", "", $salary);
         $job->title = request()->job_title;
         $job->description = request()->description;
         $job->company_id =  session("hr_id") ?? 0;
         $job->email = request()->email;
         $job->experience = request()->experience;
-        $job->salary = request()->salary;
+        $job->salary = $salary;
         $job->job_type = request()->job_type;
         $job->phone = request()->phone;
         $job->location = request()->location;
@@ -248,7 +250,7 @@ class UserController extends Controller
         $job->save();
 
         if($job){
-            return back("/account-check")->with("msg", "Job was posted successfully");   
+            return back("")->with("msg", "Job was posted successfully");   
         }
         
         return back()->with("msg", "something went wrong");
