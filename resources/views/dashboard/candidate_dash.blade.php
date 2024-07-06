@@ -13,7 +13,9 @@
         "$50,000 Above",
 ];
 
-    $user = $data["user"] ?? [];
+$user = $data["user"] ?? [];
+$applications = $data["applications"] ?? [];
+$company = $data["company"] ?? [];
 @endphp
 
 @section('title')
@@ -212,23 +214,28 @@ Candidate Dashboard | HR
                 <div class="tab-pane container fade" id="jobs">
                     <div class="section3_d" style="margin-bottom: 0 !important">
                         <div class="d-flex justify-content- mt-3 flex-wrap">
-                            @for ($i = 0; $i < 9; $i++)
-                            <a href="/job/title/{{$i}}" class="text-decoration-none text-dark">
+                            @foreach ($company as $cp)
+                            <a href="/job/{{str_replace(" ", "_", $cp[0]->title)}}/{{$cp[0]->id}}" class="text-decoration-none text-dark">
                                 <div class="cont_ bg-white">
                                     <div class="img" style="height: 150px">
-                                        <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
+                                        <img src="{{$cp[0]->avatar ?? "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png"}}" alt="">
                                     </div>
                                     <div class="p-3">
-                                        <div class="d-flex flex-wrap mt-2 mb-4 justify-content-between">
-                                            <p class="mb-2 text-muted mt-1 ">
-                                                <img class="mx-2" width="20" height="20" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">Company Name</p>
-                                            <button style="background-color: rgba(45, 249, 45, 0.088); height:fit-content" class="btn text-success ft px-4 py-1">Fulltime</button>
+                                        <div class="d-fle flex-wrap mt-2 mb-4 justify-content-between">
+                                            <p class="mb-2 text-muted ft mt-1 ">
+                                                <img class="mx-2" width="20" height="20" style="border-radius: 50%" src="{{$cp[0]->avatar ?? "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png"}}" alt="">{{$cp[0]->employment_type}}</p>
+                                            <button style="background-color: rgba(45, 249, 45, 0.088); height:fit-content" class="btn text-success ft px-4 py-1  text-capitalize">{{$cp[0]->employment_type}}</button>
                                         </div>
-                                        <p class="mt-3 mb-3">Senior Full Stack Engineer, Creator Success Full Time</p>
+                                        <p class="mt-3 text-capitalize fw-semibold mb-2">{{$cp[0]->title}}</p>
+                                        <p class="text-capitalize ft text-muted mb-1">{{$cp[0]->level}}</p>
+                                        <p class="text-capitalize ft text-muted mb-1">{{$cp[0]->phone}}</p>
+                                        <p class="text-capitalize ft text-muted mb-1">{{$cp[0]->country}}</p>
+                                        <p class="ft text-muted mb-3">{{$cp[0]->email}}</p>
+                                        <p style="background-color: rgba(0, 0, 255, 0.047); border-radius:13px; width:fit-content; font-size:12px" class="px-3 py-2 text-muted mb-1">{{$cp[0]->status}}</p>
                                     </div>
                                 </div>		
                             </a>		
-                            @endfor
+                            @endforeach
                         </div>	
                     </div>
                 </div>
