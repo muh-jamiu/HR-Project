@@ -27,6 +27,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    const tagSkill = document.getElementById('tag-skills');
+    const tags_skill_list = document.getElementById('tags_skill_list');
+    var _skills_ = document.querySelector("._skills_")
+
+    tagSkill.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault(); // Prevent the default action of the enter key
+
+            const tagText = tagSkill.value.trim();
+            _skills_.value +=  `${tagText} @/ `
+            if (tagText !== '') {
+                const tag = document.createElement('p');
+                tag.classList.add('tag');
+                tag.classList.add('mb-0');
+                tag.textContent = tagText;
+
+                tags_skill_list.appendChild(tag);
+                tagSkill.value = '';
+            }
+        }
+    });
+
     document.getElementById('numberInput').addEventListener('input', function (e) {
         let value = e.target.value;
         value = value.replace(/\D/g, ''); // Remove non-numeric characters

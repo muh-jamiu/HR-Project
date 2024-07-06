@@ -246,6 +246,9 @@ class UserController extends Controller
         $salary = str_replace("$ ", "", $salary);
         $salary = str_replace(",", "", $salary);
         $job->title = request()->job_title;
+        $job->skills = request()->skills;
+        $job->employment_type = request()->employment_type;
+        $job->level = request()->level;
         $job->description = request()->description;
         $job->company_id =  session("hr_id") ?? 0;
         $job->email = request()->email;
@@ -267,7 +270,7 @@ class UserController extends Controller
         $job->save();
 
         if($job){
-            return back("")->with("msg", "Job was posted successfully");   
+            return back()->with("msg", "Job was posted successfully");   
         }
         
         return back()->with("msg", "something went wrong");

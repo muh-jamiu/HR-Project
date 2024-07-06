@@ -98,8 +98,8 @@ Employer Dashboard | HR
                 <li class="list-unstyled active" data-bs-toggle="tab" href="#home"><a href="#" class="text-decoration-none text-muted">Overview</a></li>
                 <li class="list-unstyled" data-bs-toggle="tab" href="#jobs"><a href="#" class="text-decoration-none text-muted">My Jobs</a></li>
                 <li class="list-unstyled" data-bs-toggle="tab" href="#profile"><a href="#" class="text-decoration-none text-muted">Company Profile</a></li>
-                <li class="list-unstyled" data-bs-toggle="tab" href="#new_job"><a href="#" class="text-decoration-none text-muted">Add New Job</a></li>
-                <li class="list-unstyled" data-bs-toggle="tab" href="#applicant"><a href="#" class="text-decoration-none text-muted">Job Applicant</a></li>
+                <li class="list-unstyled" data-bs-toggle="tab" href="#new_job"><a href="#" class="text-decoration-none text-muted">Post New Job</a></li>
+                <li class="list-unstyled" data-bs-toggle="tab" href="#applicant"><a href="#" class="text-decoration-none text-muted">Job Application</a></li>
                 <li class="list-unstyled" data-bs-toggle="tab" href="#price"><a href="#" class="text-decoration-none text-muted">Pricing</a></li>
             </div>
 
@@ -299,6 +299,9 @@ Employer Dashboard | HR
                             <input name="phone" required type="text" placeholder="Contact Phone number">
                         </div>
                         <textarea class="mb-3" required name="description" placeholder="Job description" id="" cols="5" rows="5"></textarea>
+                        <textarea class="mb-3" name="" placeholder="Desire skills, press enter to create tag..." id="tag-skills" cols="3" rows="3"></textarea>
+                        <input type="text" name="skills" class="_skills_ d-none">
+                        <div class="" id="tags_skill_list"></div>
                         <br>
 
                         <hr style="color: grey">
@@ -326,9 +329,24 @@ Employer Dashboard | HR
                                 @endforeach
                             </select>
                         </div>
+                        <div class="d-flex justify-content-evenly mt-3">
+                            <select required name="employment_type" id="" >
+                                <option value="">{{"Employment Type"}}</option>                                
+                                <option value="Full-Time">Full-Time</option>  
+                                <option value="Part-Time">Part-Time</option>  
+                            </select>
+                            <select required name="level" id="" >
+                                <option value="">{{"Level"}}</option>
+                                <option value="entry level">Entry Level</option>  
+                                <option value="Junior">Junior</option>  
+                                <option value="Senior">Senior</option>  
+                                <option value="Experience">Experience</option> 
+                                <option value="Not Applicable">Not Applicable</option> 
+                            </select>
+                        </div>
                         <textarea class="mb-3 mt-3" name="" placeholder="Experience, press enter to create tag..." id="tag-input" cols="3" rows="3"></textarea>
                         <input type="text" name="experience" class="_experience d-none">
-                        <div class="" id="tags_list"></div>
+                        <div class="mb-3" id="tags_list"></div>
                         <br>
 
                         <div class="">
