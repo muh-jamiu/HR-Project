@@ -168,7 +168,7 @@ class UserController extends Controller
     }
 
     public function uploadImage(){    
-        $file = request()->file('image')->getRealPath();   
+        $file = request()->file('company_logo')->getRealPath();   
         $cloudinary = new Cloudinary();    
         $uploadedFileUrl = $cloudinary->uploadApi()->upload($file,);
         
@@ -220,6 +220,38 @@ class UserController extends Controller
     public function getUserByCompany($unique_id){  
         $user = User::where('unique_id', $unique_id)->first();
         return $user;
+    }
+
+    //jobs
+
+    public function createJob(Job $job, Request $request){
+        dd($request->all(), session("hr_id"));
+        $job->title = request()->job_title;
+        $job->description = request()->description;
+        $job->company_id =  session("hr_id") ?? 0;
+        $job->email = request()->email;
+        $job->experience = request()->experience;
+        $job->salary = request()->salary;
+        $job->job_type = request()->job_type;
+        $job->phone = request()->phone;
+        $job->location = request()->location;
+        $job->state = request()->state;
+        $job->city = request()->city;
+        $job->country = request()->country;
+        $job->address = request()->address;
+
+        if($request->company_logo){
+            $photo = $this->uploadImage();
+            $job->avatar = $photo;
+        }
+
+        $job->save();
+
+        if($job){
+            return back("/account-check")->with("msg", "Job was posted successfully");   
+        }
+        
+        return back()->with("msg", "something went wrong");
     }
 
     public function getJobs(){  

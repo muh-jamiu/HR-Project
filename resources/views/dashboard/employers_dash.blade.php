@@ -269,7 +269,7 @@ Employer Dashboard | HR
                 </div>
 
                 <div class="tab-pane container all_input fade" id="new_job">
-                    <form action="" method="POST">
+                    <form action="/create-job" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="d-flex justify-content-between">
                             <h4 class="fw-bold mb-4">Post A Job</h4>                        
@@ -306,14 +306,16 @@ Employer Dashboard | HR
                         <br>
                         <p class="fw-bold mb-2">Other Information</p>
                         <div class="d-flex justify-content-evenly mb-1">
-                            <input name="experience"  type="text" placeholder="Years of experience">
-                            <select name="salary" id="" >
+                            <input name="salary"  type="text" placeholder="Salary per month">
+                            <select name="" id="" >
                                 <option value="">{{"Select Salary range"}}</option>
                                 @foreach ($salary as $item)
                                     <option value="{{$item}}">{{$item}}</option>                                    
                                 @endforeach
                             </select>
                         </div>
+                        <textarea class="mb-3 mt-3" name="experience" placeholder="Experience, press enter to create tag..." id="tag-input" cols="3" rows="3"></textarea>
+                        <div class="" id="tags_list"></div>
                         <br>
 
                         <div class="">
@@ -326,7 +328,6 @@ Employer Dashboard | HR
                         <br>
                         <br>
                         <br>
-
                     </form>
                 </div>
 

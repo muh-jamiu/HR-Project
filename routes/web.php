@@ -68,3 +68,5 @@ Route::post('/register', [UserController::class, 'registerUser']);
 
 Route::post('/update-profile', [UserController::class, 'updateUser']);
 
+Route::post('/create-job', [UserController::class, 'createJob']);
+
