@@ -21,6 +21,9 @@ class UserController extends Controller
     public function employersDash(){
         $data["user"] = $this->getUser(session("hr_id"));
         $data["jobs"] = $this->getEmployerJob(session("hr_id"));
+        $data["approved_job"] = Job::where(["company_id" => session("hr_id"), "status" => "approve"])->get();
+        $data["pending_job"] = Job::where(["company_id" => session("hr_id"), "status" => "pending"])->get();
+        $data["decline_job"] = Job::where(["company_id" => session("hr_id"), "status" => "decline"])->get();
         return view("dashboard.employers_dash", compact("data"));
     }
 

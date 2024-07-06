@@ -15,6 +15,9 @@ $salary = [
 
 $user = $data["user"] ?? [];
 $jobs = $data["jobs"] ?? [];
+$approved_job = $data["approved_job"] ?? [];
+$pending_job = $data["pending_job"] ?? [];
+$decline_job = $data["decline_job"] ?? [];
 use Carbon\Carbon;
 @endphp
 
@@ -111,7 +114,7 @@ Employer Dashboard | HR
                         <div class="box_">
                             <p class="mt-2 ft text-info">Overall Jobs</p>
                             <div class="text-center mt-4">
-                                <h1 style="font-size: 3em" class="fw-bold text-info">420</h1>
+                                <h1 style="font-size: 3em" class="fw-bold text-info">{{number_format(count($jobs))}}</h1>
                                 <p class="text-muted ft mt-5">From Yesterday</p>
                             </div>
                         </div>
@@ -119,7 +122,7 @@ Employer Dashboard | HR
                         <div class="box_">
                             <p class="mt-2 ft text-success">Approved Jobs</p>
                             <div class="text-center mt-4">
-                                <h1 style="font-size: 3em" class="fw-bold text-success">12</h1>
+                                <h1 style="font-size: 3em" class="fw-bold text-success">{{number_format(count($approved_job))}}</h1>
                                 <p class="text-muted ft mt-5">From Yesterday</p>
                             </div>
                         </div>
@@ -127,7 +130,7 @@ Employer Dashboard | HR
                         <div class="box_">
                             <p class="ft mt-2 text-danger">Decline Jobs</p>
                             <div class="text-center mt-4">
-                                <h1 style="font-size: 3em" class="fw-bold text-danger">0</h1>
+                                <h1 style="font-size: 3em" class="fw-bold text-danger">{{number_format(count($decline_job))}}</h1>
                                 <p class="text-muted ft mt-5">From Yesterday</p>
                             </div>
                         </div>
@@ -135,75 +138,11 @@ Employer Dashboard | HR
                         <div class="box_">
                             <p class="mt-2 ft text-warning">Pending Jobs</p>
                             <div class="text-center mt-4">
-                                <h1 style="font-size: 3em" class="fw-bold text-warning">420</h1>
+                                <h1 style="font-size: 3em" class="fw-bold text-warning">{{number_format(count($pending_job))}}</h1>
                                 <p class="text-muted ft mt-5">From Yesterday</p>
                             </div>
                         </div>
                     </div>
-
-                    <div class="__nav nav d-flex nav-tabs mt-4">
-                        <li class="list-unstyled active" data-bs-toggle="tab" href="#all_j"><a href="#ddd_" class="text-decoration-none text-muted">All Jobs</a></li>
-                        <li class="list-unstyled" data-bs-toggle="tab" href="#active_j"><a href="#ddd_" class="text-decoration-none text-muted">Active Jobs</a></li>
-                        <li class="list-unstyled" data-bs-toggle="tab" href="#decline_j"><a href="#ddd_" class="text-decoration-none text-muted">Decline Jobs</a></li>
-                        <li class="list-unstyled" data-bs-toggle="tab" href="#pending_j"><a href="#ddd_" class="text-decoration-none text-muted">Pending Jobs</a></li>
-                    </div>
-
-                    <div class="tab-content mb-5 mt-4" id="ddd_">
-
-                        <div class="tab-pane container active" id="all_j">
-                            <div class="text-center mt-5">
-                                <h4>Empty</h4>
-                                <p class="text-muted ft">You don't have any Jobs at the momemt.</p>
-                                <a href="/browse-jobs" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
-                            </div>
-                           {{-- <div class="section3_d">
-                            <div class="d-flex justify-content-evenly mt-3 flex-wrap">
-                                @for ($i = 0; $i < 5; $i++)
-                                <a href="/job/title/{{$i}}" class="text-decoration-none text-dark">
-                                    <div class="cont_ bg-white">
-                                        <div class="img" style="height: 150px">
-                                            <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
-                                        </div>
-                                        <div class="p-3">
-                                            <div class="d-flex flex-wrap mt-2 mb-4 justify-content-between">
-                                                <p class="mb-2 text-muted mt-1 ">
-                                                    <img class="mx-2" width="20" height="20" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">Company Name</p>
-                                                <button style="background-color: rgba(45, 249, 45, 0.088); height:fit-content" class="btn text-success ft px-4 py-1">Fulltime</button>
-                                            </div>
-                                            <p class="mt-3 mb-3">Senior Full Stack Engineer, Creator Success Full Time</p>
-                                        </div>
-                                    </div>		
-                                </a>		
-                                @endfor
-                            </div>	
-                           </div> --}}
-                        </div>
-
-                        <div class="tab-pane container fade" id="active_j">
-                            <div class="text-center mt-5">
-                                <h4>Empty</h4>
-                                <p class="text-muted ft">You don't have any active Jobs at the momemt.</p>
-                                <a href="/browse-jobs" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
-                            </div>
-                        </div>
-                        
-                        <div class="tab-pane container fade" id="decline_j">
-                            <div class="text-center mt-5">
-                                <h4>Empty</h4>
-                                <p class="text-muted ft">You don't have any decline Jobs at the momemt.</p>
-                                <a href="/browse-jobs" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
-                            </div>
-                        </div>
-
-                        <div class="tab-pane container fade" id="pending_j">
-                            <div class="text-center mt-5">
-                                <h4>Empty</h4>
-                                <p class="text-muted ft">You don't have any pending Jobs at the momemt.</p>
-                                <a href="/browse-jobs" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
                 <div class="tab-pane container fade" id="jobs">
