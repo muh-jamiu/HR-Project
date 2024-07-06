@@ -104,7 +104,7 @@ Candidate Dashboard | HR
         <div class="d_section2 mt-4">
             <div class="__nav nav d-flex nav-tabs">
                 <li class="list-unstyled active" data-bs-toggle="tab" href="#home"><a href="#" class="text-decoration-none text-muted">Overview</a></li>
-                <li class="list-unstyled" data-bs-toggle="tab" href="#jobs"><a href="#" class="text-decoration-none text-muted">Jobs</a></li>
+                <li class="list-unstyled" data-bs-toggle="tab" href="#jobs"><a href="#" class="text-decoration-none text-muted">Applications</a></li>
                 <li class="list-unstyled" data-bs-toggle="tab" href="#profile"><a href="#" class="text-decoration-none text-muted">User Profile</a></li>
                 <li class="list-unstyled" data-bs-toggle="tab" href="#price"><a href="#" class="text-decoration-none text-muted">Pricing</a></li>
             </div>
@@ -115,7 +115,7 @@ Candidate Dashboard | HR
                         <div class="box_">
                             <p class="mt-2 ft text-info">Overall Application</p>
                             <div class="text-center mt-4">
-                                <h1 style="font-size: 3em" class="fw-bold text-info">420</h1>
+                                <h1 style="font-size: 3em" class="fw-bold text-info">{{number_format(count($applications))}}</h1>
                                 <p class="text-muted ft mt-5">From Yesterday</p>
                             </div>
                         </div>
@@ -123,7 +123,22 @@ Candidate Dashboard | HR
                         <div class="box_">
                             <p class="mt-2 ft text-success">Approved Application</p>
                             <div class="text-center mt-4">
-                                <h1 style="font-size: 3em" class="fw-bold text-success">12</h1>
+                                @php
+                                    $approved = 0;
+                                    $pending = 0;
+                                    $decline = 0;
+                                    for($i = 0; $i < count($applications); $i++){
+                                        if ($applications[$i]->status == "approved"){
+                                            $approved += 1;
+                                        }elseif($applications[$i]->status == "pending"){
+                                            $pending += 1;
+                                        }elseif($applications[$i]->status == "decline"){
+                                            $decline += 1;
+                                        }
+                                    }
+                                @endphp
+                               
+                                <h1 style="font-size: 3em" class="fw-bold text-success">{{number_format($approved)}}</h1>
                                 <p class="text-muted ft mt-5">From Yesterday</p>
                             </div>
                         </div>
@@ -131,7 +146,7 @@ Candidate Dashboard | HR
                         <div class="box_">
                             <p class="ft mt-2 text-danger">Decline Application</p>
                             <div class="text-center mt-4">
-                                <h1 style="font-size: 3em" class="fw-bold text-danger">0</h1>
+                                <h1 style="font-size: 3em" class="fw-bold text-danger">{{number_format($decline)}}</h1>
                                 <p class="text-muted ft mt-5">From Yesterday</p>
                             </div>
                         </div>
@@ -139,7 +154,7 @@ Candidate Dashboard | HR
                         <div class="box_">
                             <p class="mt-2 ft text-warning">Pending Application</p>
                             <div class="text-center mt-4">
-                                <h1 style="font-size: 3em" class="fw-bold text-warning">420</h1>
+                                <h1 style="font-size: 3em" class="fw-bold text-warning">{{number_format($pending)}}</h1>
                                 <p class="text-muted ft mt-5">From Yesterday</p>
                             </div>
                         </div>
