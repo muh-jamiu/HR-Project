@@ -230,7 +230,14 @@ Employer Dashboard | HR
                                         <p class="mt-3 mb-1 fw-bold text-capitalize">{{$job->title}}</p>
                                         <p class="mt-3 mb-1 text-capitalize text-muted">{{$job->level}}</p>
                                         <p class="ft text-muted"><i class="fa-regular fa-clock"></i> {{Carbon::create($job->created_at)->format('l F j, Y')}}</p>
-                                        <p class="text-muted"><span class="cl fw-bold">${{number_format((int)$job->salary)}}</span>/Month</p>
+                                        <p class="text-muted"><span class="cl fw-bold">${{number_format((int)$job->salary)}}</span>/month</p>
+                                        @if ($job->status == "approved")
+                                            <p style="background-color: rgba(0, 255, 162, 0.063); font-size:10px" class="btn px-3 text-success">Approved</p>                                            
+                                        @elseif ($job->status == "pending")
+                                            <p style="background-color: rgba(0, 119, 255, 0.063); font-size:10px" class="btn px-3 text-info">Pending</p> 
+                                        @else
+                                            <p style="background-color: rgba(255, 0, 0, 0.063); font-size:10px" class="btn px-3 text-danger">Deline</p>                                             
+                                        @endif
                                     </div>
                                 </div>		
                             </a>		
