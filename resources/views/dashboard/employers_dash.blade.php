@@ -314,7 +314,8 @@ Employer Dashboard | HR
                                 @endforeach
                             </select>
                         </div>
-                        <textarea class="mb-3 mt-3" name="experience" placeholder="Experience, press enter to create tag..." id="tag-input" cols="3" rows="3"></textarea>
+                        <textarea class="mb-3 mt-3" name="" placeholder="Experience, press enter to create tag..." id="tag-input" cols="3" rows="3"></textarea>
+                        <input type="text" name="experience" class="_experience d-none">
                         <div class="" id="tags_list"></div>
                         <br>
 
