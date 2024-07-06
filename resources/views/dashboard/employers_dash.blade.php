@@ -1,19 +1,21 @@
 @extends("layouts.app")
 
 @php
-    $salary = [
-        "Less than $100",
-        "$100 - $500",
-        "$500 - $1,000",
-        "$1,000 - $1,500",
-        "$1,500 - $2,000",
-        "$2,000 - $5,000",
-        "$5,000 - $10,000",
-        "$10,000 - $50,000",
-        "$50,000 Above",
+$salary = [
+    "Less than $100",
+    "$100 - $500",
+    "$500 - $1,000",
+    "$1,000 - $1,500",
+    "$1,500 - $2,000",
+    "$2,000 - $5,000",
+    "$5,000 - $10,000",
+    "$10,000 - $50,000",
+    "$50,000 Above",
 ];
 
-    $user = $data["user"] ?? [];
+$user = $data["user"] ?? [];
+$jobs = $data["jobs"] ?? [];
+use Carbon\Carbon;
 @endphp
 
 @section('title')
@@ -206,24 +208,33 @@ Employer Dashboard | HR
 
                 <div class="tab-pane container fade" id="jobs">
                     <div class="section3_d" style="margin-bottom: 0 !important">
+                        @if (count($jobs) == 0)
+                            <div class="text-center mt-5">
+                                <h4 class="fw-bold">Empty</h4>
+                                <p class="text-muted ft">You do not have any created jobs at the moment</p>
+                            </div>                            
+                        @endif
                         <div class="d-flex justify-content- mt-3 flex-wrap">
-                            @for ($i = 0; $i < 9; $i++)
-                            <a href="/job/title/{{$i}}" class="text-decoration-none text-dark">
+                            @foreach ($jobs as $job)
+                            <a href="/job/{{str_replace(" ", "_", $job->title)}}/{{$job->id}}" class="text-decoration-none text-dark">
                                 <div class="cont_ bg-white">
                                     <div class="img" style="height: 150px">
-                                        <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
+                                        <img src="{{$job->avatar ?? "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png"}}" alt="">
                                     </div>
                                     <div class="p-3">
-                                        <div class="d-flex flex-wrap mt-2 mb-4 justify-content-between">
-                                            <p class="mb-2 text-muted mt-1 ">
-                                                <img class="mx-2" width="20" height="20" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">Company Name</p>
-                                            <button style="background-color: rgba(45, 249, 45, 0.088); height:fit-content" class="btn text-success ft px-4 py-1">Fulltime</button>
+                                        <div class="d-fle flex-wrap mt-2 mb-4 justify-content-between">
+                                            <p class="mb-2 text-muted ft mt-1 ">
+                                                <img class="mx-2" width="20" height="20" style="border-radius: 50%" src="{{$user->avatar ?? "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png"}}" alt="">{{$user->company_name}}</p>
+                                            <button style="background-color: rgba(45, 249, 45, 0.088); height:fit-content" class="btn text-success ft px-4 py-1">{{$job->employment_type}}</button>
                                         </div>
-                                        <p class="mt-3 mb-3">Senior Full Stack Engineer, Creator Success Full Time</p>
+                                        <p class="mt-3 mb-1 fw-bold text-capitalize">{{$job->title}}</p>
+                                        <p class="mt-3 mb-1 text-capitalize text-muted">{{$job->level}}</p>
+                                        <p class="ft text-muted"><i class="fa-regular fa-clock"></i> {{Carbon::create($job->created_at)->format('l F j, Y')}}</p>
+                                        <p class="text-muted"><span class="cl fw-bold">${{number_format((int)$job->salary)}}</span>/Month</p>
                                     </div>
                                 </div>		
                             </a>		
-                            @endfor
+                            @endforeach
                         </div>	
                     </div>
                 </div>

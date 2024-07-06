@@ -4,6 +4,7 @@
 $user = $data["user"] ?? [];
 $skills__ = explode(",", $user->skills);
 use Carbon\Carbon;
+$iscand = true;
 @endphp
 
 @section('title')
@@ -12,7 +13,7 @@ Candidate-{{$user->username ?? ""}} | HR
 
 @section("content")
 <div class="jobs job_single">
-	<x-main-nav></x-main-nav>
+	<x-main-nav :iscand="$iscand"></x-main-nav>
 
     <div class="section1">
         <button class="btn btn-primary _cv_">Download CV</button>

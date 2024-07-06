@@ -1,6 +1,7 @@
 @extends("layouts.app")
 
 @php
+$is_jobs = true;
 $job_title = $data["title"] ?? ""; 
 $job = $data["job"] ?? ""; 
 $company = $data["company"] ?? ""; 
@@ -13,7 +14,7 @@ use Carbon\Carbon;
 
 @section("content")
 <div class="jobs job_single">
-	<x-main-nav></x-main-nav>
+	<x-main-nav :isjobs="$is_jobs"></x-main-nav>
 
     <div class="section1">
         <h1 class="fw-bold mt-4 text-capitalize">{{$job->title}}</h1>
@@ -98,6 +99,10 @@ use Carbon\Carbon;
 
             <p class="fw-bold text-muted mb-1"><i class="fa-solid fa-location-dot"></i> Location</p>
             <p class="mb-4 text-muted text-capitalize">{{$job->state}}, {{$job->country}}</p>
+
+            
+            <p class="fw-bold text-muted mb-1">Level</p>
+            <p class="mb-4 text-muted text-capitalize">{{$job->level}}</p>
 
             <p class="fw-bold text-muted mb-1"><i class="fa-solid fa-sack-dollar"></i> Salary</p>
             <p class="mb-4 text-muted">${{number_format($job->salary)}}</p>

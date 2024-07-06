@@ -111,6 +111,7 @@ Browse All Jobs | HR
                                 <div class="d-flex">
                                     <p class="ft text-muted text-capitalize"><i class="fa-solid fa-location-dot"></i> {{$job->state}}, {{$job->country}}</p>
                                 </div>
+                                <p class="ft text-muted text-capitalize">Level: {{$job->level}}</p>
                                 <div class="d-flex mt-2 mb-2 justify-content-between">
                                     <p class="text-muted"><span class="cl fw-bold">${{number_format((int)$job->salary)}}</span>/Month</p>
                                     <div class="d-flex mt-1">

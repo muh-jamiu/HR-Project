@@ -20,7 +20,13 @@ class UserController extends Controller
 
     public function employersDash(){
         $data["user"] = $this->getUser(session("hr_id"));
+        $data["jobs"] = $this->getEmployerJob(session("hr_id"));
         return view("dashboard.employers_dash", compact("data"));
+    }
+
+    public function getEmployerJob($id){        
+        $jobs = Job::where("company_id", $id)->get();
+        return $jobs;
     }
 
     public function check(){
@@ -285,7 +291,7 @@ class UserController extends Controller
         $data["job"] = Job::find($id);
         $data["title"] = str_replace("_", " ", $job_title);
         $data["company"] = User::find($data["job"]->company_id);
-        
+
         if(!$data["job"]){
             return redirect("/");
         }

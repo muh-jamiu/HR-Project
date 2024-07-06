@@ -4,6 +4,7 @@
 $user = $data["user"] ?? [];
 $skills__ = explode(",", $user->skills);
 use Carbon\Carbon;
+$is_employ = true;
 @endphp
 
 @section('title')
@@ -12,7 +13,7 @@ Employer-{{$user->company_name}} | HR
 
 @section("content")
 <div class="jobs job_single">
-	<x-main-nav></x-main-nav>
+	<x-main-nav :isemploy="$is_employ"></x-main-nav>
 
     <div class="section1">
        <div class="d-flex mt-3">
