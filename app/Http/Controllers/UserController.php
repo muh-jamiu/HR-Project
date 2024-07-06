@@ -322,8 +322,13 @@ class UserController extends Controller
 
     public function createApplication(Application $application){  
         $user = $this->getUser(session("hr_id"));
-        if($user != "candidate"){
+        if($user->role != "candidate"){
             return back()->with("Erromsg", "You cannot perform this operation, a company account cannot apply for a job");
+        }
+        
+        $find = $application::where(["company_id" => session("hr_id"), "job_id" => request()->job_id  ])->get();
+        if(count($find) != 0){
+            return back()->with("Erromsg", "You cannot perform this operation, you've applied for this job already");
         }
 
 
@@ -338,12 +343,11 @@ class UserController extends Controller
         $application->user_portfolio = request()->website;
         $application->user_city = request()->city;
         $application->user_country = request()->country;
-        $application->address = request()->address;
         $application->user_resume = request()->user_resume ?? null;
         $application->avatar = $user->avatar;
-        $application->job_title = $user->job_title;
+        $application->job_title = request()->job_title;
 
-        $save = $application->save;
+        $save = $application->save();
         if($save){
             return back()->with("msg", "Application is sent successfully");
         }
