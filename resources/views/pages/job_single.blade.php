@@ -2,10 +2,13 @@
 
 @php
 $job_title = $data["title"] ?? ""; 
+$job = $data["job"] ?? ""; 
+$company = $data["company"] ?? ""; 
+use Carbon\Carbon;
 @endphp
 
 @section('title')
-{{$job_title}} | HR
+{{$job->title}} | HR
 @endsection
 
 @section("content")
@@ -13,44 +16,67 @@ $job_title = $data["title"] ?? "";
 	<x-main-nav></x-main-nav>
 
     <div class="section1">
-        <h1 class="fw-bold mt-4 text-capitalize">{{$job_title}}</h1>
+        <h1 class="fw-bold mt-4 text-capitalize">{{$job->title}}</h1>
         <p class="fs-5 text-muted mt-3 mb-5">Discover your next career move, freelance gig, or internship</p>
     </div>
     
     <div class="section2 mb-5 d-flex flex-wrap">
         <div class="j_first">
             <div class="img">
-                <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-3.png" alt="">
+                <img src="{{$job->avatar ?? "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-3.png"}}" alt="">
             </div>
 
             <div class="mt-5">
-                <h4>Company Name</h4>
-                <p class="text-muted">The AliStudio Design team has a vision to establish a trusted platform that enables productive and healthy enterprises in a world of digital and remote everything, constantly changing work patterns and norms, and the need for organizational resiliency.</p>
-                <p class="text-muted">The ideal candidate will have strong creative skills and a portfolio of work which demonstrates their passion for illustrative design and typography. This candidate will have experiences in working with numerous different design platforms such as digital and print forms.</p>
+                <h4 class="text-capitalize">{{$company->company_name}}</h4>
+                <p class="text-muted text-capitalize">{{$company->bio}}</p>
             </div>
+            <hr>
 
             <div class="mt-5">
                 <h4>Job Description</h4>
-                <p class="text-muted">Create deliverables for your product area (for example competitive analyses, user flows, low fidelity wireframes, high fidelity mockups, prototypes, etc.) that solve real user problems through the user experience.</p>
+                <p class="text-muted text-capitalize">{{$job->description}}</p>
             </div>
+            <hr>
 
-            <div class="mt-5">
+            <div class="mt-5">                
+                @php
+                    $experience = explode(" @/", $job->experience) ?? 0;
+                @endphp
                 <h4>Preferred Experience</h4>
-                <ul>
-                    <li class="text-muted ft mb-2">A portfolio demonstrating well thought through and polished end to end customer journeys</li>
-                    <li class="text-muted ft mb-2">A portfolio demonstrating well thought through and polished end to end customer journeys</li>
-                    <li class="text-muted ft mb-2">A portfolio demonstrating well thought through and polished end to end customer journeys</li>
-                    <li class="text-muted ft mb-2">A portfolio demonstrating well thought through and polished end to end customer journeys</li>
-                    <li class="text-muted ft mb-2">A portfolio demonstrating well thought through and polished end to end customer journeys</li>
-                    <li class="text-muted ft mb-2">A portfolio demonstrating well thought through and polished end to end customer journeys</li>
-                </ul>
+                @if ($experience)
+                    <ul>
+                        @foreach ($experience as $item)
+                        @if ($item != "")
+                        <li class="text-muted text-capitalize ft mb-2">{{$item}}</li>                              
+                        @endif                          
+                        @endforeach
+                    </ul>                    
+                @endif
             </div>  
+            <hr>
+
+            <div class="mt-5">                
+                @php
+                    $skills = explode(" @/", $job->skills) ?? 0;
+                @endphp
+                <h4>Desired skills</h4>
+                @if ($skills)
+                    <ul>
+                        @foreach ($skills as $item)
+                        @if ($item != "")
+                        <li class="text-muted text-capitalize ft mb-2">{{$item}}</li>                              
+                        @endif                          
+                        @endforeach
+                    </ul>                    
+                @endif
+            </div>  
+            <hr>
             
-            <div class="mt-5"> <h4>Company Name</h4></div>
+            <div class="mt-5 text-capitalize"> <h4>{{$company->company_name}}</h4></div>
             <hr style="color: rgb(198, 198, 198)">
             
             <div class="d-flex">
-                <button class="btn text-white btn-success px-4 bg_">Apply Now</button>
+                <button data-bs-toggle="modal" data-bs-target="#apply__" class="btn text-white btn-success px-4 bg_">Apply Now</button>
                 <button class="btn btn-outline-primary px-4 mx-3">Save Job</button>
             </div>
 
@@ -58,32 +84,32 @@ $job_title = $data["title"] ?? "";
 
         <div class="j_sec">
             <div class="d-flex pt-2" style="border-bottom: 1px solid rgb(235, 235, 235)">
-                <img style="border-radius: 50%" width="30" height="30" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/page/job-single/img-job-feature.png" alt="">
-                <p class="mb-3 mx-2 fw-bold">Company name</p>
+                <img style="border-radius: 50%; object-fit:cover" width="30" height="30" src="{{$company->avatar}}" alt="">
+                <p class="mb-3 mx-2 fw-bold text-capitalize">{{$company->company_name}}</p>
             </div>
-            <p class="text-muted mt-3">We're looking to add more product designers to our growing teams.</p>
+            <p class="text-muted mt-3">We're looking to add more candidate to our growing teams.</p>
             <div class="d-flex">
                 <a href="#apply" data-bs-toggle="modal" data-bs-target="#apply__" class="btn text-white btn-success px-4 bg_">Apply Now</a>
                 <button class="btn btn-outline-primary px-4 mx-3">Save Job</button>
             </div>
             <hr style="color: rgb(172, 172, 172)">
-            <p class="fw-bold text-muted mb-1"><i class="fa-solid fa-bag-shopping"></i> Job Type</p>
-            <p class="mb-4 text-muted">Full-time / Remote</p>
+            <p class="fw-bold text-muted mb-1"><i class="fa-solid fa-bag-shopping"></i> Employment Type</p>
+            <p class="mb-4 text-muted text-capitalize">{{$job->employment_type}}</p>
 
             <p class="fw-bold text-muted mb-1"><i class="fa-solid fa-location-dot"></i> Location</p>
-            <p class="mb-4 text-muted">Lagos, Nigeria</p>
+            <p class="mb-4 text-muted text-capitalize">{{$job->state}}, {{$job->country}}</p>
 
             <p class="fw-bold text-muted mb-1"><i class="fa-solid fa-sack-dollar"></i> Salary</p>
-            <p class="mb-4 text-muted">$35k - $45k</p>
+            <p class="mb-4 text-muted">${{number_format($job->salary)}}</p>
 
             <p class="fw-bold text-muted mb-1"><i class="fa-regular fa-clock"></i> Date posted</p>
-            <p class="mb-4 text-muted">1 hours ago</p>
+            <p class="mb-4 text-muted"> {{Carbon::create($job->created_at)->format('l F j, Y')}}</p>
             <hr style="color: rgb(172, 172, 172)">
 
             <p class="fw-bold text-muted mb-2">Contact Info</p>
-            <p class="text-muted ft"><i class="fa-solid fa-phone"></i> (+91) - 540-025-124553</p>
-            <p class="text-muted ft"><i class="fa-regular fa-envelope"></i> contact@nestmart.com</p>
-            <p class="text-muted ft"><i class="fa-solid fa-location-dot"></i> Campbell Ave undefined Kent, Utah 53127 United States</p>
+            <p class="text-muted ft"><i class="fa-solid fa-phone"></i> {{$job->phone}}</p>
+            <p class="text-muted ft"><i class="fa-regular fa-envelope"></i> {{$job->email}}</p>
+            <p class="text-muted ft text-capitalize"><i class="fa-solid fa-location-dot"></i> {{$job->address}}</p>
 
             <hr style="color: rgb(172, 172, 172)">
 

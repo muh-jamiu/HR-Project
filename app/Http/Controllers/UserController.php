@@ -281,6 +281,22 @@ class UserController extends Controller
         return $job;
     }
 
+    public function job_single($job_title, $id){
+        $data["job"] = Job::find($id);
+        $data["title"] = str_replace("_", " ", $job_title);
+        $data["company"] = User::find($data["job"]->company_id);
+        
+        if(!$data["job"]){
+            return redirect("/");
+        }
+
+        if(!$data["company"]){
+            return redirect("/");
+        }
+
+        return view("pages.job_single", compact("data"));
+    }
+
     public function employersSingle($unique_id){
         $data["user"] = $this->getUserByCompany($unique_id);
         if(!$data["user"]){

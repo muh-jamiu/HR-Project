@@ -45,10 +45,7 @@ Route::get('/signup', function () {
     return view("pages.register");
 })->middleware("isLogin");
 
-Route::get('/job/{job_title}/{id}', function ($job_title) {
-    $data["title"] = str_replace("_", " ", $job_title);
-    return view("pages.job_single", compact("data"));
-});
+Route::get('/job/{job_title}/{id}', [UserController::class, 'job_single']);
 
 Route::get('/candidate/{unique_id}/{candidate_name}', [UserController::class, 'candidateSingle']);
 

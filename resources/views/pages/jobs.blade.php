@@ -102,14 +102,9 @@ Browse All Jobs | HR
                     <a href="/job/{{$job->title}}/{{$job->id}}" class="text-decoration-none text-dark">
                         <div class="cont_">
                             <div class="img">
-                                <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-3.png" alt="">
+                                <img src="{{$job->avatar ?? "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-3.png"}}" alt="">
                             </div>
                             <div class="p-3">
-                                {{-- <div class="d-flex flex-wrap mt-2 mb-4 justify-content-between">
-                                    <p class="mb-2 text-muted mt-1 ">
-                                        <img class="mx-2" width="20" height="20" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">Company Name</p>
-                                    <button style="background-color: rgba(45, 249, 45, 0.088); height:fit-content" class="btn text-success ft px-4 py-1">{{$job->job_title}}</button>
-                                </div> --}}
                                 <p class="mt-3 mb-3">{{$job->title}}</p>
                                 <div class="d-flex">
                                     <p class="ft text-muted"><i class="fa-regular fa-clock"></i> {{Carbon::create($job->created_at)->format('l F j, Y')}}</p>
