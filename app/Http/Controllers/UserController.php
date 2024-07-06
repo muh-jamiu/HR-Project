@@ -107,7 +107,8 @@ class UserController extends Controller
             ->orWhere("country", "like", "%$location%")
             ->orWhere("state", "like", "%$location%")
             ->orWhere("title", "like", "%$query%")
-            ->paginate(10);
+            // ->orWhere("role", "=", "%$page_name%")
+            ->get();
         }else{
             $user = User::where("username", "like", "%$query%")
             ->orWhere("first_name", "like", "%$query%")
@@ -115,8 +116,11 @@ class UserController extends Controller
             ->orWhere("country", "like", "%$query%")
             ->orWhere("state", "like", "%$query%")
             ->orWhere("title", "like", "%$query%")
-            ->paginate(10);
+            // ->orWhere("role", "=", "%$page_name%")
+            ->get();
         }
+
+        // dd($user);
 
         $data["users"] = $user;
         $data["isSearch"] = true;

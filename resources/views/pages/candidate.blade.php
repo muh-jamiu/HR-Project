@@ -202,7 +202,8 @@ $_countries = [
     "Yemen",
     "Zambia",
     "Zimbabwe"
-  ];
+];
+
 
 @endphp
 
@@ -220,7 +221,7 @@ Platform Candidates | HR
         <div class="input_cont mb-3">
             <form action="/search/candidate" method="post">
                 @csrf
-                <input name="search" type="text" placeholder="search job...">
+                <input name="search" type="text" placeholder="search candidate...">
                 <select name="" id="">
                     <option value="">Full time</option>
                     <option value="">part time</option>
@@ -345,11 +346,13 @@ Platform Candidates | HR
                     </a>	                        
                     @endif   		
                     @endforeach
+                    @if (!$isSearch)
                     <div class="text-center px-2">
                         <div class="" style="">            
                             {{ $users->links() }}
                         </div>
-                    </div>
+                    </div>                        
+                    @endif
                 </div>
             </div>
         </div>
