@@ -103,9 +103,9 @@ Job Employers | HR
                             <div class="cont_">
                                 <div class="text-center mt-3" >
                                     @if ($user->avatar)
-                                        <img loading="lazy" lazy style="width: 100px; height: 100px; object-fit:cover; border-radius:50%; object-fit:cover" src="{{$user->avatar}}" alt="">                                        
+                                        <img loading="lazy" lazy style="width: 100px; height: 100px; object-fit:cover; border-radius:50%; object-fit:cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS48f-GOfd7Vvaya0EWXRmDjamdDQs-FJdkWg&s" alt="">                                        
                                     @else
-                                        <img style="width: 100px; height: 100px; object-fit:cover; border-radius:50%; object-fit:cover" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">                                        
+                                        <img style="width: 100px; height: 100px; object-fit:cover; border-radius:50%; object-fit:cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS48f-GOfd7Vvaya0EWXRmDjamdDQs-FJdkWg&s" alt="">                                        
                                     @endif
                                 </div>
                                 <div class="p-3 text-center">

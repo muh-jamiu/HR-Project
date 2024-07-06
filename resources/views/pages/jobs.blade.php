@@ -102,7 +102,7 @@ Browse All Jobs | HR
                     <a href="/job/{{$job->title}}/{{$job->id}}" class="text-decoration-none text-dark">
                         <div class="cont_">
                             <div class="img">
-                                <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
+                                <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-3.png" alt="">
                             </div>
                             <div class="p-3">
                                 {{-- <div class="d-flex flex-wrap mt-2 mb-4 justify-content-between">

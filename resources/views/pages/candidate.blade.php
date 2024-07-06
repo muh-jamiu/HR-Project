@@ -103,9 +103,9 @@ Platform Candidates | HR
                         <div class="cont_">
                             <div class="text-center mt-3" >
                                 @if ($user->avatar)
-                                    <img loading="lazy" lazy style="width: 100px; height: 100px; object-fit:cover; border-radius:50%; object-fit:cover" src="{{$user->avatar}}" alt="">                                        
+                                    <img loading="lazy" lazy style="width: 100px; height: 100px; object-fit:cover; border-radius:50%; object-fit:cover" src="https://static.vecteezy.com/system/resources/previews/036/594/092/non_2x/man-empty-avatar-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-free-vector.jpg" alt="">                                        
                                 @else
-                                    <img style="width: 100px; height: 100px; object-fit:cover; border-radius:50%; object-fit:cover" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">                                        
+                                    <img style="width: 100px; height: 100px; object-fit:cover; border-radius:50%; object-fit:cover" src="https://static.vecteezy.com/system/resources/previews/036/594/092/non_2x/man-empty-avatar-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-free-vector.jpg" alt="">                                        
                                 @endif
                             </div>
                             <div class="p-3 text-center">

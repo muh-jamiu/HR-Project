@@ -20,7 +20,7 @@ $job_title = $data["title"] ?? "";
     <div class="section2 mb-5 d-flex flex-wrap">
         <div class="j_first">
             <div class="img">
-                <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/page/job-single/img-job-feature.png" alt="">
+                <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-3.png" alt="">
             </div>
 
             <div class="mt-5">

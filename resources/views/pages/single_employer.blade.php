@@ -18,9 +18,9 @@ Employer-{{$user->company_name}} | HR
        <div class="d-flex mt-3">
         <div class="img__">
             @if ($user->avatar)
-            <img  width="150" height="150" style="border-radius: 50% ; background-color: rgb(226, 226, 226)" src="{{$user->avatar}}" alt="">                                       
+            <img  width="150" height="150" style="border-radius: 50% ; background-color: rgb(226, 226, 226)" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS48f-GOfd7Vvaya0EWXRmDjamdDQs-FJdkWg&s" alt="">                                       
             @else
-            <img  width="150" height="150" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/page/employers/employer-12.png" alt="">                                     
+            <img  width="150" height="150" style="border-radius: 50%" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS48f-GOfd7Vvaya0EWXRmDjamdDQs-FJdkWg&s" alt="">                                     
             @endif
         </div>
         <div class="mx-3 mt-3">

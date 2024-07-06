@@ -19,9 +19,9 @@ Candidate-{{$user->username ?? ""}} | HR
        <div class="d-flex mt-3">
         <div class="img__" style="">
             @if ($user->avatar)
-            <img  width="150" height="150" style="border-radius: 50% ; background-color: rgb(226, 226, 226)" src="{{$user->avatar}}" alt="">                                       
+            <img  width="150" height="150" style="border-radius: 50% ; background-color: rgb(226, 226, 226)" src="https://static.vecteezy.com/system/resources/previews/036/594/092/non_2x/man-empty-avatar-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-free-vector.jpg" alt="">                                       
             @else
-            <img  width="150" height="150" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/page/candidates/img-candidate.png" alt="">                                     
+            <img  width="150" height="150" style="border-radius: 50%" src="https://static.vecteezy.com/system/resources/previews/036/594/092/non_2x/man-empty-avatar-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-free-vector.jpg" alt="">                                     
             @endif
         </div>
         <div class="mx-3 mt-3">
