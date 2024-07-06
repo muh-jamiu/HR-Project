@@ -158,7 +158,7 @@ class UserController extends Controller
         $user->cv = $request->cv ?? $user->cv;
         $user->experience = $request->experience ?? $user->experience;
         $user->skills = $request->skills ?? $user->skills;
-        if($request->image){
+        if($request->company_logo){
             $photo = $this->uploadImage();
             $user->avatar = $photo;
         }

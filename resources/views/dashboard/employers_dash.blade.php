@@ -31,7 +31,11 @@ Employer Dashboard | HR
         </div>
 
         <div class="text-center mt-4">
+            @if ($user->avatar)
+            <img  width="150" height="150" style="border-radius: 50%; object-fit:cover" src="{{$user->avatar}}" alt="">                
+            @else
             <img class=""  width="150" height="150" style="border-radius: 50%" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS48f-GOfd7Vvaya0EWXRmDjamdDQs-FJdkWg&s" alt="">
+            @endif
             <p class="mb-1 mt-3 text-capitalize">{{$user->company_name}} </p>
             <p class="ft mb-1">{{$user->email}}</p>
             <p class="ft">{{$user->phone ?? ""}}</p>
@@ -65,7 +69,11 @@ Employer Dashboard | HR
                 @php
                     $skills__ = explode(",", $user->skills);
                 @endphp
-                <img  width="90" height="90" style="border-radius: 50%; object-fit:cover; background-color:grey" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS48f-GOfd7Vvaya0EWXRmDjamdDQs-FJdkWg&s" alt="">
+                  @if ($user->avatar)
+                  <img  width="90" height="90" style="border-radius: 50%; object-fit:cover" src="{{$user->avatar}}" alt="">                
+                  @else
+                  <img  width="90" height="90" style="border-radius: 50%" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS48f-GOfd7Vvaya0EWXRmDjamdDQs-FJdkWg&s" alt="">                   
+                  @endif
                 <div class="mt-0 mx-2">
                     <h4 class="fw-bold mb-1 text-capitalize">Welcome Back, {{$user->company_name}}</h4>
                     <div class="d_skills mb-2 mt-2 d-flex">
@@ -78,7 +86,11 @@ Employer Dashboard | HR
                     </div>
                 </div>
             </div>
-            <button class="btn-info px-4 mx-4 ft btn d_cv">Upload Company Logo</button>
+            <form action="/update-profile" enctype="multipart/form-data" method="POST" class="d_cv" id="upload_form">
+                @csrf
+                <label style="border-radius: 3px" for="avatar__" class=" px-4 mx-4 py-2 ft bg-info">Upload Company Logo</label>
+                <input type="file" name="company_logo" id="avatar__" class="d-none">
+            </form>
         </div>
 
         <div class="d_section2 mt-4">

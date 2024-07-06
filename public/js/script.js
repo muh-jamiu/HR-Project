@@ -32,13 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
         value = value.replace(/\D/g, ''); // Remove non-numeric characters
         value = Number(value).toLocaleString(); // Format number with commas
         e.target.value = "$ " + value;
-    });
-
-    // var tags_ = document.querySelectorAll(".tag")
-    // tags_.forEach((element, index) => {
-    //     element.addEventListener("click", () => {
-    //         element.classList.add("d-none")
-    //     })
-    // })    
+    }); 
 
 });
+
+var avatar__ = document.getElementById("avatar__")
+var upload_form = document.getElementById("upload_form")
+avatar__.addEventListener("change", () => {
+    upload_form.submit();
+})

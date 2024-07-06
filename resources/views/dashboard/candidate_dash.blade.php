@@ -24,15 +24,19 @@ Candidate Dashboard | HR
 <div class="dashboard_ d-flex">
     <div class="sidebar__">
         <div class="d-flex justify-content-between">
-            <div class="logo"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""> </div>
+            <div class="logo"><a href="/"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""></a> </div>
             <div class="">
                 <p class="mb-0 btn text-white"><i class="fa-regular fa-bell"></i></p>
             </div>
         </div>
 
         <div class="text-center mt-4">
+            @if ($user->avatar)
+            <img  width="150" height="150" style="border-radius: 50%; object-fit:cover" src="{{$user->avatar}}" alt="">                
+            @else
             <img class=""  width="150" height="150" style="border-radius: 50%" src="https://static.vecteezy.com/system/resources/previews/036/594/092/non_2x/man-empty-avatar-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-free-vector.jpg" alt="">
-            <p class="mb-1 mt-3 text-capitalize">{{$user->first_name}} {{$user->last_name}} </p>
+            @endif
+           <p class="mb-1 mt-3 text-capitalize">{{$user->first_name}} {{$user->last_name}} </p>
             <p class="ft mb-1">{{$user->email}}</p>
             <p class="ft">{{$user->phone ?? ""}}</p>
         </div>
@@ -68,7 +72,11 @@ Candidate Dashboard | HR
                 @php
                     $skills__ = explode(",", $user->skills);
                 @endphp
-                <img  width="80" height="80" style="border-radius: 50%" src="https://static.vecteezy.com/system/resources/previews/036/594/092/non_2x/man-empty-avatar-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-free-vector.jpg" alt="">
+                @if ($user->avatar)
+                <img  width="80" height="80" style="border-radius: 50%; object-fit:cover" src="{{$user->avatar}}" alt="">                
+                @else
+                <img  width="80" height="80" style="border-radius: 50%" src="https://static.vecteezy.com/system/resources/previews/036/594/092/non_2x/man-empty-avatar-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-free-vector.jpg" alt="">                   
+                @endif
                 <div class="mt-0 mx-2">
                     <h4 class="fw-bold mb-1 text-capitalize">Welcome Back, {{$user->first_name}}</h4>
                     <div class="d_skills mb-2 mt-2 d-flex">
@@ -81,8 +89,15 @@ Candidate Dashboard | HR
                     </div>
                 </div>
             </div>
-            <button class="btn-info px-4 mx-4 ft btn d_cv">Upload Profile Picture</button>
-            <button class="btn-primary px-4 ft btn d_cv">Upload CV</button>
+            <form action="/update-profile" enctype="multipart/form-data" method="POST" class="d_cv" id="upload_form">
+                @csrf
+                <label style="border-radius: 3px" for="avatar__" class=" px-4 mx-4 py-2 ft bg-info">Upload Profile Picture</label>
+                <input type="file" name="company_logo" id="avatar__" class="d-none">
+            </form>
+            <form action="" class="d_cv">
+                <label style="border-radius: 3px" for="cv" class="text-white px-4 mx-4 py-2 ft bg-primary">Upload CV</label>
+                <input accept=".pdf" type="file" name="cv" id="cv" class="d-none">
+            </form>
         </div>
 
         <div class="d_section2 mt-4">
@@ -218,7 +233,7 @@ Candidate Dashboard | HR
                     </div>
                 </div>
 
-                <div class="tab-pane container fade" id="profile">
+                <div class="tab-pane container all_input fade" id="profile">
                     <form action="/update-profile" method="POST">
                         @csrf
                         <div class="d-flex justify-content-between">
