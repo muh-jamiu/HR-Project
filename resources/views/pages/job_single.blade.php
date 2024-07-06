@@ -23,6 +23,17 @@ use Carbon\Carbon;
     
     <div class="section2 mb-5 d-flex flex-wrap">
         <div class="j_first">
+            @if (session("Erromsg"))
+                <div class="alert alert-danger text-danger text-center">
+                    <li style="width: fit-content" class="list-unstyled ft">{{session("Erromsg")}}</li>
+                </div>
+            @endif
+            @if (session("msg"))
+                <div class="alert alert-success text-success text-center">
+                    <li style="width: fit-content" class="list-unstyled ft">{{session("msg")}}</li>
+                </div>
+            @endif
+
             <div class="img">
                 <img src="{{$job->avatar ?? "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-3.png"}}" alt="">
             </div>
@@ -141,21 +152,25 @@ use Carbon\Carbon;
             <!-- Modal body -->
             <div class="modal-body">
                 <p class="fw-bold">Basic Information</p>
-                <form action="" method="get">
-                    <input required type="text" placeholder="Enter fullname">
-                    <input required type="email" placeholder="Enter email address">
-                    <input required type="text" placeholder="Phone number">
-                    <input required type="text" placeholder="Country">
-                    <input required type="text" placeholder="State">
-                    <input required type="text" placeholder="city">
+                <form action="/create-application" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input name="name" required type="text" placeholder="Enter fullname">
+                    <input name="email" required type="email" placeholder="Enter email address">
+                    <input name="phone" required type="text" placeholder="Phone number">
+                    <input name="country" required type="text" placeholder="Country">
+                    <input name="state" required type="text" placeholder="State">
+                    <input name="city" required type="text" placeholder="city">
+                    <input name="job_id" required type="text" class="d-none" value="{{$job->id}}">
+                    <input name="company_id" required type="text" class="d-none" value="{{$company->id}}">
+                    <input name="job_title" required type="text" class="d-none" value="{{$job->title}}">
 
                     <hr>
                     <p class="fw-bold">More Information</p>
                     <input required type="text" placeholder="Work title (eg) software developer, marketers, designer">
-                    <input required type="text" placeholder="Education">
-                    <input required type="text" placeholder="Portfolio website (link)">
+                    <input name="education" required type="text" placeholder="Education">
+                    <input name="website" required type="text" placeholder="Portfolio website (link)">
                     <label for="__cv__" class="btn px-4 py-2 ft mt-3 mb-2" style="background-color: rgba(179, 179, 179, 0.266)">Upload Resume</label>
-                    <input accept=".pdf" required type="file" name="__cv__" id="__cv__" class="d-none">
+                    <input required accept=".pdf" type="file" name="__cv__" id="__cv__" class="d-none">
                     <p class="text-danger mb-2" style="font-size: 12px">Resume must be a (.pdf) file and must not be more than 5mb </p>
                     <input style="width: fit-content" type="submit" value="Apply" class="btn px-4 py-2 btn-primary mt-4 mb-5" >
                 </form>

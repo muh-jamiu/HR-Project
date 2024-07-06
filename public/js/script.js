@@ -63,3 +63,12 @@ var upload_form = document.getElementById("upload_form")
 avatar__.addEventListener("change", () => {
     upload_form.submit();
 })
+
+function showAlert(title, icon, text){
+    Swal.fire({
+        icon: icon,
+        title: title,
+        text: ttext,
+        footer: '<a href="#">Why do I have this issue?</a>'
+      });
+}

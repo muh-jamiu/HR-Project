@@ -67,5 +67,7 @@ Route::post('/update-profile', [UserController::class, 'updateUser']);
 
 Route::post('/create-job', [UserController::class, 'createJob']);
 
+Route::post('/create-application', [UserController::class, 'createApplication']);
+
 Route::post('/search/{type}', [UserController::class, 'searchUser']);
 

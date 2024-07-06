@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Application;
 use App\Models\Job;
 use App\Models\User;
 use Carbon\Carbon;
@@ -317,6 +318,37 @@ class UserController extends Controller
     public function browse_job(){
         $data["jobs"] = $this->getJobs();
         return view("pages.jobs", compact("data"));;
+    }
+
+    public function createApplication(Application $application){  
+        $user = $this->getUser(session("hr_id"));
+        if($user != "candidate"){
+            return back()->with("Erromsg", "You cannot perform this operation, a company account cannot apply for a job");
+        }
+
+
+        $application->company_id =  session("hr_id") ?? 0;
+        $application->user_id =  $user->unique_id ?? 0;
+        $application->job_id =  request()->job_id ?? 0;
+        $application->user_email = request()->email;
+        $application->phone = request()->phone;
+        $application->username = request()->name;
+        $application->user_state = request()->state;
+        $application->user_education = request()->education;
+        $application->user_portfolio = request()->website;
+        $application->user_city = request()->city;
+        $application->user_country = request()->country;
+        $application->address = request()->address;
+        $application->user_resume = request()->user_resume ?? null;
+        $application->avatar = $user->avatar;
+        $application->job_title = $user->job_title;
+
+        $save = $application->save;
+        if($save){
+            return back()->with("msg", "Application is sent successfully");
+        }
+        return back()->with("Erromsg", "Something went wrong");
+
     }
 
     // public function postCode($code, $id){
