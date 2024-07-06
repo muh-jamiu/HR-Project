@@ -31,7 +31,7 @@ Candidate Dashboard | HR
         </div>
 
         <div class="text-center mt-4">
-            <img class=""  width="150" height="150" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/page/candidates/img-candidate.png" alt="">
+            <img class=""  width="150" height="150" style="border-radius: 50%" src="https://static.vecteezy.com/system/resources/previews/036/594/092/non_2x/man-empty-avatar-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-free-vector.jpg" alt="">
             <p class="mb-1 mt-3 text-capitalize">{{$user->first_name}} {{$user->last_name}} </p>
             <p class="ft mb-1">{{$user->email}}</p>
             <p class="ft">{{$user->phone ?? ""}}</p>
@@ -68,7 +68,7 @@ Candidate Dashboard | HR
                 @php
                     $skills__ = explode(",", $user->skills);
                 @endphp
-                <img  width="80" height="80" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/page/candidates/img-candidate.png" alt="">
+                <img  width="80" height="80" style="border-radius: 50%" src="https://static.vecteezy.com/system/resources/previews/036/594/092/non_2x/man-empty-avatar-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-free-vector.jpg" alt="">
                 <div class="mt-0 mx-2">
                     <h4 class="fw-bold mb-1 text-capitalize">Welcome Back, {{$user->first_name}}</h4>
                     <div class="d_skills mb-2 mt-2 d-flex">
