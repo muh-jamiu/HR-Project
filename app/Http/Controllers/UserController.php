@@ -450,6 +450,37 @@ class UserController extends Controller
         return $text;
     }
 
+    public function technical_questions($title, $id){
+        $data["job"] = Job::find($id);
+        $questions = $this->technicalGemini($data["job"]->title);
+        $data["questions"] = explode("\n", $questions);
+        $data["company"] = User::find($data["job"]->company_id);
+        if(count($data["questions"]) == 0){
+            return back()->with("Errormsg", "Something went wrong, Please try again later");
+        }
+        
+        return view("pages.technical_questions", compact("data"));
+    }
+
+    
+    public function technicalGemini($userMessage)
+    {
+        $messages = [
+            ["parts" => [
+                ["text" => "You are to ask generate atleast 20 technical advance and very hard questions, don't provide title, just the numbered questions"]
+            ], "role" => "model"],
+            ["parts" => [
+                ["text" => $userMessage]
+            ], "role" => "user"],
+        ];
+
+        $result = $this->googleGeminiService->generateChatResponse($messages);
+
+        $text = $result["candidates"][0]["content"]["parts"][0]["text"];
+        $text = str_replace("*", "", $text);
+        return $text;
+    }
+
     // public function postCode($code, $id){
     //     $verify = new accountVerify();
     //     $verify->userId = session("admyrer_id") ?? $id;
