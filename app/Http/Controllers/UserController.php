@@ -520,11 +520,26 @@ class UserController extends Controller
         if($user->skills){
             $questions = $this->technicalGemini($user->skills);
         }
-        
+
         $data["job"] = Job::find($id);
         $data["questions"] = explode("\n", $questions);
         $data["company"] = User::find($data["job"]->company_id);
         return view("pages.skills_questions", compact("data"));
+    }
+
+    public function post_skills_questions(){
+        $job_id = session("job_id");
+        $request = request()->all();
+        unset($request['_token']);
+        $requestString = json_encode($request);
+        $rating = $this->chatGeminiAnwers($requestString);
+        $job = Application::find($job_id);
+        $job->skill_q = $rating;
+        $job->update();  
+        $job_title = str_replace(" ", "_", $job->job_title);
+        $job_id = $job->job_id;
+        dd($rating, $job);
+        return redirect("/skills-questions/$job_title/$job_id");
     }
 
     public function skillsGemini($userMessage)

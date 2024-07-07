@@ -82,5 +82,6 @@ Route::post('/search/{type}', [UserController::class, 'searchUser']);
 
 Route::post('/automated-questions', [UserController::class, 'post_automated_questions']);
 Route::post('/technical-questions', [UserController::class, 'post_technical_questions']);
+Route::post('/skills-questions', [UserController::class, 'post_skills_questions']);
 
 
