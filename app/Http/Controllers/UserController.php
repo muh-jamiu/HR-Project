@@ -366,22 +366,30 @@ class UserController extends Controller
 
         $file = request()->file('company_logo')->getRealPath(); 
         $pdfText = $this->pdf->getText($file);
-        $questions = $this->chatGemini(request()->job_title);
-        $formatted = explode("\n", $questions);
-
+        $formatted = explode("\n", $pdfText);
+        if($formatted == ""){
+            return back()->with("Erromsg", "Something went wrong, your resume can't be read, Please provide a valid resume.");
+        }
+        
         if(request()->company_logo){
             $photo = $this->uploadPDF();
             $application->user_resume = $photo;
         }
-
+        
         $save = true ;// $application->save();
-        if($save){
-            $title = str_replace(" ", "_", request()->job_title);
-            $job_id = request()->job_id ;
-            return redirect("/automated-questions/$title/$job_id");
-            // return back()->with("msg", "Application is sent successfully");
+        if(!$save){
+            return back()->with("Erromsg", "Something went wrong, Please try again.");
         }
-        return back()->with("Erromsg", "Something went wrong");
+
+        $questions = $this->chatGemini(json_encode($formatted));
+        if($questions){
+            $data["job"] = Job::find(request()->job_id);
+            $data["company"] = User::find($data["job"]->company_id);
+            $data["questions"] = explode("\n", $questions);
+            return view("pages.automated_questions", compact("data"));
+        }
+
+        return back()->with("Erromsg", "Something went wrong, Please try again.");
 
     }
 
@@ -452,12 +460,12 @@ class UserController extends Controller
 
     public function technical_questions($title, $id){
         $data["job"] = Job::find($id);
-        $questions = $this->technicalGemini($data["job"]->title);
-        $data["questions"] = explode("\n", $questions);
+        // $questions = $this->technicalGemini($data["job"]->title);
+        // $data["questions"] = explode("\n", $questions);
         $data["company"] = User::find($data["job"]->company_id);
-        if(count($data["questions"]) == 0){
-            return back()->with("Errormsg", "Something went wrong, Please try again later");
-        }
+        // if(count($data["questions"]) == 0){
+        //     return back()->with("Errormsg", "Something went wrong, Please try again later");
+        // }
         
         return view("pages.technical_questions", compact("data"));
     }
