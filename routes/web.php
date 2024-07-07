@@ -61,6 +61,10 @@ Route::post('/login', [UserController::class, 'loginUser']);
 
 Route::get('/logOut', [UserController::class, 'logOut']);
 
+Route::get('/automated-questions/{job_title}/{job_id}', [UserController::class, 'automated_questions'])->middleware("notLogin");;
+
+// Route::get('/technical-questions/{job_title}/{job_id}', [UserController::class, 'technical_questions']);
+
 Route::post('/register', [UserController::class, 'registerUser']);
 
 Route::post('/update-profile', [UserController::class, 'updateUser']);

@@ -334,6 +334,10 @@ class UserController extends Controller
     }
 
     public function createApplication(Application $application){  
+        if(!session("hr_id")){
+            return back()->with("Erromsg", "You cannot perform this operation, Account login is require to apply for this job");
+        }
+
         $user = $this->getUser(session("hr_id"));
         if($user->role != "candidate"){
             return back()->with("Erromsg", "You cannot perform this operation, a company account cannot apply for a job");
@@ -405,6 +409,19 @@ class UserController extends Controller
         $text = str_replace("*", "", $text);
         return $text;
     }
+
+    public function automated_questions($title, $id){
+        $data["job"] = Job::find($id);
+        $questions = $this->chatGemini($data["job"]->title);
+        $data["questions"] = explode("\n", $questions);
+        $data["company"] = User::find($data["job"]->company_id);
+        if(count($data["questions"]) == 0){
+            return back()->with("Errormsg", "Something went wrong, Please try again later");
+        }
+        
+        return view("pages.automated_questions", compact("data"));
+    }
+
 
     // public function postCode($code, $id){
     //     $verify = new accountVerify();
