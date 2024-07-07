@@ -376,7 +376,10 @@ class UserController extends Controller
 
         $save = true ;// $application->save();
         if($save){
-            return back()->with("msg", "Application is sent successfully");
+            $title = str_replace(" ", "_", request()->job_title);
+            $job_id = request()->job_id ;
+            return redirect("/automated-questions/$title/$job_id");
+            // return back()->with("msg", "Application is sent successfully");
         }
         return back()->with("Erromsg", "Something went wrong");
 
