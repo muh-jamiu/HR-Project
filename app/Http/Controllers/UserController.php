@@ -414,7 +414,6 @@ class UserController extends Controller
     }
 
     public function automated_questions($title, $id){
-        // dd($this->chatGeminiAnwers("question 1+1, answer 1, question 2+2, answer 4"));
         $data["job"] = Job::find($id);
         $questions = $this->chatGemini($data["job"]->title);
         $data["questions"] = explode("\n", $questions);
@@ -426,11 +425,18 @@ class UserController extends Controller
         return view("pages.automated_questions", compact("data"));
     }
 
+    public function post_automated_questions(){
+        $request = request()->all();
+        unset($request['_token']);
+        $requestString = json_encode($request);
+        dd($this->chatGeminiAnwers($requestString));
+    }
+
     public function chatGeminiAnwers($userMessage)
     {
         $messages = [
             ["parts" => [
-                ["text" => "You are to rate the answers to the questions, 1/100 for overall answers, don't provide rating for a single answer instead calculate all and provide, with ratin description bad, fair, good or excellent and improvement suggestion"]
+                ["text" => "You are to rate the answers to the questions and provide details for the employer base on the question answered by the candidate, 1/100 for overall answers, don't provide rating for a single answer instead calculate all and provide, with rating description bad, fair, good or excellent and improvement suggestion"]
             ], "role" => "model"],
             ["parts" => [
                 ["text" => $userMessage]

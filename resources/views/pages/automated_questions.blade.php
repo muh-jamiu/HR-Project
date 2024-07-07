@@ -42,13 +42,13 @@ Automated Questions | HR
                 <p class="text-muted mt-2 mb-2 ft">Overall questions to be answer is 20.</p>
            </div>
 
-           <form action="" method="post" class="d-none q_form">
+           <form action="/automated-questions" method="post" class="d-none q_form">
                 @csrf
                 <div class="qst_ pt-4">
-                    @foreach ($questions as $item)
+                    @foreach ($questions as $key => $item)
                         <div class="mb-3">
                             <label class="text-muted fw-semibold ft" for="">{{$item}}</label>
-                            <textarea name="" required id="" cols="3" rows="3"></textarea>
+                            <textarea name="{{$item}}" id="" cols="3" rows="3"></textarea>
                         </div>                        
                     @endforeach
                 </div>
