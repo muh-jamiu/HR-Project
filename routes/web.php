@@ -74,6 +74,7 @@ Route::post('/update-profile', [UserController::class, 'updateUser']);
 Route::post('/create-job', [UserController::class, 'createJob']);
 
 Route::post('/create-application', [UserController::class, 'createApplication']);
+Route::get('/create-application', [UserController::class, 'createApplication'])->middleware("notLogin");
 
 Route::post('/search/{type}', [UserController::class, 'searchUser']);
 

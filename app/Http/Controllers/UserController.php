@@ -376,13 +376,14 @@ class UserController extends Controller
             $application->user_resume = $photo;
         }
         
-        $save = true ;// $application->save();
+        $save = $application->save();
         if(!$save){
             return back()->with("Erromsg", "Something went wrong, Please try again.");
         }
 
         $questions = $this->chatGemini(json_encode($formatted));
         if($questions){
+            session()->put("job_id", $application->id);
             $data["job"] = Job::find(request()->job_id);
             $data["company"] = User::find($data["job"]->company_id);
             $data["questions"] = explode("\n", $questions);
@@ -421,23 +422,30 @@ class UserController extends Controller
         return $text;
     }
 
-    public function automated_questions($title, $id){
-        $data["job"] = Job::find($id);
-        $questions = $this->chatGemini($data["job"]->title);
-        $data["questions"] = explode("\n", $questions);
-        $data["company"] = User::find($data["job"]->company_id);
-        if(count($data["questions"]) == 0){
-            return back()->with("Errormsg", "Something went wrong, Please try again later");
-        }
+    // public function automated_questions($title, $id){
+    //     $data["job"] = Job::find($id);
+    //     $questions = $this->chatGemini($data["job"]->title);
+    //     $data["questions"] = explode("\n", $questions);
+    //     $data["company"] = User::find($data["job"]->company_id);
+    //     if(count($data["questions"]) == 0){
+    //         return back()->with("Errormsg", "Something went wrong, Please try again later");
+    //     }
         
-        return view("pages.automated_questions", compact("data"));
-    }
+    //     return view("pages.automated_questions", compact("data"));
+    // }
 
     public function post_automated_questions(){
+        $job_id = session("job_id");
         $request = request()->all();
         unset($request['_token']);
         $requestString = json_encode($request);
-        dd($this->chatGeminiAnwers($requestString));
+        $rating = $this->chatGeminiAnwers($requestString);
+        $job = Application::find($job_id);
+        $job->automated_q = $rating;
+        $job->update();  
+        $job_title = str_replace(" ", "_", $job->job_title);
+        $job_id = $job->job_id;
+        return redirect("/technical-questions/$job_title/$job_id");
     }
 
     public function chatGeminiAnwers($userMessage)

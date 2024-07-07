@@ -17,7 +17,7 @@ Automated Questions | HR
 	<x-main-nav></x-main-nav>
 
     <div class="q_timer_ d-none">
-        <p class="mb-0">Time remaining <span>10:00</span></p>
+        <p class="mb-0">Time remaining <span id="_timer">10:00</span></p>
     </div>
 
     <div class="section1">
@@ -160,6 +160,11 @@ Automated Questions | HR
             q_form.classList.remove("d-none")
             q_timer_.classList.remove("d-none")
             will_hid.classList.add("d-none")
+            setTimeout(() => {
+                var tenMinutes = 60 * 10,
+                display = document.getElementById('_timer');
+                startCountdown(tenMinutes, display);
+            }, 1000);
         }
 
         start_q.addEventListener("click", () => {
@@ -181,5 +186,24 @@ Automated Questions | HR
             }
             });
         })
+
+
+        function startCountdown(duration, display) {
+            var timer = duration, minutes, seconds;
+            var countdownInterval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById('_form').submit();
+                }
+            }, 1000);
+        }
     </script>
 @endpush
