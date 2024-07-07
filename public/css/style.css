@@ -529,3 +529,25 @@ body{
     border-bottom-left-radius: 40em;
     background-position: bottom right;
 }
+
+.qst_{
+    border: 1px solid rgb(211, 211, 211);
+    height: 800px;
+    width: 100%;
+    padding: 1em;
+    overflow: scroll;
+}
+
+.qst_ label{
+    display: block;
+    margin-bottom: .5em;
+}
+
+.qst_ textarea{
+    padding: .8em;
+    width: 100%;
+    border: 1px solid rgb(214, 214, 214);
+    border-radius: 6px;
+    outline: none;
+    resize: none;
+}
