@@ -489,10 +489,8 @@ class UserController extends Controller
         $job->update();  
         $job_title = str_replace(" ", "_", $job->job_title);
         $job_id = $job->job_id;
-        dd($job, $rating);
-        // return redirect("/technical-questions/$job_title/$job_id");
+        return redirect("/skills-questions/$job_title/$job_id");
     }
-
     
     public function technicalGemini($userMessage)
     {
@@ -511,6 +509,43 @@ class UserController extends Controller
         $text = str_replace("*", "", $text);
         return $text;
     }
+
+    public function skills_questions($title, $id){
+        $user = $this->getUser(session("hr_id"));
+        
+        if($user->bio){
+            $questions = $this->technicalGemini($user->bio);
+        }
+
+        if($user->skills){
+            $questions = $this->technicalGemini($user->skills);
+        }
+        
+        $data["job"] = Job::find($id);
+        $data["questions"] = explode("\n", $questions);
+        $data["company"] = User::find($data["job"]->company_id);
+        return view("pages.skills_questions", compact("data"));
+    }
+
+    public function skillsGemini($userMessage)
+    {
+        $messages = [
+            ["parts" => [
+                ["text" => "You are to ask generate atleast 20 question base on the user bio and skils"]
+            ], "role" => "model"],
+            ["parts" => [
+                ["text" => $userMessage]
+            ], "role" => "user"],
+        ];
+
+        $result = $this->googleGeminiService->generateChatResponse($messages);
+
+        $text = $result["candidates"][0]["content"]["parts"][0]["text"];
+        $text = str_replace("*", "", $text);
+        return $text;
+    }
+
+
 
     // public function postCode($code, $id){
     //     $verify = new accountVerify();

@@ -65,6 +65,8 @@ Route::get('/automated-questions/{job_title}/{job_id}', [UserController::class, 
 
 Route::get('/technical-questions/{job_title}/{job_id}', [UserController::class, 'technical_questions'])->middleware("notLogin");
 
+Route::get('/skills-questions/{job_title}/{job_id}', [UserController::class, 'skills_questions'])->middleware("notLogin");
+
 // Route::get('/technical-questions/{job_title}/{job_id}', [UserController::class, 'technical_questions']);
 
 Route::post('/register', [UserController::class, 'registerUser']);
