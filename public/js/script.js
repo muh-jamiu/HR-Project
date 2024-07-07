@@ -70,5 +70,5 @@ function showAlert(title, icon, text){
         title: title,
         text: ttext,
         footer: '<a href="#">Why do I have this issue?</a>'
-      });
+    });
 }

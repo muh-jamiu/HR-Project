@@ -551,3 +551,14 @@ body{
     outline: none;
     resize: none;
 }
+
+.q_timer_{
+    background-color: var(--primary);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    text-align: center;
+    padding: .5em;
+    color: white;
+}
