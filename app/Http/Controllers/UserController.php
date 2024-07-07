@@ -399,7 +399,7 @@ class UserController extends Controller
     {
         $messages = [
             ["parts" => [
-                ["text" => "You are to ask generate atleast 20 advance questions, don't provide title, just the numbered questions"]
+                ["text" => "You are to ask generate atleast 20 advance and very hard questions, don't provide title, just the numbered questions"]
             ], "role" => "model"],
             ["parts" => [
                 ["text" => $userMessage]
@@ -414,6 +414,7 @@ class UserController extends Controller
     }
 
     public function automated_questions($title, $id){
+        // dd($this->chatGeminiAnwers("question 1+1, answer 1, question 2+2, answer 4"));
         $data["job"] = Job::find($id);
         $questions = $this->chatGemini($data["job"]->title);
         $data["questions"] = explode("\n", $questions);
@@ -425,6 +426,23 @@ class UserController extends Controller
         return view("pages.automated_questions", compact("data"));
     }
 
+    public function chatGeminiAnwers($userMessage)
+    {
+        $messages = [
+            ["parts" => [
+                ["text" => "You are to rate the answers to the questions, 1/100 for overall answers, don't provide rating for a single answer instead calculate all and provide, with ratin description bad, fair, good or excellent and improvement suggestion"]
+            ], "role" => "model"],
+            ["parts" => [
+                ["text" => $userMessage]
+            ], "role" => "user"],
+        ];
+
+        $result = $this->googleGeminiService->generateChatResponse($messages);
+
+        $text = $result["candidates"][0]["content"]["parts"][0]["text"];
+        $text = str_replace("*", "", $text);
+        return $text;
+    }
 
     // public function postCode($code, $id){
     //     $verify = new accountVerify();
