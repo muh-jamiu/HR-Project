@@ -170,7 +170,7 @@ use Carbon\Carbon;
                     <input name="education" required type="text" placeholder="Education">
                     <input name="website" required type="text" placeholder="Portfolio website (link)">
                     <label for="__cv__" class="btn px-4 py-2 ft mt-3 mb-2" style="background-color: rgba(179, 179, 179, 0.266)">Upload Resume</label>
-                    <input required accept=".pdf" type="file" name="__cv__" id="__cv__" class="d-none">
+                    <input required accept=".pdf" type="file" name="company_logo" id="__cv__" class="d-none">
                     <p class="text-danger mb-2" style="font-size: 12px">Resume must be a (.pdf) file and must not be more than 5mb </p>
                     <input style="width: fit-content" type="submit" value="Apply" class="btn px-4 py-2 btn-primary mt-4 mb-5" >
                 </form>

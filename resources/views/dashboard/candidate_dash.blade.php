@@ -227,6 +227,12 @@ Candidate Dashboard | HR
 
                 <div class="tab-pane container fade" id="jobs">
                     <div class="section3_d" style="margin-bottom: 0 !important">
+                        @if (count($applications) == 0)
+                            <div class="text-center mt-5" style="margin-bottom: 15em">
+                                <h4 class="fw-bold">Empty</h4>
+                                <p class="text-muted ft">You don't have any job application at the moment.</p>
+                            </div>
+                        @endif
                         <div class="d-flex justify-content- mt-3 flex-wrap">
                             @foreach ($applications as $cp)
                             @php

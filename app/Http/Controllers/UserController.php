@@ -10,9 +10,20 @@ use Carbon\Carbon;
 use Cloudinary\Cloudinary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Spatie\PdfToText\Pdf;
+use App\Services\GoogleGeminiService;
 
 class UserController extends Controller
 {
+
+    protected $pdf;
+    protected $googleGeminiService;
+
+    public function __construct(GoogleGeminiService $googleGeminiService, Pdf $pdf)
+    {
+        $this->googleGeminiService = $googleGeminiService;
+        $this->pdf = $pdf;
+    }
 
     public function candidateDash(){
         $data["applications"] = Application::where(["userId" => session("hr_id")])->get();
@@ -346,16 +357,53 @@ class UserController extends Controller
         $application->user_portfolio = request()->website;
         $application->user_city = request()->city;
         $application->user_country = request()->country;
-        $application->user_resume = request()->user_resume ?? null;
         $application->avatar = $user->avatar;
         $application->job_title = request()->job_title;
 
-        $save = $application->save();
+        $file = request()->file('company_logo')->getRealPath(); 
+        $pdfText = $this->pdf->getText($file);
+        $questions = $this->chatGemini(request()->job_title);
+        $formatted = explode("\n", $questions);
+
+        if(request()->company_logo){
+            $photo = $this->uploadPDF();
+            $application->user_resume = $photo;
+        }
+
+        $save = true ;// $application->save();
         if($save){
             return back()->with("msg", "Application is sent successfully");
         }
         return back()->with("Erromsg", "Something went wrong");
 
+    }
+
+    public function uploadPDF(){    
+        $file = request()->file('company_logo')->getRealPath();   
+        $cloudinary = new Cloudinary();    
+        $uploadedFileUrl = $cloudinary->uploadApi()->upload($file, [
+            'resource_type' => 'raw'
+        ]);
+        
+        return $uploadedFileUrl["url"];
+    }
+
+    public function chatGemini($userMessage)
+    {
+        $messages = [
+            ["parts" => [
+                ["text" => "You are to ask generate atleast 20 advance questions, don't provide title, just the numbered questions"]
+            ], "role" => "model"],
+            ["parts" => [
+                ["text" => $userMessage]
+            ], "role" => "user"],
+        ];
+
+        $result = $this->googleGeminiService->generateChatResponse($messages);
+
+        $text = $result["candidates"][0]["content"]["parts"][0]["text"];
+        $text = str_replace("*", "", $text);
+        return $text;
     }
 
     // public function postCode($code, $id){
