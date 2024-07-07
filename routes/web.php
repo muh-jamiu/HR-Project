@@ -79,5 +79,6 @@ Route::get('/create-application', [UserController::class, 'createApplication'])-
 Route::post('/search/{type}', [UserController::class, 'searchUser']);
 
 Route::post('/automated-questions', [UserController::class, 'post_automated_questions']);
+Route::post('/technical-questions', [UserController::class, 'post_technical_questions']);
 
 

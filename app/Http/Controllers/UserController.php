@@ -468,14 +468,29 @@ class UserController extends Controller
 
     public function technical_questions($title, $id){
         $data["job"] = Job::find($id);
-        // $questions = $this->technicalGemini($data["job"]->title);
-        // $data["questions"] = explode("\n", $questions);
+        $questions = $this->technicalGemini($data["job"]->title);
+        $data["questions"] = explode("\n", $questions);
         $data["company"] = User::find($data["job"]->company_id);
-        // if(count($data["questions"]) == 0){
-        //     return back()->with("Errormsg", "Something went wrong, Please try again later");
-        // }
+        if(count($data["questions"]) == 0){
+            return back()->with("Errormsg", "Something went wrong, Please try again later");
+        }
         
         return view("pages.technical_questions", compact("data"));
+    }
+
+    public function post_technical_questions(){
+        $job_id = session("job_id");
+        $request = request()->all();
+        unset($request['_token']);
+        $requestString = json_encode($request);
+        $rating = $this->chatGeminiAnwers($requestString);
+        $job = Application::find($job_id);
+        $job->technical_q = $rating;
+        $job->update();  
+        $job_title = str_replace(" ", "_", $job->job_title);
+        $job_id = $job->job_id;
+        dd($job, $rating);
+        // return redirect("/technical-questions/$job_title/$job_id");
     }
 
     

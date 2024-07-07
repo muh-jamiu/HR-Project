@@ -42,7 +42,7 @@ Technical Questions | HR
                 <p class="text-muted mt-2 mb-2 ft">Overall questions to be answer is 20.</p>
            </div>
 
-           <form id="_form" action="/automated-questions?type=technical" method="post" class="d-none q_form">
+           <form id="_form" action="/technical-questions" method="post" class="d-none q_form">
                 @csrf
                 <div class="qst_ pt-4">
                     @foreach ($questions as $key => $item)
