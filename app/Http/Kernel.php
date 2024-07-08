@@ -45,6 +45,10 @@ class Kernel extends HttpKernel
         ],
     ];
 
+    protected $commands = [
+        \App\Console\Commands\ExtractTranslations::class,
+    ];
+
     /**
      * The application's middleware aliases.
      *
