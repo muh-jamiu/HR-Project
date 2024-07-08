@@ -22,6 +22,7 @@
     <script src="https://kit.fontawesome.com/4d349a1f95.js" crossorigin="anonymous"></script>
     
     @vite('resources/js/app.js')
+    <script src="https://js.stripe.com/v3/"></script>
 
 </head>
 <body id="body_">

@@ -78,10 +78,17 @@ Route::post('/create-job', [UserController::class, 'createJob']);
 Route::post('/create-application', [UserController::class, 'createApplication']);
 Route::get('/create-application', [UserController::class, 'createApplication'])->middleware("notLogin");
 
+Route::get('/stripe-sucess', [UserController::class, 'stripe_success'])->name("stripe_succss")->middleware("notLogin");
+Route::get('/stripe-fail', [UserController::class, 'stripe_fail'])->name("stripe_fail")->middleware("notLogin");
+
 Route::post('/search/{type}', [UserController::class, 'searchUser']);
 
 Route::post('/automated-questions', [UserController::class, 'post_automated_questions']);
 Route::post('/technical-questions', [UserController::class, 'post_technical_questions']);
 Route::post('/skills-questions', [UserController::class, 'post_skills_questions']);
+
+Route::post('/stripe', [UserController::class, 'pay_with_stripe']);
+
+Route::post('/stripe-transfer', [UserController::class, 'stripeTransfer']);
 
 

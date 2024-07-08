@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Spatie\PdfToText\Pdf;
 use App\Services\GoogleGeminiService;
+use Stripe\Charge;
+use Stripe\Checkout\Session;
+use Stripe\Stripe;
+use Stripe\Transfer;
 
 class UserController extends Controller
 {
@@ -558,6 +562,57 @@ class UserController extends Controller
         $text = $result["candidates"][0]["content"]["parts"][0]["text"];
         $text = str_replace("*", "", $text);
         return $text;
+    }
+
+    public function pay_with_stripe(Request $request)
+    {
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        $session = Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'usd',
+                    'product_data' => [
+                        'name' => 'T-shirt',
+                    ],
+                    'unit_amount' => 2000,
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => route('stripe_succss'),
+            'cancel_url' => route('stripe_fail'),
+        ]);
+
+        return response()->json(['id' => $session->id]);
+    }
+
+    function stripe_success(){
+        dd("stripe_success");
+    }
+
+    
+    function stripe_fail(){
+        dd("stripe_fail");
+    }
+
+    public function stripeTransfer(Request $request)
+    {
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        try {
+            $transfer = Transfer::create([
+                'amount' => $request->amount ?? 100000,
+                'currency' => 'usd',
+                'destination' => $request->destination_account ?? 102938839,
+                'transfer_group' => 'ORDER_95',
+            ]);
+
+            return 'Transfer successful!';
+        } catch (\Exception $ex) {
+            return $ex->getMessage();
+        }
     }
 
 
