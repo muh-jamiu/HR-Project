@@ -16,17 +16,37 @@ use Stripe\Charge;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
 use Stripe\Transfer;
+use PayPal\Api\Payer;
+use PayPal\Api\Amount;
+use PayPal\Api\Transaction;
+use PayPal\Api\RedirectUrls;
+use PayPal\Api\Payment;
+use PayPal\Api\PaymentExecution;
+use PayPal\Exception\PayPalConnectionException;
+use PayPal\Rest\ApiContext;
+use PayPal\Auth\OAuthTokenCredential;
+use Exception;
 
 class UserController extends Controller
 {
 
     protected $pdf;
     protected $googleGeminiService;
+    private $apiContext;
 
     public function __construct(GoogleGeminiService $googleGeminiService, Pdf $pdf)
     {
         $this->googleGeminiService = $googleGeminiService;
         $this->pdf = $pdf;
+        $this->apiContext = new ApiContext(
+            new OAuthTokenCredential(
+                env('PAYPAL_CLIENT_ID'),
+                env('PAYPAL_SECRET')
+            )
+        );
+        $this->apiContext->setConfig([
+            'mode' => 'sandbox',
+        ]);
     }
 
     public function candidateDash(){
@@ -615,6 +635,43 @@ class UserController extends Controller
         }
     }
 
+
+    public function createPaypalTransaction(Request $request)
+    {
+        $payer = new Payer();
+        $payer->setPaymentMethod('paypal');
+
+        $amount = new Amount();
+        $amount->setTotal('20.00');
+        $amount->setCurrency('USD');
+
+        $transaction = new Transaction();
+        $transaction->setAmount($amount);
+        $transaction->setDescription('T-shirt');
+
+        $redirectUrls = new RedirectUrls();
+        $redirectUrls->setReturnUrl(route('stripe_succss'))
+            ->setCancelUrl(route('stripe_succss'));
+
+        $payment = new Payment();
+        $payment->setIntent('sale')
+            ->setPayer($payer)
+            ->setTransactions([$transaction])
+            ->setRedirectUrls($redirectUrls);
+
+        try {
+            // dd($this->apiContext);
+            $payment->create($this->apiContext);
+            dd($payment);
+            return redirect($payment->getApprovalLink());
+        } catch (PayPalConnectionException $ex) {
+            dd($ex);
+        }
+        catch (Exception $ex) {
+            dd($$ex);
+            return redirect()->back()->with('error', 'Something went wrong.');
+        }
+    }
 
 
     // public function postCode($code, $id){

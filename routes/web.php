@@ -91,4 +91,6 @@ Route::post('/stripe', [UserController::class, 'pay_with_stripe']);
 
 Route::post('/stripe-transfer', [UserController::class, 'stripeTransfer']);
 
+Route::any('create-paypal-transaction', [UserController::class, 'createPaypalTransaction'])->name('paypal.transaction');
+
 

@@ -17,6 +17,7 @@ About Us | HR
         <p class="fs-5 text-muted mt-3 mb-5">Discover your next career move, freelance gig, or internship</p>
     </div>
     <button id="checkout-button">Checkout</button>
+    <button id="paypal-checkout-button">Pay with PayPal</button>
 
 
 	<x-footer></x-footer>
@@ -47,5 +48,22 @@ About Us | HR
                 console.error('Error:', error);
             });
         });
+
+
+        document.getElementById('paypal-checkout-button').addEventListener('click', function () {
+            axios.post('{{ route('paypal.transaction') }}', {}, {
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            })
+            .then(function (response) {
+                console.log(response)
+                // window.location.href = response.request.responseURL;
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+            });
+        });
+
     </script>
 @endpush
