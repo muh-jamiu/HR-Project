@@ -49,6 +49,12 @@ class UserController extends Controller
         ]);
     }
 
+    public function index(){ 
+        $data["rand_jobs"] = Job::inRandomOrder()->paginate(12);
+        $data["jobs"] = $this->getJobsLatest();    
+        return view("index", compact("data"));
+    }
+
     public function candidateDash(){
         $data["applications"] = Application::where(["userId" => session("hr_id")])->get();
         $data["user"] = $this->getUser(session("hr_id"));
@@ -350,6 +356,11 @@ class UserController extends Controller
             return back();
         }
         return view("pages.single_employer", compact("data"));;
+    }
+
+    public function getJobsLatest(){  
+        $job = Job::orderBy("created_at", "desc")->paginate(6);
+        return $job;
     }
 
     public function browse_job(){

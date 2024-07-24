@@ -15,10 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view("index");
-});
-
 Route::get('/browse-jobs', [UserController::class, 'browse_job']);
 
 Route::get('/employers', [UserController::class, 'employersAll']);
@@ -44,6 +40,8 @@ Route::get('/login', function () {
 Route::get('/signup', function () {
     return view("pages.register");
 })->middleware("isLogin");
+
+Route::get('/', [UserController::class, 'index']);
 
 Route::get('/job/{job_title}/{id}', [UserController::class, 'job_single']);
 

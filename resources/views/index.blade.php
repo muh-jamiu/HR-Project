@@ -1,6 +1,18 @@
 @extends("layouts.app")
 @php
 $ishome = true;
+$jobs = $data["jobs"] ?? [];
+$rand_jobs = $data["rand_jobs"] ?? [];
+use Carbon\Carbon;
+$category = [
+	["name" => "Content Writer", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/content-writer.svg"],
+	["name" => "Marketing Director", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/marketing-director.svg"],
+	["name" => "System Analyst", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/system-analyst.svg"],
+	["name" => "Marketing & Communication", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/marketing.svg"],
+	["name" => "Digital Designer", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/business-development.svg"],
+	["name" => "Market Research", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/proof-reading.svg"],
+	["name" => "Human Resource", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/proof-reading.svg"],
+]
 @endphp
 
 @section('title')
@@ -54,34 +66,34 @@ HR | Job Board
 		</div>
 
 		<div class="d-flex mt-3" style="overflow: scroll">
-			@for ($i = 0; $i < 8; $i++)
-			<a href="/job/title/{{$i}}" class="text-decoration-none text-dark">
+			@foreach ($jobs as $item)
+			<a href="/job/title/{{$item->id}}" class="text-decoration-none text-dark">
 				<div class="col-sm-4 cont_">
 					<div class="img">
-						<img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
+						<img src="{{$item->avatar}}" alt="">
 					</div>
 					<div class="p-3">
 						<div class="d-flex mt-2 mb-4 justify-content-between">
 							<h6 class="mb-0 text-muted mt-1 ">
-								<img class="mx-2" width="20" height="20" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">Company Name</h6>
-							<button style="background-color: rgba(45, 249, 45, 0.088)" class="btn text-success ft px-4 py-1">Fulltime</button>
+								<img class="mx-2" width="20" height="20" style="border-radius: 50%" src="{{$item->avatar}}" alt="">{{$item->employment_type}}</h6>
+							<button style="background-color: rgba(45, 249, 45, 0.088)" class="btn text-capitalize text-success ft px-4 py-1">{{$item->level}}</button>
 						</div>
-						<h4 class="mt-3 mb-3">Senior Full Stack Engineer, Creator Success Full Time</h4>
+						<h4 class="mt-3 mb-3 text-capitalize">{{$item->title}}</h4>
 						<div class="d-flex">
-							<p class="ft text-muted"><i class="fa-regular fa-clock"></i> 3 mins ago</p>
-							<p class="ft text-muted mx-3"><i class="fa-solid fa-location-dot"></i> Chicago</p>
+							<p class="ft text-muted"><i class="fa-regular fa-clock"></i> {{Carbon::create($item->created_at)->format('l F j, Y')}}</p>
+							<p class="ft text-muted mx-3 text-capitalize"><i class="fa-solid fa-location-dot"></i> {{$item->country}}</p>
 						</div>
 						<div class="d-flex mt-2 mb-3 justify-content-between">
-							<p class="fs-5 text-muted"><span class="cl fw-bold">$3200</span>/Month</p>
+							<p class="fs-5 text-muted"><span class="cl fw-bold">${{number_format($item->salary)}}</span>/Month</p>
 							<div class="d-flex mt-1">
 								<i class="fa-regular btn text-primary fa-thumbs-up"></i>
 								<i class="fa-regular btn text-danger fa-thumbs-down"></i>
 							</div>
 						</div>
 					</div>
-				</div>	
-			</a>			
-			@endfor
+				</div>		
+			</a>	
+			@endforeach
 		</div>
 	</div>
 
@@ -103,16 +115,16 @@ HR | Job Board
 		<h1 class="fw-bold">Browse by category</h1>
 		<div class="d-flex mt-3 justify-content-between">
 			<p class="text-muted ft" style="width:50%">Find the type of work you need, clearly defined and ready to start. Work begins as soon as you purchase and provide requirements.</p>
-			<a href="" class="btn btn-outline-dark px-4 py-2" style="height: fit-content">Browse All</a>
+			<a href="/browse-jobs?category=all" class="btn btn-outline-dark px-4 py-2" style="height: fit-content">Browse All</a>
 		</div>
 
 		<div class="row mt-3">
-			@for ($i = 0; $i < 10; $i++)
-			<div class="col-sm-3 cont text-center">
-				<img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/marketing.svg" alt="">
-				<h4 class="mt-3 mb-3">Marketing & Communication</h4>
-				<p class="text-muted ft">156 Available Vacancy</p>
-			</div>				
+			@for ($i = 0; $i < count($category); $i++)
+			<a href="/browse-jobs?category={{$category[$i]['name']}}" class="col-sm-3 cont text-center text-decoration-none">
+				<img src="{{$category[$i]["image"]}}" alt="">
+				<h4 class="mt-3 mb-3 text-dark">{{$category[$i]["name"]}}</h4>
+				<p class="text-muted ft">Available Vacancy</p>
+			</a>				
 			@endfor
 		</div>
 	</div>
@@ -121,18 +133,46 @@ HR | Job Board
 		<h1 class="fw-bold">Recommended Jobs</h1>
 		<div class="d-flex mt-3 justify-content-between">
 			<p class="text-muted ft" style="width:50%">Recommended job opportunities posted today!</p>
-			<div class="d-flex">
+			{{-- <div class="d-flex">
 				<p class="mx-3 tg active">Software</p>
 				<p class="mx-3 tg">Design</p>
 				<p class="mx-3 tg">Marketing</p>
 				<p class="mx-3 tg">Service</p>
 				<p class="mx-3 tg">Writing</p>
 				<p class="mx-3 tg">Health Care</p>
-			</div>
+			</div> --}}
 		</div>
 
 		<div class="d-flex justify-content-evenly mt-3 flex-wrap">
-			@for ($i = 0; $i < 6; $i++)
+			@foreach ($rand_jobs as $item)
+			<a href="/job/title/{{$item->id}}" class="text-decoration-none text-dark">
+				<div class="col-sm-4 cont_">
+					<div class="img">
+						<img src="{{$item->avatar}}" alt="">
+					</div>
+					<div class="p-3">
+						<div class="d-flex mt-2 mb-4 justify-content-between">
+							<h6 class="mb-0 text-muted mt-1 ">
+								<img class="mx-2" width="20" height="20" style="border-radius: 50%" src="{{$item->avatar}}" alt="">{{$item->employment_type}}</h6>
+							<button style="background-color: rgba(45, 249, 45, 0.088)" class="btn text-capitalize text-success ft px-4 py-1">{{$item->level}}</button>
+						</div>
+						<h4 class="mt-3 mb-3 text-capitalize">{{$item->title}}</h4>
+						<div class="d-flex">
+							<p class="ft text-muted"><i class="fa-regular fa-clock"></i> {{Carbon::create($item->created_at)->format('l F j, Y')}}</p>
+							<p class="ft text-muted mx-3 text-capitalize"><i class="fa-solid fa-location-dot"></i> {{$item->country}}</p>
+						</div>
+						<div class="d-flex mt-2 mb-3 justify-content-between">
+							<p class="fs-5 text-muted"><span class="cl fw-bold">${{number_format($item->salary)}}</span>/Month</p>
+							<div class="d-flex mt-1">
+								<i class="fa-regular btn text-primary fa-thumbs-up"></i>
+								<i class="fa-regular btn text-danger fa-thumbs-down"></i>
+							</div>
+						</div>
+					</div>
+				</div>		
+			</a>	
+			@endforeach
+			{{-- @for ($i = 0; $i < 6; $i++)
 			<a href="/job/title/{{$i}}" class="text-decoration-none text-dark">
 				<div class="col-sm-4 cont_">
 					<div class="img">
@@ -159,7 +199,7 @@ HR | Job Board
 					</div>
 				</div>		
 			</a>		
-			@endfor
+			@endfor --}}
 		</div>
 	</div>
 
