@@ -123,7 +123,7 @@ class UserController extends Controller
         ]);
 
 
-        $role = request()->query("role") ?? "candidate";
+        $role = request()->role ?? "candidate";
         $user->first_name = request()->first_name;
         $user->last_name = request()->last_name;
         $user->username = request()->username;
@@ -148,6 +148,29 @@ class UserController extends Controller
     public function getUser($id){        
         $user = User::find($id);
         return $user;
+    }
+
+    public function searchJob(){  
+        $query = request()->search;   
+        $location = request()->location;
+        if($location){            
+            $job = Job::where("title", "like", "%$query%")
+            ->orWhere("description", "like", "%$query%")
+            ->orWhere("experience", "like", "%$query%")
+            ->orWhere("job_type", "like", "%$query%")
+            ->orWhere("location", "like", "%$location%")
+            ->paginate(12);
+        }else{
+            $job = Job::where("title", "like", "%$query%")
+            ->orWhere("description", "like", "%$query%")
+            ->orWhere("experience", "like", "%$query%")
+            ->orWhere("job_type", "like", "%$query%")
+            ->paginate(12);
+        }
+
+        $data["jobs"] = $job;
+        $data["isSearch"] = true;
+        return view("pages.jobs", compact("data"));
     }
  
     public function searchUser($page_name){  
@@ -573,8 +596,7 @@ class UserController extends Controller
         $job->update();  
         $job_title = str_replace(" ", "_", $job->job_title);
         $job_id = $job->job_id;
-        dd($rating, $job);
-        return redirect("/skills-questions/$job_title/$job_id");
+        return redirect("/candidate-dashboard");
     }
 
     public function skillsGemini($userMessage)

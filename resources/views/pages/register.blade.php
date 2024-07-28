@@ -30,15 +30,19 @@ Sign up to continue | HR
                     </div>
                 @endif
 
-                @if ($role == "company")
-                <input name="company_name" required type="text" placeholder="Company Name" value="{{old('company_name')}}">
-                <input name="company_type" required type="text" placeholder="Company Type" value="{{old('company_type')}}">                    
-                <input name="phone" required type="text" placeholder="Phone Number" value="{{old('phone')}}">                    
-                @else
-                <input name="first_name" required type="text" placeholder="First Name" value="{{old('first_name')}}">
-                <input name="last_name" required value="{{old('last_name')}}" type="text" placeholder="Last Name">       
-                <input name="username" required value="{{old('username')}}" type="text" placeholder="Username">             
-                @endif
+                <input class="d-none cpi" name="company_name" required type="text" placeholder="Company Name" value="{{old('company_name')}}">
+                <input class="cpi d-none" name="company_type" required type="text" placeholder="Company Type" value="{{old('company_type')}}">                    
+                <input class="cpi d-none" name="phone" required type="text" placeholder="Phone Number" value="{{old('phone')}}">
+
+                <input class="cdi" name="first_name" required type="text" placeholder="First Name" value="{{old('first_name')}}">
+                <input class="cdi" name="last_name" required value="{{old('last_name')}}" type="text" placeholder="Last Name">       
+                <input class="cdi" name="username" required value="{{old('username')}}" type="text" placeholder="Username">   
+
+                <select name="role" id="cateType">
+                    <option value="">Select account type</option>
+                    <option value="candidate">Candidate</option>
+                    <option value="employer">Employer</option>
+                </select>
                 <input name="email" required value="{{old('email')}}" type="email" placeholder="Enter email address">
                 <input name="password" required type="password" placeholder="Password">
             </div>
@@ -58,6 +62,30 @@ Sign up to continue | HR
 
 @push('javascript')
     <script>
+        var cateType = document.getElementById("cateType")
+        var cpi = document.querySelectorAll(".cpi")
+        var cdi = document.querySelectorAll(".cdi")
+        cateType.addEventListener("change", () => {
+            console.log(cateType.value)
+            var _type = cateType.value
+            if(_type == "employer"){
+                cpi.forEach(element => {
+                    element.classList.remove("d-none")
+                });                 
+                cdi.forEach(element => {
+                    element.classList.add("d-none")
+                });                
+            }else{
+                cpi.forEach(element => {
+                    element.classList.add("d-none")
+                }); 
+                cdi.forEach(element => {
+                    element.classList.remove("d-none")
+                }); 
+            }
+        })
+
+
         var role = document.querySelector(".bang").innerHTML
         if(role == "company"){
             role = "Company"
@@ -79,7 +107,7 @@ Sign up to continue | HR
         }
         
         setTimeout(() => {
-            show__();
+            // show__();
         }, 1000);
         
     </script>

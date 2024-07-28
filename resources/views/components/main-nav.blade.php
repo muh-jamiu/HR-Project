@@ -17,8 +17,8 @@
     @if ($islogin)
         <li class="list-unstyled"><a href="/account-check" class="text-dark text-decoration-none">Dashboard</a></li>        
     @else
-        <li class="list-unstyled"><a href="/get-started" class="text-dark text-decoration-none">Get Started</a></li>        
+        <li class="list-unstyled"><a href="/signup" class="btn btn-danger text-decoration-none">Get Started</a></li>        
     @endif
     <li class="list-unstyled {{$iscontact ? "active" : ""}}"><a href="/contact-us" class="text-dark text-decoration-none">Contact Us</a></li>
-    <li class="list-unstyled {{$isabout ? "active" : ""}} "><a href="/about-us" class="text-dark text-decoration-none">About Us</a></li>
+    {{-- <li class="list-unstyled {{$isabout ? "active" : ""}} "><a href="/about-us" class="text-dark text-decoration-none">About Us</a></li> --}}
 </div>

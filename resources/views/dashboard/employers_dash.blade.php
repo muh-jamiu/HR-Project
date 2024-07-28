@@ -94,7 +94,7 @@ Employer Dashboard | HR
             </div>
             <form action="/update-profile" enctype="multipart/form-data" method="POST" class="d_cv" id="upload_form">
                 @csrf
-                <label style="border-radius: 3px" for="avatar__" class=" px-4 mx-4 py-2 ft bg-info">Upload Company Logo</label>
+                <label style="border-radius: 3px" for="avatar__" class=" px-4 mx-4 py-2 ft bg-info btn">Upload Company Logo</label>
                 <input type="file" name="company_logo" id="avatar__" class="d-none">
             </form>
         </div>

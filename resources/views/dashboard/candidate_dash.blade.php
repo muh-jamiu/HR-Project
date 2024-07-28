@@ -92,11 +92,11 @@ Candidate Dashboard | HR
             </div>
             <form action="/update-profile" enctype="multipart/form-data" method="POST" class="d_cv" id="upload_form">
                 @csrf
-                <label style="border-radius: 3px" for="avatar__" class=" px-4 mx-4 py-2 ft bg-info">Upload Profile Picture</label>
+                <label style="border-radius: 3px" for="avatar__" class=" px-4 mx-4 py-2 btn ft bg-info">Upload Profile Picture</label>
                 <input type="file" name="company_logo" id="avatar__" class="d-none">
             </form>
             <form action="" class="d_cv">
-                <label style="border-radius: 3px" for="cv" class="text-white px-4 mx-4 py-2 ft bg-primary">Upload CV</label>
+                <label style="border-radius: 3px" for="cv" class="text-white btn px-4 mx-4 py-2 ft bg-primary">Upload CV</label>
                 <input accept=".pdf" type="file" name="cv" id="cv" class="d-none">
             </form>
         </div>
@@ -255,7 +255,7 @@ Candidate Dashboard | HR
                                         <p class="text-capitalize ft text-muted mb-1">{{$jobs->phone}}</p>
                                         <p class="text-capitalize ft text-muted mb-1">{{$jobs->country}}</p>
                                         <p class="ft text-muted mb-3">{{$jobs->email}}</p>
-                                        <p style="background-color: rgba(0, 0, 255, 0.047); border-radius:13px; width:fit-content; font-size:12px" class="px-3 py-2 text-muted mb-1">{{$cp->status}}</p>
+                                        <p style="background-color: rgba(0, 0, 255, 0.047); border-radius:13px; width:fit-content; font-size:12px" class="px-3 text-capitalize py-2 text-muted mb-1">{{$cp->status}}</p>
                                     </div>
                                 </div>		
                             </a>		

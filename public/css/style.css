@@ -414,8 +414,26 @@ body{
 
 }
 
+.login .form input::placeholder{
+    font-size: 12px;
+}
+
+.login .form select::placeholder{
+    font-size: 12px;
+}
+
+.login .form select{
+    padding: .7em;
+    width: 80%;
+    border-radius: 6px;
+    margin-top: 2em;
+    border: none;
+    outline: none;
+    font-size: 12px;
+}
+
 .login .form input{
-    padding: .8em;
+    padding: .7em;
     width: 80%;
     border-radius: 6px;
     margin-top: 2em;
@@ -430,11 +448,11 @@ body{
 }
 
 .__reg{    
-    border-top-left-radius: 15em;
+    /* border-top-left-radius: 15em; */
 }
 
 .__login{    
-    border-top-right-radius: 15em;
+    /* border-top-right-radius: 15em; */
 }
 
 
@@ -541,6 +559,10 @@ body{
 .qst_ label{
     display: block;
     margin-bottom: .5em;
+}
+
+button:hover, .btn:hover{
+    cursor: pointer;
 }
 
 .qst_ textarea{
