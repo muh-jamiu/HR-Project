@@ -5,7 +5,9 @@ $is_jobs = true;
 $job_title = $data["title"] ?? ""; 
 $job = $data["job"] ?? ""; 
 $company = $data["company"] ?? ""; 
+$application = $data["application"] ?? ""; 
 $user_ = $data["user"]; 
+$applied_user = $data["applied_user"]; 
 use Carbon\Carbon;
 @endphp
 
@@ -38,11 +40,6 @@ use Carbon\Carbon;
             <div class="img">
                 <img src="{{$job->avatar ?? "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-3.png"}}" alt="">
             </div>
-
-            <div class="mt-5">
-                <h4 class="text-capitalize">{{$company->company_name}}</h4>
-                <p class="text-muted text-capitalize">{{$company->bio}}</p>
-            </div>
             <hr>
 
             <div class="mt-5">
@@ -51,47 +48,44 @@ use Carbon\Carbon;
             </div>
             <hr>
 
-            <div class="mt-5">                
-                @php
-                    $experience = explode(" @/", $job->experience) ?? 0;
-                @endphp
-                <h4>Preferred Experience</h4>
-                @if ($experience)
-                    <ul>
-                        @foreach ($experience as $item)
-                        @if ($item != "")
-                        <li class="text-muted text-capitalize ft mb-2">{{$item}}</li>                              
-                        @endif                          
-                        @endforeach
-                    </ul>                    
-                @endif
-            </div>  
-            <hr>
+            @if ($user_->role == "company")
+                <div class="mt-3">
+                    <h4>Applicant Information</h4>
+                    <button data-bs-toggle="modal" data-bs-target="#applicant" class="mt-3 btn btn-primary">View Applicant Information</button>
+                </div>
+                
+                <hr>                
+            @endif
 
             <div class="mt-5">                
                 @php
-                    $skills = explode(" @/", $job->skills) ?? 0;
+                    $automated_q = explode(" @/", $application->automated_q) ?? 0;
                 @endphp
-                <h4>Desired skills</h4>
-                @if ($skills)
-                    <ul>
-                        @foreach ($skills as $item)
-                        @if ($item != "")
-                        <li class="text-muted text-capitalize ft mb-2">{{$item}}</li>                              
-                        @endif                          
-                        @endforeach
-                    </ul>                    
+                @if ($user_->role == "company")
+                <h4>Applicant Scores and Feedback</h4>                    
+                @else
+                <h4>Your Application Scores and Feedback</h4>                    
+                @endif
+                @if (true)
+                    <h6 class="fw-bold text-muted mt-5">Automated Questions Feedback</h6>
+                    @if ($automated_q != "")
+                    <pre class="text-muted text-capitalize mt-2 ft mb-2">{{$application->automated_q}}</pre>                              
+                    @endif                    
+                @endif
+                @if (true)
+                    <h6 class="fw-bold text-muted mt-5">Skills Questions Feedback</h6>
+                    @if ($automated_q != "")
+                    <pre class="text-muted text-capitalize mt-2 ft mb-2">{{$application->skill_q}}</pre>                              
+                    @endif                    
+                @endif
+                @if (true)
+                    <h6 class="fw-bold text-muted mt-5">Technical Questions Feedback</h6>
+                    @if ($automated_q != "")
+                    <pre class="text-muted text-capitalize mt-2 ft mb-2">{{$application->technical_q}}</pre>                              
+                    @endif                    
                 @endif
             </div>  
             <hr>
-            
-            <div class="mt-5 text-capitalize"> <a class="text-decoration-none" href="/employer/{{$company->unique_id}}/{{str_replace(" ", "_", $company->company_name)}}"><h4>Visit {{$company->company_name}} Page</h4></a></div>
-            <hr style="color: rgb(198, 198, 198)">
-            
-            <div class="d-flex">
-                <button data-bs-toggle="modal" data-bs-target="#apply__" class="btn text-white btn-success px-4 bg_">Apply Now</button>
-                <button class="btn btn-outline-primary px-4 mx-3">Save Job</button>
-            </div>
 
         </div>
 
@@ -140,54 +134,52 @@ use Carbon\Carbon;
 
 	<hr style="color: rgb(183, 183, 183)">
 
-    <div class="modal fade" id="apply__">
+    <div class="modal fade" id="applicant">
         <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
           <div class="modal-content">
       
             <!-- Modal Header -->
             <div class="modal-header">
-              <h6 class="modal-title">Job Application</h6>
+              <h6 class="modal-title">Applicant Details</h6>
               <button type="button" class="btn-close ft" data-bs-dismiss="modal"></button>
             </div>
       
             <!-- Modal body -->
-            <div class="modal-body">
-                <p class="fw-bold">Basic Information</p>
-                <form action="/create-application" method="post" enctype="multipart/form-data">
-                    @csrf
-                    @php
-                        $name1 = $user_ ? $user_->first_name . " " . $user_->last_name : "";
-                    @endphp
-                    <input value="{{$name1}}" name="name" required type="text" placeholder="Enter fullname">
-                    <input value="{{$user_ ? $user_->email : ""}}" name="email" required type="email" placeholder="Enter email address">
-                    <input value="{{$user_ ? $user_->phone : ""}}" name="phone" required type="text" placeholder="Phone number">
-                    <input value="{{$user_ ? $user_->country : ""}}" name="country" required type="text" placeholder="Country">
-                    <input value="{{$user_ ? $user_->state : ""}}" name="state" required type="text" placeholder="State">
-                    <input value="{{$user_ ? $user_->city : ""}}" name="city" required type="text" placeholder="city">
-                    <input name="job_id" required type="text" class="d-none" value="{{$job->id}}">
-                    <input name="company_id" required type="text" class="d-none" value="{{$company->id}}">
-                    <input name="job_title" required type="text" class="d-none" value="{{$job->title}}">
-
-                    <hr>
-                    <p class="fw-bold">More Information</p>
-                    <input required type="text" placeholder="Work title (eg) software developer, marketers, designer">
-                    <input name="education" required type="text" placeholder="Education">
-                    <input name="website" type="text" placeholder="Portfolio website (link)">
-
-                    <div class="d-flex mb-1 mt-3">
-                        <p style="font-size: 10px" id="fileNameDisplay" class="fileNameDisplay mb-0 text-muted"></p>
-                    </div>
-                    <label for="__cv__" class="btn px-4 py-2 ft mb-2" style="background-color: rgba(179, 179, 179, 0.266)">Upload Resume</label>
-                    <input required accept=".pdf" type="file" name="company_logo" id="__cv__" class="d-none">
-                    <p class="text-danger mb-2" style="font-size: 12px">Resume must be a (.pdf) file and must not be more than 5mb </p>
-                    <input style="width: fit-content" type="submit" value="Apply" class="btn px-4 py-2 btn-primary mt-4 mb-5" >
-                </form>
-
+            <div class="modal-body row">
+                <div class="mb-3 col-sm-6">
+                    <p class="fw-semibold mb-1">Fullname</p>
+                    <p class="text-muted text-capitalize ftr mb-0">{{$applied_user->first_name}} {{$applied_user->last_name}}</p>
+                </div>
+                <div class="mb-3 col-sm-6">
+                    <p class="fw-semibold mb-1">Email Address</p>
+                    <p class="text-muted ftr mb-0">{{$applied_user->email}}</p>
+                </div>
+                <div class="mb-3 col-sm-6">
+                    <p class="fw-semibold mb-1">Phone Number</p>
+                    <p class="text-muted ftr mb-0">{{$applied_user->phone}}</p>
+                </div>
+                <div class="mb-3 col-sm-6">
+                    <p class="fw-semibold mb-1">Country</p>
+                    <p class="text-muted ftr  text-capitalize mb-0">{{$applied_user->country}}</p>
+                </div>
+                <div class="mb-3 col-sm-6">
+                    <p class="fw-semibold mb-1">State</p>
+                    <p class="text-muted ftr  text-capitalize mb-0">{{$applied_user->state}}</p>
+                </div>
+                <div class="mb-3 col-sm-6">
+                    <p class="fw-semibold mb-1">City</p>
+                    <p class="text-muted ftr  text-capitalize mb-0">{{$applied_user->city}}</p>
+                </div>
+                <div class="mb-3 col-sm-6">
+                    <p class="fw-semibold mb-1">Address</p>
+                    <p class="text-muted ftr  text-capitalize mb-0">{{$applied_user->address}}</p>
+                </div>
             </div>
       
             <!-- Modal footer -->
             <div class="modal-footer">
-              <button type="button" class="btn px-4 btn-danger" data-bs-dismiss="modal">Close</button>
+                <a href="/candidate/{{$applied_user->unique_id}}/{{$applied_user->first_name}}" class="btn ftr btn-primary">Visit Applicant profile</a>
+              <button type="button" class="btn px-4 ftr btn-danger" data-bs-dismiss="modal">Close</button>
             </div>
       
           </div>

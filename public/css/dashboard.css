@@ -5,7 +5,31 @@
     width: 25%;
     color: rgb(228, 228, 228);
     padding: 1em;
+    transition: .2s;
     overflow: scroll;
+}
+
+.sidebar__.toggle{
+    width: 0% !important;
+    transition: .2s;
+    padding: 0em !important;
+    overflow: hidden;
+}
+
+.mainbar__.toggle{
+    width: 100% !important;
+    margin-left: 0% !important;
+    transition: .2s;
+}
+
+.__sliders:hover{
+    cursor: pointer;
+    color: blue;
+}
+
+.top_bar_.toggle{
+    width: 100% !important;
+    transition: .2s;
 }
 
 .dashboard_ .sidebar__ li.active{
@@ -24,6 +48,7 @@
 
 .dashboard_ .mainbar__{
     width: 75%;
+    transition: .2s;
     /* padding: 1em; */
     margin-left: 25%;
 }
@@ -142,4 +167,7 @@
 
 #tags_skill_list .tag{
     background-color: #3f69ff1f;
+}
+
+.job_single pre{
 }

@@ -422,6 +422,10 @@ body{
     font-size: 12px;
 }
 
+.ftr{
+    font-size: 14px;
+}
+
 .login .form select{
     padding: .7em;
     width: 80%;

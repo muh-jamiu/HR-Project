@@ -47,6 +47,8 @@ Route::get('/', [UserController::class, 'index']);
 
 Route::get('/job/{job_title}/{id}', [UserController::class, 'job_single']);
 
+Route::get('/application/{job_title}/{id}', [UserController::class, 'application_single']);
+
 Route::get('/candidate/{unique_id}/{candidate_name}', [UserController::class, 'candidateSingle']);
 
 Route::get('/employer/{unique_id}/{employer_username}', [UserController::class, 'employersSingle']);

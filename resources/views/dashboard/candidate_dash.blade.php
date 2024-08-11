@@ -47,11 +47,11 @@ Candidate Dashboard | HR
             <li class="list-unstyled active"><a href="" class="text-decoration-none">
                 <i class="fa-solid fa-house-user"></i> Overview
             </a></li>
-             <li class="list-unstyled"><a href="" class="text-decoration-none">
-                <i class="fa-solid fa-street-view"></i> Profile
+             <li class="list-unstyled"><a href="/employers" class="text-decoration-none">
+                <i class="fa-solid fa-clipboard-user"></i> Browse Employers
             </a></li>
-            <li class="list-unstyled"><a href="" class="text-decoration-none">
-                <i class="fa-solid fa-hand-holding-dollar"></i> Pricing
+            <li class="list-unstyled"><a href="/browse-jobs" class="text-decoration-none">
+                <i class="fa-solid fa-briefcase"></i> Explore Jobs
            </a></li>
             <li class="list-unstyled fw-bold"><a href="/logOut" class="text-decoration-none text-danger">
                 <i class="fa-solid fa-right-from-bracket"></i> Log Out
@@ -61,10 +61,20 @@ Candidate Dashboard | HR
     </div>
 
     <div class="mainbar__">
-        <div class="d-flex p-4 bg-white justify-content-between pb-3" style="border-bottom: 1px solid rgb(223, 223, 223); position:fixed; width:75%">
-            <i class="fa-solid text-muted fa-sliders"></i>
+        <div class="d-flex top_bar_ p-4 bg-white justify-content-between pb-0" style="border-bottom: 1px solid rgb(223, 223, 223); position:fixed; width:75%">
+            <i class="fa-solid __sliders text-muted fa-sliders"></i>
             <div class="d-flex">
-                <i class="fa-solid text-muted fa-user"></i>
+                <div class="dropdown mb-0">
+                    <i style="transform: translateY(-10px)" class="fa-solid fa-user btn text-muted" data-bs-toggle="dropdown"></i>
+                    <ul class="dropdown-menu mb-0">
+                        <li><h5 class="dropdown-header text-capitalize">{{$user->first_name}}</h5></li>
+                        <li><hr class="dropdown-divider"></hr></li>
+                        <li><a class="ft text-muted mt-2 dropdown-item" href="/browse-jobs">Explore Jobs</a></li>
+                        <li><a class="ft text-muted mt-2 mb-2 dropdown-item" href="/employers">Browse Employers</a></li>
+                        <li><hr class="dropdown-divider"></hr></li>
+                        <li style="width: 90%" class="btn text-center mx-2 ft btn-danger"><a href="/logOut" class="text-decoration-none text-white">Log Out</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -95,10 +105,10 @@ Candidate Dashboard | HR
                 <label style="border-radius: 3px" for="avatar__" class=" px-4 mx-4 py-2 btn ft bg-info">Upload Profile Picture</label>
                 <input type="file" name="company_logo" id="avatar__" class="d-none">
             </form>
-            <form action="" class="d_cv">
+            {{-- <form action="" class="d_cv">
                 <label style="border-radius: 3px" for="cv" class="text-white btn px-4 mx-4 py-2 ft bg-primary">Upload CV</label>
                 <input accept=".pdf" type="file" name="cv" id="cv" class="d-none">
-            </form>
+            </form> --}}
         </div>
 
         <div class="d_section2 mt-4">
@@ -160,14 +170,14 @@ Candidate Dashboard | HR
                         </div>
                     </div>
 
-                    <div class="__nav nav d-flex nav-tabs mt-4">
+                    {{-- <div class="__nav nav d-flex nav-tabs mt-4">
                         <li class="list-unstyled active" data-bs-toggle="tab" href="#all_j"><a href="#ddd_" class="text-decoration-none text-muted">All Application</a></li>
                         <li class="list-unstyled" data-bs-toggle="tab" href="#active_j"><a href="#ddd_" class="text-decoration-none text-muted">Active Application</a></li>
                         <li class="list-unstyled" data-bs-toggle="tab" href="#decline_j"><a href="#ddd_" class="text-decoration-none text-muted">Decline Application</a></li>
                         <li class="list-unstyled" data-bs-toggle="tab" href="#pending_j"><a href="#ddd_" class="text-decoration-none text-muted">Pending Application</a></li>
-                    </div>
+                    </div> --}}
 
-                    <div class="tab-content mb-5 mt-4" id="ddd_">
+                    {{-- <div class="tab-content mb-5 mt-4" id="ddd_">
 
                         <div class="tab-pane container active" id="all_j">
                             <div class="text-center mt-5">
@@ -175,27 +185,6 @@ Candidate Dashboard | HR
                                 <p class="text-muted ft">You don't have any application at the momemt.</p>
                                 <a href="/browse-jobs" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
                             </div>
-                           {{-- <div class="section3_d">
-                            <div class="d-flex justify-content-evenly mt-3 flex-wrap">
-                                @for ($i = 0; $i < 5; $i++)
-                                <a href="/job/title/{{$i}}" class="text-decoration-none text-dark">
-                                    <div class="cont_ bg-white">
-                                        <div class="img" style="height: 150px">
-                                            <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
-                                        </div>
-                                        <div class="p-3">
-                                            <div class="d-flex flex-wrap mt-2 mb-4 justify-content-between">
-                                                <p class="mb-2 text-muted mt-1 ">
-                                                    <img class="mx-2" width="20" height="20" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">Company Name</p>
-                                                <button style="background-color: rgba(45, 249, 45, 0.088); height:fit-content" class="btn text-success ft px-4 py-1">Fulltime</button>
-                                            </div>
-                                            <p class="mt-3 mb-3">Senior Full Stack Engineer, Creator Success Full Time</p>
-                                        </div>
-                                    </div>		
-                                </a>		
-                                @endfor
-                            </div>	
-                           </div> --}}
                         </div>
 
                         <div class="tab-pane container fade" id="active_j">
@@ -221,7 +210,7 @@ Candidate Dashboard | HR
                                 <a href="/browse-jobs" class="btn btn-primary mt-2 mx-4">Browse Jobs</a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
 
@@ -239,7 +228,7 @@ Candidate Dashboard | HR
                                 $jobs = App\Models\Job::where(["id" => $cp->job_id])->first();
                                 $company_ = App\Models\User::where(["id" => $jobs->company_id])->first();
                             @endphp
-                            <a href="/job/{{str_replace(" ", "_", $cp->job_title)}}/{{$jobs->id}}" class="text-decoration-none text-dark">
+                            <a href="/application/{{str_replace(" ", "_", $cp->job_title)}}/{{$cp->id}}" class="text-decoration-none text-dark">
                                 <div class="cont_ bg-white">
                                     <div class="img" style="height: 150px">
                                         <img src="{{$jobs->avatar ?? "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png"}}" alt="">
@@ -353,3 +342,17 @@ Candidate Dashboard | HR
     </div>
 </div>
 @endsection
+
+@push('javascript')
+    <script>
+        var __sliders = document.querySelector(".__sliders")
+        var sidebar__ = document.querySelector(".sidebar__")
+        var mainbar__ = document.querySelector(".mainbar__")
+        var top_bar_ = document.querySelector(".top_bar_")
+        __sliders.addEventListener("click", () => {
+            mainbar__.classList.toggle("toggle");
+            sidebar__.classList.toggle("toggle");
+            top_bar_.classList.toggle("toggle");
+        })
+    </script>
+@endpush

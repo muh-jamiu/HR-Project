@@ -361,6 +361,7 @@ class UserController extends Controller
         $data["job"] = Job::find($id);
         $data["title"] = str_replace("_", " ", $job_title);
         $data["company"] = User::find($data["job"]->company_id);
+        $data["user"] = $this->getUser(session("hr_id")) ?? null;
 
         if(!$data["job"]){
             return redirect("/");
@@ -371,6 +372,25 @@ class UserController extends Controller
         }
 
         return view("pages.job_single", compact("data"));
+    }
+
+    public function application_single($job_title, $id){
+        $data["application"] = Application::find($id);
+        $data["job"] = Job::find($data["application"]->job_id);
+        $data["title"] = str_replace("_", " ", $data["application"]->job_title);
+        $data["company"] = User::find($data["job"]->company_id);
+        $data["user"] = $this->getUser(session("hr_id")) ?? null;
+        $data["applied_user"] = $this->getUser($data["application"]->userId) ?? null;
+
+        if(!$data["job"]){
+            return redirect("/");
+        }
+
+        if(!$data["company"]){
+            return redirect("/");
+        }
+
+        return view("pages.application_single", compact("data"));        
     }
 
     public function employersSingle($unique_id){
@@ -568,22 +588,51 @@ class UserController extends Controller
         return $text;
     }
 
+    public function communicationGemini($userMessage)
+    {
+        $messages = [
+            ["parts" => [
+                ["text" => "You are to ask generate atleast 20 questions base on the user communication and team work, don't provide title, just the numbered questions"]
+            ], "role" => "model"],
+            ["parts" => [
+                ["text" => $userMessage]
+            ], "role" => "user"],
+        ];
+
+        $result = $this->googleGeminiService->generateChatResponse($messages);
+
+        $text = $result["candidates"][0]["content"]["parts"][0]["text"];
+        $text = str_replace("*", "", $text);
+        return $text;
+    }
+
     public function skills_questions($title, $id){
         $user = $this->getUser(session("hr_id"));
-        
-        if($user->bio){
-            $questions = $this->technicalGemini($user->bio);
-        }
-
-        if($user->skills){
-            $questions = $this->technicalGemini($user->skills);
-        }
+        $questions = $this->communicationGemini("hi");
 
         $data["job"] = Job::find($id);
         $data["questions"] = explode("\n", $questions);
         $data["company"] = User::find($data["job"]->company_id);
         return view("pages.skills_questions", compact("data"));
     }
+
+
+    // public function skills_questions($title, $id){
+    //     $user = $this->getUser(session("hr_id"));
+        
+    //     if($user->bio){
+    //         $questions = $this->technicalGemini($user->bio);
+    //     }
+
+    //     if($user->skills){
+    //         $questions = $this->technicalGemini($user->skills);
+    //     }
+
+    //     $data["job"] = Job::find($id);
+    //     $data["questions"] = explode("\n", $questions);
+    //     $data["company"] = User::find($data["job"]->company_id);
+    //     return view("pages.skills_questions", compact("data"));
+    // }
 
     public function post_skills_questions(){
         $job_id = session("job_id");
@@ -593,7 +642,7 @@ class UserController extends Controller
         $rating = $this->chatGeminiAnwers($requestString);
         $job = Application::find($job_id);
         $job->skill_q = $rating;
-        $job->update();  
+        $job->update();
         $job_title = str_replace(" ", "_", $job->job_title);
         $job_id = $job->job_id;
         return redirect("/candidate-dashboard");
@@ -693,7 +742,7 @@ class UserController extends Controller
             ->setRedirectUrls($redirectUrls);
 
         try {
-            // dd($this->apiContext);
+            dd($this->apiContext);
             $payment->create($this->apiContext);
             dd($payment);
             return redirect($payment->getApprovalLink());
