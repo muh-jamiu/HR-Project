@@ -314,7 +314,10 @@ Platform Candidates | HR
 			        <a href="/candidate/{{$user->unique_id}}/{{$user->first_name}}" class="text-decoration-none text-dark">
                         <div class="cont_">
                             <div class="text-center mt-3" >
-                                @if ($user->avatar)
+                                @php
+                                    $image = $user->avatar ?? null;
+                                @endphp
+                                @if ($image)
                                     <img loading="lazy" lazy style="width: 100px; height: 100px; object-fit:cover; border-radius:50%; object-fit:cover" src="https://static.vecteezy.com/system/resources/previews/036/594/092/non_2x/man-empty-avatar-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-free-vector.jpg" alt="">                                        
                                 @else
                                     <img style="width: 100px; height: 100px; object-fit:cover; border-radius:50%; object-fit:cover" src="https://static.vecteezy.com/system/resources/previews/036/594/092/non_2x/man-empty-avatar-photo-placeholder-for-social-networks-resumes-forums-and-dating-sites-male-and-female-no-photo-images-for-unfilled-user-profile-free-vector.jpg" alt="">                                        

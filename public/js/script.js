@@ -56,6 +56,29 @@ document.addEventListener('DOMContentLoaded', () => {
         e.target.value = "$ " + value;
     }); 
 
+    document.getElementById('form_s').addEventListener("submit", e => {
+        var val = tags_skill_list.innerHTML
+        var val1 = tagsList.innerHTML
+        if(val == ""){
+            Swal.fire({
+                icon: "error",
+                title: "Missing Field",
+                text: "Skills Field is required for job posting",
+            });
+            return e.preventDefault()
+        }
+
+        if(val1 == ""){
+            Swal.fire({
+                icon: "error",
+                title: "Missing Field",
+                text: "Experience Field is required for job posting",
+            });
+            
+            return e.preventDefault()
+        }
+    })
+
 });
 
 var avatar__ = document.getElementById("avatar__")
@@ -72,3 +95,31 @@ function showAlert(title, icon, text){
         footer: '<a href="#">Why do I have this issue?</a>'
     });
 }
+
+flatpickr("#checkdate", {
+    mode: "range",
+    position: "top",
+    enableTime: false,
+    altInput: true,
+    altFormat: "D, d M Y",
+    dateFormat: "d-m-Y",
+    monthSelectorType: "static",
+    locale: {
+        rangeSeparator: " - ",
+    },
+
+    onChange: function (selectedDates, dateStr, instance) {
+        ratesParamChange(selectedDates, this);
+    },
+
+    onClose: function (selectedDates, dateStr, instance) {
+        setCheckoutDate(selectedDates, this);
+    },
+
+    onReady: function (selectedDates, dateStr, instance) {       
+        instance.setDate(
+            [new Date().fp_incr(0), new Date().fp_incr(1)],
+            false
+        );
+    },
+});

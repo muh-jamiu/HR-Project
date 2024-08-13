@@ -418,6 +418,13 @@ body{
     font-size: 12px;
 }
 
+.Branches_btn{
+    padding: .6em 1em;
+    cursor: pointer;
+    border-radius: 3px;
+    width: fit-content;
+}
+
 .login .form select::placeholder{
     font-size: 12px;
 }

@@ -19,6 +19,204 @@ $approved_job = $data["approved_job"] ?? [];
 $pending_job = $data["pending_job"] ?? [];
 $decline_job = $data["decline_job"] ?? [];
 $applications = $data["applications"] ?? [];
+$_countries = [
+    "Afghanistan",
+    "Albania",
+    "Algeria",
+    "Andorra",
+    "Angola",
+    "Antigua and Barbuda",
+    "Argentina",
+    "Armenia",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Bahamas",
+    "Bahrain",
+    "Bangladesh",
+    "Barbados",
+    "Belarus",
+    "Belgium",
+    "Belize",
+    "Benin",
+    "Bhutan",
+    "Bolivia",
+    "Bosnia and Herzegovina",
+    "Botswana",
+    "Brazil",
+    "Brunei",
+    "Bulgaria",
+    "Burkina Faso",
+    "Burundi",
+    "Cabo Verde",
+    "Cambodia",
+    "Cameroon",
+    "Canada",
+    "Central African Republic",
+    "Chad",
+    "Chile",
+    "China",
+    "Colombia",
+    "Comoros",
+    "Congo, Democratic Republic of the",
+    "Congo, Republic of the",
+    "Costa Rica",
+    "Croatia",
+    "Cuba",
+    "Cyprus",
+    "Czech Republic",
+    "Denmark",
+    "Djibouti",
+    "Dominica",
+    "Dominican Republic",
+    "East Timor (Timor-Leste)",
+    "Ecuador",
+    "Egypt",
+    "El Salvador",
+    "Equatorial Guinea",
+    "Eritrea",
+    "Estonia",
+    "Eswatini (Swaziland)",
+    "Ethiopia",
+    "Fiji",
+    "Finland",
+    "France",
+    "Gabon",
+    "Gambia",
+    "Georgia",
+    "Germany",
+    "Ghana",
+    "Greece",
+    "Grenada",
+    "Guatemala",
+    "Guinea",
+    "Guinea-Bissau",
+    "Guyana",
+    "Haiti",
+    "Honduras",
+    "Hungary",
+    "Iceland",
+    "India",
+    "Indonesia",
+    "Iran",
+    "Iraq",
+    "Ireland",
+    "Israel",
+    "Italy",
+    "Ivory Coast (Côte d'Ivoire)",
+    "Jamaica",
+    "Japan",
+    "Jordan",
+    "Kazakhstan",
+    "Kenya",
+    "Kiribati",
+    "Korea, North",
+    "Korea, South",
+    "Kosovo",
+    "Kuwait",
+    "Kyrgyzstan",
+    "Laos",
+    "Latvia",
+    "Lebanon",
+    "Lesotho",
+    "Liberia",
+    "Libya",
+    "Liechtenstein",
+    "Lithuania",
+    "Luxembourg",
+    "Madagascar",
+    "Malawi",
+    "Malaysia",
+    "Maldives",
+    "Mali",
+    "Malta",
+    "Marshall Islands",
+    "Mauritania",
+    "Mauritius",
+    "Mexico",
+    "Micronesia",
+    "Moldova",
+    "Monaco",
+    "Mongolia",
+    "Montenegro",
+    "Morocco",
+    "Mozambique",
+    "Myanmar (Burma)",
+    "Namibia",
+    "Nauru",
+    "Nepal",
+    "Netherlands",
+    "New Zealand",
+    "Nicaragua",
+    "Niger",
+    "Nigeria",
+    "North Macedonia (Macedonia)",
+    "Norway",
+    "Oman",
+    "Pakistan",
+    "Palau",
+    "Panama",
+    "Papua New Guinea",
+    "Paraguay",
+    "Peru",
+    "Philippines",
+    "Poland",
+    "Portugal",
+    "Qatar",
+    "Romania",
+    "Russia",
+    "Rwanda",
+    "Saint Kitts and Nevis",
+    "Saint Lucia",
+    "Saint Vincent and the Grenadines",
+    "Samoa",
+    "San Marino",
+    "Sao Tome and Principe",
+    "Saudi Arabia",
+    "Senegal",
+    "Serbia",
+    "Seychelles",
+    "Sierra Leone",
+    "Singapore",
+    "Slovakia",
+    "Slovenia",
+    "Solomon Islands",
+    "Somalia",
+    "South Africa",
+    "South Sudan",
+    "Spain",
+    "Sri Lanka",
+    "Sudan",
+    "Suriname",
+    "Sweden",
+    "Switzerland",
+    "Syria",
+    "Taiwan",
+    "Tajikistan",
+    "Tanzania",
+    "Thailand",
+    "Togo",
+    "Tonga",
+    "Trinidad and Tobago",
+    "Tunisia",
+    "Turkey",
+    "Turkmenistan",
+    "Tuvalu",
+    "Uganda",
+    "Ukraine",
+    "United Arab Emirates",
+    "United Kingdom",
+    "United States",
+    "Uruguay",
+    "Uzbekistan",
+    "Vanuatu",
+    "Vatican City (Holy See)",
+    "Venezuela",
+    "Vietnam",
+    "Yemen",
+    "Zambia",
+    "Zimbabwe"
+];
 use Carbon\Carbon;
 @endphp
 
@@ -55,8 +253,8 @@ Employer Dashboard | HR
              <li class="list-unstyled"><a href="/candidates" class="text-decoration-none">
                 <i class="fa-solid fa-clipboard-user"></i> Browse Candidate
             </a></li>
-            <li class="list-unstyled"><a href="/browse-jobs" class="text-decoration-none">
-                <i class="fa-solid fa-briefcase"></i> Explore Jobs
+            <li class="list-unstyled"><a href="/my-jobs" class="text-decoration-none">
+                <i class="fa-solid fa-briefcase"></i> My Jobs
            </a></li>
             <li class="list-unstyled fw-bold"><a href="/logOut" class="text-decoration-none text-danger">
                 <i class="fa-solid fa-right-from-bracket"></i> Log Out
@@ -110,6 +308,9 @@ Employer Dashboard | HR
                 <label style="border-radius: 3px" for="avatar__" class=" px-4 mx-4 py-2 ft bg-info btn">Upload Company Logo</label>
                 <input type="file" name="company_logo" id="avatar__" class="d-none">
             </form>
+            @if (session("msg"))
+            <p style="position: absolute; font-size:12px" class="ftr alert alert-success mt-3">{{session("msg")}}</p>                
+            @endif
         </div>
 
         <div class="d_section2 mt-4">
@@ -248,11 +449,12 @@ Employer Dashboard | HR
                         <textarea class="mb-3" name="skills" placeholder="Company fields, comma(,) seperated..." id="" cols="5" rows="5">{{$user->skills}}</textarea>
                         <br>
 
+                        <p data-bs-toggle="modal" data-bs-target="#apply__"  class="mt-3 Branches_btn text-white bg-primary">Add Company Branches</p>
                     </form>
                 </div>
 
                 <div class="tab-pane container all_input fade" id="new_job">
-                    <form action="/create-job" method="POST" enctype="multipart/form-data">
+                    <form id="form_s" action="/create-job" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="d-flex justify-content-between">
                             <h4 class="fw-bold mb-4">Post A Job</h4>                        
@@ -320,6 +522,10 @@ Employer Dashboard | HR
                         <div class="mb-3" id="tags_list"></div>
                         <br>
 
+                        <div class="d-flex mb-1 mt-3">
+                            <p style="font-size: 10px" id="fileNameDisplay" class="fileNameDisplay mb-0 text-muted"></p>
+                        </div>
+
                         <div class="">
                             <label style="background-color: rgba(214, 214, 214, 0.523); border-radius:10px" for="company_logo" class="mt-3 ft mb-2 py-2 px-4">Upload Job Logo</label>            
                             <input type="file" name="company_logo" id="company_logo" class="d-none">               
@@ -373,6 +579,38 @@ Employer Dashboard | HR
 
     </div>
 </div>
+
+<div class="modal fade" id="apply__">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h6 class="modal-title">Add Company Branch</h6>
+          <button type="button" class="btn-close ft" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <input name="branch_name" style="width:100%; border: 1px solid rgb(213, 213, 213); padding:.8em;" class="mb-3" required type="text" placeholder="Enter branch name">
+            <select style="width:100%; border: 1px solid rgb(213, 213, 213); padding:.8em;" class="mb-3" required type="text" placeholder="Country" name="branch_country" id="">
+                @foreach ($_countries as $item)
+                    <option value="{{$item}}">{{$item}}</option>
+                @endforeach
+            </select>
+            <input name="branch_state" style="width:100%; border: 1px solid rgb(213, 213, 213); padding:.8em;" class="mb-3" required type="text" placeholder="State">                    
+            <input id="checkdate" name="duration_state" style="width:100%; border: 1px solid rgb(213, 213, 213); padding:.8em;" class="mb-3" required type="text" placeholder="From - to">                    
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn px-4 btn-dark" data-bs-dismiss="modal">Add Branch</button>
+          <button type="button" class="btn px-4 btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+</div>
 @endsection
 
 @push('javascript')
@@ -386,5 +624,12 @@ Employer Dashboard | HR
             sidebar__.classList.toggle("toggle");
             top_bar_.classList.toggle("toggle");
         })
+
+        document.getElementById('company_logo').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const fileName = event.target.files[0].name;
+        const fileSizeInMB = (file.size / (1024 * 1024)).toFixed(2);
+        document.getElementById('fileNameDisplay').textContent = fileName;
+    });
     </script>
 @endpush

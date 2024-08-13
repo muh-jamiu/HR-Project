@@ -62,17 +62,17 @@ class UserController extends Controller
     }
 
     public function employersDash(){
-        $data["applications"] = Application::where(["company_id" => session("hr_id")])->get();
+        $data["applications"] = Application::where(["company_id" => session("hr_id")])->orderBy("created_at", "desc")->get();
         $data["user"] = $this->getUser(session("hr_id"));
         $data["jobs"] = $this->getEmployerJob(session("hr_id"));
-        $data["approved_job"] = Job::where(["company_id" => session("hr_id"), "status" => "approve"])->get();
-        $data["pending_job"] = Job::where(["company_id" => session("hr_id"), "status" => "pending"])->get();
-        $data["decline_job"] = Job::where(["company_id" => session("hr_id"), "status" => "decline"])->get();
+        $data["approved_job"] = Job::where(["company_id" => session("hr_id"), "status" => "approve"])->orderBy("created_at", "desc")->get();
+        $data["pending_job"] = Job::where(["company_id" => session("hr_id"), "status" => "pending"])->orderBy("created_at", "desc")->get();
+        $data["decline_job"] = Job::where(["company_id" => session("hr_id"), "status" => "decline"])->orderBy("created_at", "desc")->get();
         return view("dashboard.employers_dash", compact("data"));
     }
 
     public function getEmployerJob($id){        
-        $jobs = Job::where("company_id", $id)->get();
+        $jobs = Job::where("company_id", $id)->orderBy("created_at", "desc")->get();
         return $jobs;
     }
 
@@ -257,7 +257,7 @@ class UserController extends Controller
         }
 
         $user->update();        
-        return back()->with("msg", "Profile updated successfully");
+        return back()->with("msg", "Profile was updated successfully!");
     }
 
     public function uploadImage(){    
@@ -410,6 +410,21 @@ class UserController extends Controller
         $data["jobs"] = $this->getJobs();
         return view("pages.jobs", compact("data"));;
     }
+
+    public function myJobs(){  
+        $job = Job::where("company_id", session("hr_id"))->orderBy("created_at", "desc")->paginate(12);
+        return $job;
+    }
+
+    public function my_job(){
+        if(!session("hr_id")){
+            return redirect("/");
+        }
+        
+        $data["jobs"] = $this->myJobs();
+        return view("pages.myjobs", compact("data"));;
+    }
+
 
     public function createApplication(Application $application){  
         if(!session("hr_id")){

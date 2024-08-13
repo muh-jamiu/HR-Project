@@ -84,14 +84,34 @@ use Carbon\Carbon;
                 @endif
             </div>  
             <hr>
-            
-            <div class="mt-5 text-capitalize"> <a class="text-decoration-none" href="/employer/{{$company->unique_id}}/{{str_replace(" ", "_", $company->company_name)}}"><h4>Visit {{$company->company_name}} Page</h4></a></div>
-            <hr style="color: rgb(198, 198, 198)">
-            
-            <div class="d-flex">
-                <button data-bs-toggle="modal" data-bs-target="#apply__" class="btn text-white btn-success px-4 bg_">Apply Now</button>
-                <button class="btn btn-outline-primary px-4 mx-3">Save Job</button>
-            </div>
+
+            @php
+                $__user = $user_ ?? null;
+            @endphp
+
+            @if ($user_ != null)    
+                @if ($__user->role == "candidate")           
+                <div class="mt-5 text-capitalize"> <a class="text-decoration-none" href="/employer/{{$company->unique_id}}/{{str_replace(" ", "_", $company->company_name)}}"><h4>Visit {{$company->company_name}} Page</h4></a></div>
+                <hr style="color: rgb(198, 198, 198)">
+                
+                <div class="d-flex">
+                    <button data-bs-toggle="modal" data-bs-target="#apply__" class="btn text-white btn-success px-4 bg_">Apply Now</button>
+                    <button class="btn btn-outline-primary px-4 mx-3">Save Job</button>
+                </div>     
+                        
+                @endif
+                 
+            @endif   
+
+            @if ($user_ == null)            
+                <div class="mt-5 text-capitalize"> <a class="text-decoration-none" href="/employer/{{$company->unique_id}}/{{str_replace(" ", "_", $company->company_name)}}"><h4>Visit {{$company->company_name}} Page</h4></a></div>
+                <hr style="color: rgb(198, 198, 198)">
+                
+                <div class="d-flex">
+                    <button data-bs-toggle="modal" data-bs-target="#apply__" class="btn text-white btn-success px-4 bg_">Apply Now</button>
+                    <button class="btn btn-outline-primary px-4 mx-3">Save Job</button>
+                </div>                
+            @endif
 
         </div>
 
@@ -101,10 +121,24 @@ use Carbon\Carbon;
                 <p class="mb-3 mx-2 fw-bold text-capitalize"> <a class="text-decoration-none text-muted" href="/employer/{{$company->unique_id}}/{{str_replace(" ", "_", $company->company_name)}}">{{$company->company_name}}</a></p>
             </div>
             <p class="text-muted mt-3">We're looking to add more candidate to our growing teams.</p>
+            
+            @if ($user_ != null)    
+                @if ($__user->role == "candidate")   
+                <div class="d-flex">
+                    <a href="#apply" data-bs-toggle="modal" data-bs-target="#apply__" class="btn text-white btn-success px-4 bg_">Apply Now</a>
+                    <button class="btn btn-outline-primary px-4 mx-3">Save Job</button>
+                </div>
+                @endif
+                
+            @endif  
+
+            @if ($user_ == null)    
             <div class="d-flex">
                 <a href="#apply" data-bs-toggle="modal" data-bs-target="#apply__" class="btn text-white btn-success px-4 bg_">Apply Now</a>
                 <button class="btn btn-outline-primary px-4 mx-3">Save Job</button>
             </div>
+            @endif   
+
             <hr style="color: rgb(172, 172, 172)">
             <p class="fw-bold text-muted mb-1"><i class="fa-solid fa-bag-shopping"></i> Employment Type</p>
             <p class="mb-4 text-muted text-capitalize">{{$job->employment_type}}</p>

@@ -16,7 +16,7 @@ Candidate-{{$user->username ?? ""}} | HR
 	<x-main-nav :iscand="$iscand"></x-main-nav>
 
     <div class="section1">
-        <button class="btn btn-primary _cv_">Download CV</button>
+        <button class="btn btn-primary _cv_">View CV</button>
        <div class="d-flex mt-3">
         <div class="img__" style="">
             @if ($user->avatar)
@@ -102,9 +102,9 @@ Candidate-{{$user->username ?? ""}} | HR
                 </ul>
             </div>  
 
-            <div class="d-flex mt-3">
+            {{-- <div class="d-flex mt-3">
                 <button class="btn text-white btn-success px-4 bg_">Hire Now</button>
-            </div>
+            </div> --}}
 
         </div>
 
@@ -113,11 +113,11 @@ Candidate-{{$user->username ?? ""}} | HR
                 <img style="border-radius: 50%" width="30" height="30" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/page/job-single/img-job-feature.png" alt="">
                 <p class="mb-3 mx-2 fw-bold text-capitalize">{{$user->first_name}} {{$user->last_name}}</p>
             </div>
-            <div class="d-flex justify-content-between mt-3">
+            {{-- <div class="d-flex justify-content-between mt-3">
                 <button class="btn text-white btn-success px-4 bg_">Hire Now</button>
-            </div>
-            <hr style="color: rgb(172, 172, 172)">
-            <p class="fw-bold text-muted mb-1"><i class="fa-solid fa-bag-shopping"></i> Experience</p>
+            </div> --}}
+            {{-- <hr style="color: rgb(172, 172, 172)"> --}}
+            <p class="fw-bold mt-3 text-muted mb-1"><i class="fa-solid fa-bag-shopping"></i> Experience</p>
             <p class="mb-4 text-muted">Full-time / Remote</p>
 
             <p class="fw-bold text-muted mb-1"><i class="fa-solid fa-location-dot"></i> Location</p>

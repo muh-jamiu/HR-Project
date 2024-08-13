@@ -105,6 +105,10 @@ Candidate Dashboard | HR
                 <label style="border-radius: 3px" for="avatar__" class=" px-4 mx-4 py-2 btn ft bg-info">Upload Profile Picture</label>
                 <input type="file" name="company_logo" id="avatar__" class="d-none">
             </form>
+            
+            @if (session("msg"))
+            <p style="position: absolute; font-size:12px" class="ftr alert alert-success mt-3">{{session("msg")}}</p>                
+            @endif
             {{-- <form action="" class="d_cv">
                 <label style="border-radius: 3px" for="cv" class="text-white btn px-4 mx-4 py-2 ft bg-primary">Upload CV</label>
                 <input accept=".pdf" type="file" name="cv" id="cv" class="d-none">

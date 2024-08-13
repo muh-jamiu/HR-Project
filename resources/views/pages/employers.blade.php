@@ -314,7 +314,10 @@ Job Employers | HR
                         <a href="/employer/{{$user->unique_id}}/{{str_replace(" ", "_", $user->company_name)}}" class="text-decoration-none text-dark">
                             <div class="cont_">
                                 <div class="text-center mt-3" >
-                                    @if ($user->avatar)
+                                    @php
+                                        $image = $user->avatar ?? null;
+                                    @endphp
+                                    @if ($image)
                                         <img loading="lazy" lazy style="width: 100px; height: 100px; object-fit:cover; border-radius:50%; object-fit:cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS48f-GOfd7Vvaya0EWXRmDjamdDQs-FJdkWg&s" alt="">                                        
                                     @else
                                         <img style="width: 100px; height: 100px; object-fit:cover; border-radius:50%; object-fit:cover" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS48f-GOfd7Vvaya0EWXRmDjamdDQs-FJdkWg&s" alt="">                                        

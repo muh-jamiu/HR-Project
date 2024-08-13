@@ -94,13 +94,7 @@ use Carbon\Carbon;
                 <img style="border-radius: 50%; object-fit:cover" width="30" height="30" src="{{$company->avatar}}" alt="">
                 <p class="mb-3 mx-2 fw-bold text-capitalize"> <a class="text-decoration-none text-muted" href="/employer/{{$company->unique_id}}/{{str_replace(" ", "_", $company->company_name)}}">{{$company->company_name}}</a></p>
             </div>
-            <p class="text-muted mt-3">We're looking to add more candidate to our growing teams.</p>
-            <div class="d-flex">
-                <a href="#apply" data-bs-toggle="modal" data-bs-target="#apply__" class="btn text-white btn-success px-4 bg_">Apply Now</a>
-                <button class="btn btn-outline-primary px-4 mx-3">Save Job</button>
-            </div>
-            <hr style="color: rgb(172, 172, 172)">
-            <p class="fw-bold text-muted mb-1"><i class="fa-solid fa-bag-shopping"></i> Employment Type</p>
+            <p class="fw-bold text-muted mb-1 mt-3"><i class="fa-solid fa-bag-shopping"></i> Employment Type</p>
             <p class="mb-4 text-muted text-capitalize">{{$job->employment_type}}</p>
 
             <p class="fw-bold text-muted mb-1"><i class="fa-solid fa-location-dot"></i> Location</p>

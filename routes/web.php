@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/browse-jobs', [UserController::class, 'browse_job']);
 
+Route::get('/my-jobs', [UserController::class, 'my_job']);
+
 Route::post('/search-jobs', [UserController::class, 'searchJob']);
 
 Route::get('/employers', [UserController::class, 'employersAll']);
