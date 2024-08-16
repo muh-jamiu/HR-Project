@@ -425,6 +425,58 @@ body{
     width: fit-content;
 }
 
+.ft{
+    font-size: 14px;
+}
+
+.tem_title{
+    width: 100%;
+    padding: 1em;
+    transition: .2s;
+}
+
+.flags_ .bg__{
+    background-color: rgba(197, 197, 197, 0.285);
+    font-size: 12px;
+}
+
+.flags_ img{
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    margin-right: .4em;
+}
+
+.flags_ a{
+    font-size: 12px !important;
+}
+
+._temp_{
+    background-color: rgb(202, 202, 202);
+    color: black;
+    padding: .6em 1em;
+    border-radius: 4px;
+    font-size: 12px !important;
+}
+
+.tem_title:hover{
+    cursor: pointer;
+    background-color: rgba(187, 185, 185, 0.13);
+    transition: .2s;
+}
+
+._temp_:hover{
+    cursor: pointer;
+}
+
+.branches_{
+    background-color: rgba(157, 157, 157, 0.255);
+    padding: 1em;
+    border-radius: 6px;
+    margin-right: 1em;
+    min-width: 230px;
+}
+
 .login .form select::placeholder{
     font-size: 12px;
 }

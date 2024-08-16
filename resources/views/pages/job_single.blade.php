@@ -151,7 +151,7 @@ use Carbon\Carbon;
             <p class="mb-4 text-muted text-capitalize">{{$job->level}}</p>
 
             <p class="fw-bold text-muted mb-1"><i class="fa-solid fa-sack-dollar"></i> Salary</p>
-            <p class="mb-4 text-muted">${{number_format($job->salary)}}</p>
+            <p class="mb-4 text-muted">${{number_format((int)$job->salary)}}</p>
 
             <p class="fw-bold text-muted mb-1"><i class="fa-regular fa-clock"></i> Date posted</p>
             <p class="mb-4 text-muted"> {{Carbon::create($job->created_at)->format('l F j, Y')}}</p>

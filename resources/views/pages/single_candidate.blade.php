@@ -2,6 +2,8 @@
 
 @php
 $user = $data["user"] ?? [];
+$work = $data["work"] ?? [];
+$education = $data["education"] ?? [];
 $skills__ = explode(",", $user->skills);
 use Carbon\Carbon;
 $iscand = true;
@@ -58,39 +60,34 @@ Candidate-{{$user->username ?? ""}} | HR
 
             <div class="mt-5">
                 <h4>Work Experience</h4>
-                <div class="row mt-4">
-                    <div class="col-sm-4 mb-3">
-                        <p class="fw-bold mb-1">Software Developer</p>
-                        <p class="text-muted mb-1 ft">Lagos, Nigeria</p>
-                        <p class="text-muted mb-1 ft">Jan 2018 — Dec 2021</p>
+                @if (count($work) == 0)
+                    <p class="mt-3">Candidate does not have Work Experience  added.</p>
+                @else                    
+                    <div class="row mt-4">
+                        @foreach ($education as $item)
+                        <div class="col-sm-4 mb-3">
+                            <p class="fw-bold text-capitalize mb-1">{{$item->title}}</p>
+                            <p class="text-muted text-capitalize mb-1 ft">{{$item->state}}, {{$item->country}}</p>
+                            <p class="text-muted mb-1 ft">{{$item->date}}</p>
+                        </div>                          
+                        @endforeach
                     </div>
-                    <div class="col-sm-4 mb-3">
-                        <p class="fw-bold mb-1">Software Developer</p>
-                        <p class="text-muted mb-1 ft">Lagos, Nigeria</p>
-                        <p class="text-muted mb-1 ft">Jan 2018 — Dec 2021</p>
-                    </div>
-                    <div class="col-sm-4 mb-3">
-                        <p class="fw-bold mb-1">Software Developer</p>
-                        <p class="text-muted mb-1 ft">Lagos, Nigeria</p>
-                        <p class="text-muted mb-1 ft">Jan 2018 — Dec 2021</p>
-                    </div>
-                    <div class="col-sm-4 mb-3">
-                        <p class="fw-bold mb-1">Software Developer</p>
-                        <p class="text-muted mb-1 ft">Lagos, Nigeria</p>
-                        <p class="text-muted mb-1 ft">Jan 2018 — Dec 2021</p>
-                    </div>
-                </div>
+                @endif
             </div>
 
             <hr style="color: rgb(198, 198, 198)">
             
             <div class="mt-5">
                 <h4>Education</h4>
-                <ul>
-                    <li class="text-muted ft mb-2">Cambridge University(2001-2004)</li>
-                    <li class="text-muted ft mb-2">Brads University(2004-2006)</li>
-                    <li class="text-muted ft mb-2">Cambridge University(2006-2010)</li>
-                </ul>
+                @if (count($education) == 0)
+                    <p class="mt-3">Candidate does not have Educations added.</p>
+                @else                    
+                    <ul>
+                        @foreach ($education as $item)
+                            <li class="text-muted text-capitalize ft mb-2">{{$item->name}}({{$item->date}})</li>                            
+                        @endforeach
+                    </ul>
+                @endif
             </div>
 
             <div class="mt-5">

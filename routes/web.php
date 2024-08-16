@@ -75,6 +75,14 @@ Route::get('/skills-questions/{job_title}/{job_id}', [UserController::class, 'sk
 
 Route::post('/register', [UserController::class, 'registerUser']);
 
+Route::post('/branch', [UserController::class, 'createBranch']);
+
+Route::post('/work', [UserController::class, 'createWork']);
+
+Route::post('/education', [UserController::class, 'createEducation']);
+
+Route::post('/delete-branch', [UserController::class, 'deleteBranch']);
+
 Route::post('/update-profile', [UserController::class, 'updateUser']);
 
 Route::post('/create-job', [UserController::class, 'createJob']);
@@ -97,4 +105,9 @@ Route::post('/stripe-transfer', [UserController::class, 'stripeTransfer']);
 
 Route::any('create-paypal-transaction', [UserController::class, 'createPaypalTransaction'])->name('paypal.transaction');
 
-
+Route::get('lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'de', 'fr'])) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+});

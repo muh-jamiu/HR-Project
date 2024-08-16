@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Application;
+use App\Models\Branch;
+use App\Models\Education;
 use App\Models\Job;
 use App\Models\User;
+use App\Models\Work;
 use Carbon\Carbon;
 use Cloudinary\Cloudinary;
 use Illuminate\Http\Request;
@@ -24,6 +27,12 @@ use PayPal\Api\Payment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Exception\PayPalConnectionException;
 use PayPal\Rest\ApiContext;
+use function imagecreatetruecolor;
+use function imagecolorallocate;
+use function imagefilledrectangle;
+use function imagestring;
+use function imagepng;
+use function imagedestroy;
 use PayPal\Auth\OAuthTokenCredential;
 use Exception;
 
@@ -56,12 +65,15 @@ class UserController extends Controller
     }
 
     public function candidateDash(){
+        $data["education"] = $this->getEducation();
+        $data["work"] = $this->getWork();
         $data["applications"] = Application::where(["userId" => session("hr_id")])->get();
         $data["user"] = $this->getUser(session("hr_id"));
         return view("dashboard.candidate_dash", compact("data"));
     }
 
     public function employersDash(){
+        $data["branch"] = $this->getBranches();
         $data["applications"] = Application::where(["company_id" => session("hr_id")])->orderBy("created_at", "desc")->get();
         $data["user"] = $this->getUser(session("hr_id"));
         $data["jobs"] = $this->getEmployerJob(session("hr_id"));
@@ -300,9 +312,58 @@ class UserController extends Controller
         return view("pages.candidate", compact("data"));
     }
 
+    // public function generateImage()
+    // {
+    //     // Create an image canvas
+    //     $width = 400;
+    //     $height = 200;
+    //     $image = imagecreatetruecolor($width, $height);
+
+    //     // Allocate colors
+    //     $bgColor = imagecolorallocate($image, 240, 240, 240);
+    //     $textColor = imagecolorallocate($image, 0, 0, 0);
+
+    //     // Fill the background
+    //     imagefilledrectangle($image, 0, 0, $width, $height, $bgColor);
+
+    //     // Set the text to draw
+    //     $text = 'Hello, Laravel!';
+    //     $font = 5; // Built-in font sizes are 1-5
+    //     $x = 50;
+    //     $y = 80;
+
+    //     // Add the text to the image
+    //     imagestring($image, $font, $x, $y, $text, $textColor);
+
+    //     // Create the image response
+    //     ob_start();
+    //     imagepng($image);
+    //     $imageData = ob_get_contents();
+    //     ob_end_clean();
+
+    //     // Free up memory
+    //     imagedestroy($image);
+
+    //     return $imageData;
+
+    //     // return Response::make($imageData, 200, ['Content-Type' => 'image/png']);
+    // }
+
     public function candidateSingle($unique_id){
         $data["user"] = $this->getUserByCompany($unique_id);
+        $data["work"] = $this->getCandWork($data["user"]->id);
+        $data["education"] = $this->getCandEducation($data["user"]->id);
         return view("pages.single_candidate", compact("data"));;
+    }
+
+    public function getCandEducation($id){
+        $education = Education::where("user_id", $id)->orderBy("created_at", "desc")->get();
+        return $education;
+    }
+
+    public function getCandWork($id){
+        $work = Work::where("user_id", $id)->orderBy("created_at", "desc")->get();
+        return $work;
     }
 
     public function employersAll(){
@@ -398,8 +459,16 @@ class UserController extends Controller
         if(!$data["user"]){
             return back();
         }
+
+        $data["branch"] = $this->getBranchforComp( $data["user"]->id);
         return view("pages.single_employer", compact("data"));;
     }
+
+    public function getBranchforComp($id){
+        $branch = Branch::where("company_id", $id)->get();
+        return $branch;
+    }
+
 
     public function getJobsLatest(){  
         $job = Job::orderBy("created_at", "desc")->paginate(6);
@@ -770,6 +839,58 @@ class UserController extends Controller
         }
     }
 
+    public function createBranch(Branch $branch){
+        $branch->company_id =  session("hr_id") ?? 0;
+        $branch->name =  request()->branch_name ?? 0;
+        $branch->country =  request()->branch_country ?? 0;
+        $branch->state =  request()->branch_state ?? 0;
+        $branch->date =  request()->branch_date ?? 0;
+        $branch->save();
+
+        return back()->with("msg", "Branch was added successfully");
+    }
+
+    public function getBranches(){
+        $branch = Branch::where("company_id", session("hr_id"))->orderBy("created_at", "desc")->get();
+        return $branch;
+    }
+
+    public function deleteBranch(){
+        $branch = Branch::find(request()->id);
+        $branch->delete();
+        return back()->with("msg", "Branch was deleted successfully");
+    }
+
+    public function createEducation(Education $education){
+        $education->user_id =  session("hr_id") ?? 0;
+        $education->name =  request()->name ?? 0;
+        $education->degree =  request()->degree ?? 0;
+        $education->date =  request()->date ?? 0;
+        $education->save();
+
+        return back()->with("msg", "Education was added successfully");
+    }
+
+    public function getEducation(){
+        $education = Education::where("user_id", session("hr_id"))->orderBy("created_at", "desc")->get();
+        return $education;
+    }
+
+    public function createWork(Work $work){
+        $work->user_id =  session("hr_id") ?? 0;
+        $work->title =  request()->work_name ?? 0;
+        $work->country =  request()->work_country ?? 0;
+        $work->state =  request()->work_state ?? 0;
+        $work->date =  request()->work_date ?? 0;
+        $work->save();
+
+        return back()->with("msg", "Work Experience was added successfully");
+    }
+
+    public function getWork(){
+        $work = Work::where("user_id", session("hr_id"))->orderBy("created_at", "desc")->get();
+        return $work;
+    }
 
     // public function postCode($code, $id){
     //     $verify = new accountVerify();

@@ -19,6 +19,7 @@ $approved_job = $data["approved_job"] ?? [];
 $pending_job = $data["pending_job"] ?? [];
 $decline_job = $data["decline_job"] ?? [];
 $applications = $data["applications"] ?? [];
+$branch = $data["branch"] ?? [];
 $_countries = [
     "Afghanistan",
     "Albania",
@@ -217,6 +218,186 @@ $_countries = [
     "Zambia",
     "Zimbabwe"
 ];
+
+$template = [
+    [
+        'job_title' => 'Software Engineer',
+        'job_description' => 'Develop, test, and maintain software applications according to company standards.',
+        'job_type' => 'Full-Time',
+        'skills_needed' => ['Java', 'C++', 'Python', 'Problem Solving', 'Teamwork'],
+        'salary' => '$80,000 - $120,000',
+        'experience' => '2-5 years',
+        'level' => 'Mid-Level'
+    ],
+    [
+        'job_title' => 'Marketing Manager',
+        'job_description' => 'Oversee marketing campaigns and strategies to promote products and services.',
+        'job_type' => 'Full-Time',
+        'skills_needed' => ['Digital Marketing', 'SEO', 'Content Strategy', 'Leadership', 'Communication'],
+        'salary' => '$70,000 - $100,000',
+        'experience' => '5-8 years',
+        'level' => 'Senior-Level'
+    ],
+    [
+        'job_title' => 'Data Scientist',
+        'job_description' => 'Analyze large datasets to extract insights and help guide decision-making processes.',
+        'job_type' => 'Full-Time',
+        'skills_needed' => ['Python', 'R', 'Machine Learning', 'Data Visualization', 'Statistics'],
+        'salary' => '$90,000 - $130,000',
+        'experience' => '3-6 years',
+        'level' => 'Mid-Level'
+    ],
+    [
+        'job_title' => 'Product Designer',
+        'job_description' => 'Design and create user-centered products with a focus on visual appeal and usability.',
+        'job_type' => 'Full-Time',
+        'skills_needed' => ['UX/UI Design', 'Adobe Creative Suite', 'Sketch', 'Wireframing', 'Prototyping'],
+        'salary' => '$75,000 - $110,000',
+        'experience' => '3-5 years',
+        'level' => 'Mid-Level'
+    ],
+    [
+        'job_title' => 'Sales Executive',
+        'job_description' => 'Drive sales growth by identifying and closing new business opportunities.',
+        'job_type' => 'Full-Time',
+        'skills_needed' => ['Sales', 'Negotiation', 'CRM', 'Customer Service', 'Communication'],
+        'salary' => '$60,000 - $90,000',
+        'experience' => '2-4 years',
+        'level' => 'Entry-Level'
+    ],
+    [
+        'job_title' => 'Project Manager',
+        'job_description' => 'Manage and oversee projects from initiation to completion, ensuring timely delivery.',
+        'job_type' => 'Full-Time',
+        'skills_needed' => ['Project Management', 'Agile', 'Leadership', 'Communication', 'Budgeting'],
+        'salary' => '$85,000 - $120,000',
+        'experience' => '4-7 years',
+        'level' => 'Mid-Level'
+    ],
+    [
+        'job_title' => 'Customer Support Specialist',
+        'job_description' => 'Provide technical and customer service support to clients, resolving issues efficiently.',
+        'job_type' => 'Full-Time',
+        'skills_needed' => ['Customer Service', 'Problem Solving', 'Communication', 'Technical Support', 'CRM'],
+        'salary' => '$45,000 - $65,000',
+        'experience' => '1-3 years',
+        'level' => 'Entry-Level'
+    ],
+    [
+        'job_title' => 'Human Resources Coordinator',
+        'job_description' => 'Coordinate HR activities including recruitment, onboarding, and employee relations.',
+        'job_type' => 'Full-Time',
+        'skills_needed' => ['HR Management', 'Recruitment', 'Employee Relations', 'Communication', 'Time Management'],
+        'salary' => '$50,000 - $75,000',
+        'experience' => '2-4 years',
+        'level' => 'Mid-Level'
+    ],
+    [
+        'job_title' => 'Financial Analyst',
+        'job_description' => 'Analyze financial data and create reports to assist in business decision-making.',
+        'job_type' => 'Full-Time',
+        'skills_needed' => ['Financial Analysis', 'Excel', 'Financial Modeling', 'Analytical Skills', 'Accounting'],
+        'salary' => '$65,000 - $95,000',
+        'experience' => '2-5 years',
+        'level' => 'Mid-Level'
+    ],
+    [
+        'job_title' => 'UX/UI Designer',
+        'job_description' => 'Create and enhance user experiences and interfaces for web and mobile applications.',
+        'job_type' => 'Full-Time',
+        'skills_needed' => ['UX Design', 'UI Design', 'Prototyping', 'Wireframing', 'Adobe Creative Suite'],
+        'salary' => '$70,000 - $100,000',
+        'experience' => '3-5 years',
+        'level' => 'Mid-Level'
+    ],
+    [
+        'job_title' => 'Mobile App Developer',
+        'job_description' => 'Develop mobile applications for Android and iOS platforms, ensuring high performance.',
+        'job_type' => 'Full-Time',
+        'skills_needed' => ['Java', 'Swift', 'Kotlin', 'Mobile App Development', 'Problem Solving'],
+        'salary' => '$80,000 - $120,000',
+        'experience' => '2-5 years',
+        'level' => 'Mid-Level'
+    ],
+    [
+        'job_title' => 'Content Writer',
+        'job_description' => 'Write and edit content for various digital and print platforms, ensuring quality and accuracy.',
+        'job_type' => 'Full-Time',
+        'skills_needed' => ['Writing', 'Editing', 'SEO', 'Content Strategy', 'Research'],
+        'salary' => '$50,000 - $70,000',
+        'experience' => '1-3 years',
+        'level' => 'Entry-Level'
+    ],
+    [
+        'job_title' => 'IT Support Technician',
+        'job_description' => 'Provide technical support and troubleshoot hardware and software issues for end users.',
+        'job_type' => 'Full-Time',
+        'skills_needed' => ['Technical Support', 'Networking', 'Troubleshooting', 'Customer Service', 'Windows/Linux'],
+        'salary' => '$40,000 - $60,000',
+        'experience' => '1-3 years',
+        'level' => 'Entry-Level'
+    ],
+    [
+        'job_title' => 'Business Development Manager',
+        'job_description' => 'Identify new business opportunities and develop strategies to grow the company’s market presence.',
+        'job_type' => 'Full-Time',
+        'skills_needed' => ['Business Development', 'Sales', 'Negotiation', 'Strategic Planning', 'Networking'],
+        'salary' => '$80,000 - $110,000',
+        'experience' => '4-7 years',
+        'level' => 'Mid-Level'
+    ],
+    [
+        'job_title' => 'Graphic Designer',
+        'job_description' => 'Design visual content for various digital and print media, ensuring brand consistency.',
+        'job_type' => 'Full-Time',
+        'skills_needed' => ['Adobe Creative Suite', 'Typography', 'Layout Design', 'Branding', 'Creativity'],
+        'salary' => '$50,000 - $70,000',
+        'experience' => '2-4 years',
+        'level' => 'Mid-Level'
+    ],
+    [
+        'job_title' => 'Operations Manager',
+        'job_description' => 'Oversee daily operations and ensure efficient workflow within the organization.',
+        'job_type' => 'Full-Time',
+        'skills_needed' => ['Operations Management', 'Leadership', 'Communication', 'Problem Solving', 'Logistics'],
+        'salary' => '$85,000 - $120,000',
+        'experience' => '5-8 years',
+        'level' => 'Senior-Level'
+    ],
+    [
+        'job_title' => 'Social Media Strategist',
+        'job_description' => 'Develop and implement social media strategies to enhance brand visibility and engagement.',
+        'job_type' => 'Full-Time',
+        'skills_needed' => ['Social Media Management', 'Content Strategy', 'SEO', 'Analytics', 'Creativity'],
+        'salary' => '$55,000 - $80,000',
+        'experience' => '2-4 years',
+        'level' => 'Mid-Level'
+    ],
+    [
+        'job_title' => 'Front-End Developer',
+        'job_description' => 'Develop and maintain user-facing features for websites and web applications.',
+        'job_type' => 'Full-Time',
+        'skills_needed' => ['HTML', 'CSS', 'JavaScript', 'React', 'Responsive Design'],
+        'salary' => '$70,000 - $100,000',
+        'experience' => '2-4 years',
+        'level' => 'Mid-Level'
+    ],
+    [
+        'job_title' => 'Network Administrator',
+        'job_description' => 'Maintain and monitor network infrastructure, ensuring reliable and secure connectivity.',
+        'job_type' => 'Full-Time',
+        'skills_needed' => ['Networking', 'Cisco', 'Firewall Management', 'Troubleshooting', 'Security'],
+        'salary' => '$60,000 - $90,000',
+        'experience' => '3-5 years',
+        'level' => 'Mid-Level'
+    ],
+    [
+        'job_title' => 'Quality Assurance Engineer',
+        'job_description' => 'Test and ensure the quality of software applications,'
+    ]        
+];
+
+
 use Carbon\Carbon;
 @endphp
 
@@ -241,8 +422,8 @@ Employer Dashboard | HR
             <img class=""  width="150" height="150" style="border-radius: 50%" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS48f-GOfd7Vvaya0EWXRmDjamdDQs-FJdkWg&s" alt="">
             @endif
             <p class="mb-1 mt-3 text-capitalize">{{$user->company_name}} </p>
-            <p class="ft mb-1">{{$user->email}}</p>
-            <p class="ft">{{$user->phone ?? ""}}</p>
+            <p class="ft mb-1 _email_">{{$user->email}}</p>
+            <p class="ft _phone_">{{$user->phone ?? ""}}</p>
         </div>
 
         <div class="mt-4">
@@ -385,13 +566,13 @@ Employer Dashboard | HR
                                         <p class="mt-3 mb-1 text-capitalize text-muted">{{$job->level}}</p>
                                         <p class="ft text-muted"><i class="fa-regular fa-clock"></i> {{Carbon::create($job->created_at)->format('l F j, Y')}}</p>
                                         <p class="text-muted"><span class="cl fw-bold">${{number_format((int)$job->salary)}}</span>/month</p>
-                                        @if ($job->status == "approved")
+                                        {{-- @if ($job->status == "approved")
                                             <p style="background-color: rgba(0, 255, 162, 0.063); font-size:10px" class="btn px-3 text-success">Approved</p>                                            
                                         @elseif ($job->status == "pending")
                                             <p style="background-color: rgba(0, 119, 255, 0.063); font-size:10px" class="btn px-3 text-info">Pending</p> 
                                         @else
                                             <p style="background-color: rgba(255, 0, 0, 0.063); font-size:10px" class="btn px-3 text-danger">Deline</p>                                             
-                                        @endif
+                                        @endif --}}
                                     </div>
                                 </div>		
                             </a>		
@@ -449,29 +630,48 @@ Employer Dashboard | HR
                         <textarea class="mb-3" name="skills" placeholder="Company fields, comma(,) seperated..." id="" cols="5" rows="5">{{$user->skills}}</textarea>
                         <br>
 
-                        <p data-bs-toggle="modal" data-bs-target="#apply__"  class="mt-3 Branches_btn text-white bg-primary">Add Company Branches</p>
                     </form>
+                    <p data-bs-toggle="modal" data-bs-target="#apply__"  class="mt-3 Branches_btn text-white bg-primary">Add Company Branches</p>
+                    @if (count($branch) == 0)
+                        <h4 class="fw-bold">Empty</h4>
+                        <p class="text-muted ft ftr">You don't have any branch added.</p>
+                    @else
+                    <div class="d-flex justify-content-start flex-wrap">
+                        @foreach ($branch as $item)
+                            <div class="mb-3 branches_">
+                                <h6 class="text-muted text-capitalize">{{$item->name}}</h6>
+                                <p class="text-muted ft mb-1 text-capitalize">{{$item->country}}, {{$item->state}}</p>
+                                <p class="text-muted ft">{{$item->date}}</p>
+                                <form action="/delete-branch" method="post">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$item->id}}">
+                                    <button class="btn btn-danger ft ftr"><i class="fa-solid ft fa-trash"></i></button>
+                                </form>
+                            </div>
+                        @endforeach
+                    </div>                          
+                    @endif
                 </div>
 
                 <div class="tab-pane container all_input fade" id="new_job">
                     <form id="form_s" action="/create-job" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="d-flex justify-content-between">
-                            <h4 class="fw-bold mb-4">Post A Job</h4>                        
-                            {{-- <button class="btn mt-3 mb-2 btn-dark px-4">Save Changes</button> --}}
+                        <div class="d-flex justify-content-between mb-4">
+                            <h4 class="fw-bold">Post A Job</h4>                        
+                            <p data-bs-toggle="modal" data-bs-target="#temp__" class="_temp_">Select Template</p>
                         </div>
 
                         <hr style="color: grey">
                         <p class="fw-bold mb-2">Basic Information</p>
                         <div class="d-flex justify-content-evenly mb-3">
-                            <input name="job_title" required type="text" placeholder="Job title">
-                            <input name="job_type" required type="text" placeholder="Job type">
+                            <input class="t_title" name="job_title" required type="text" placeholder="Job title">
+                            <input class="t_type" name="job_type" required type="text" placeholder="Job type">
                         </div>
                         <div class="d-flex justify-content-evenly mb-3">
-                            <input name="email" required type="text" placeholder="Contact Email Address">
-                            <input name="phone" required type="text" placeholder="Contact Phone number">
+                            <input id="_email_" value="{{$user->email}}" name="email" required type="text" placeholder="Contact Email Address">
+                            <input id="_phone_" value="{{$user->phone}}" name="phone" required type="text" placeholder="Contact Phone number">
                         </div>
-                        <textarea class="mb-3" required name="description" placeholder="Job description" id="" cols="5" rows="5"></textarea>
+                        <textarea class="mb-3 t_desc" required name="description" placeholder="Job description" id="" cols="5" rows="5"></textarea>
                         <textarea class="mb-3" name="" placeholder="Desire skills, press enter to create tag..." id="tag-skills" cols="3" rows="3"></textarea>
                         <input type="text" name="skills" class="_skills_ d-none">
                         <div class="" id="tags_skill_list"></div>
@@ -494,7 +694,7 @@ Employer Dashboard | HR
                         <br>
                         <p class="fw-bold mb-2">Other Information</p>
                         <div class="d-flex justify-content-evenly mb-1">
-                            <input name="salary" required id="numberInput" type="text" placeholder="Salary per month">
+                            <input class="t_salary" name="salary" required id="numberInput" type="text" placeholder="Salary per month">
                             <select required name="" id="" >
                                 <option value="">{{"Select Salary range"}}</option>
                                 @foreach ($salary as $item)
@@ -508,7 +708,7 @@ Employer Dashboard | HR
                                 <option value="Full-Time">Full-Time</option>  
                                 <option value="Part-Time">Part-Time</option>  
                             </select>
-                            <select required name="level" id="" >
+                            <select class="t_level" required name="level" id="" >
                                 <option value="">{{"Level"}}</option>
                                 <option value="entry level">Entry Level</option>  
                                 <option value="Junior">Junior</option>  
@@ -592,19 +792,49 @@ Employer Dashboard | HR
   
         <!-- Modal body -->
         <div class="modal-body">
-            <input name="branch_name" style="width:100%; border: 1px solid rgb(213, 213, 213); padding:.8em;" class="mb-3" required type="text" placeholder="Enter branch name">
-            <select style="width:100%; border: 1px solid rgb(213, 213, 213); padding:.8em;" class="mb-3" required type="text" placeholder="Country" name="branch_country" id="">
-                @foreach ($_countries as $item)
-                    <option value="{{$item}}">{{$item}}</option>
-                @endforeach
-            </select>
-            <input name="branch_state" style="width:100%; border: 1px solid rgb(213, 213, 213); padding:.8em;" class="mb-3" required type="text" placeholder="State">                    
-            <input id="checkdate" name="duration_state" style="width:100%; border: 1px solid rgb(213, 213, 213); padding:.8em;" class="mb-3" required type="text" placeholder="From - to">                    
+            <form action="/branch" method="post">
+                @csrf
+                <input name="branch_name" style="width:100%; border: 1px solid rgb(213, 213, 213); padding:.8em;" class="mb-3" required type="text" placeholder="Enter branch name">
+                <select style="width:100%; border: 1px solid rgb(213, 213, 213); padding:.8em;" class="mb-3" required type="text" placeholder="Country" name="branch_country" id="">
+                    @foreach ($_countries as $item)
+                        <option value="{{$item}}">{{$item}}</option>
+                    @endforeach
+                </select>
+                <input name="branch_state" style="width:100%; border: 1px solid rgb(213, 213, 213); padding:.8em;" class="mb-3" required type="text" placeholder="State">                    
+                <input id="checkdate" name="branch_date" style="width:100%; border: 1px solid rgb(213, 213, 213); padding:.8em;" class="mb-3" required type="text" placeholder="From - to">   
+                <input style="width: fit-content" type="submit" value="Add Branch" class="btn px-4 py-2 btn-dark mt-4 mb-5" >
+            </form>                 
         </div>
   
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn px-4 btn-dark" data-bs-dismiss="modal">Add Branch</button>
+          {{-- <button type="button" class="btn px-4 btn-dark" data-bs-dismiss="modal">Add Branch</button> --}}
+          <button type="button" class="btn px-4 btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="temp__">
+    <div class="modal-dialog modal-dialog-sm modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h6 class="modal-title">Select Job Template</h6>
+          <button type="button" class="btn-close ft" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            @foreach ($template as $item)
+                <li data-bs-dismiss="modal" class="text-muted text-capitalize tem_title mb-0 ft">{{$item["job_title"]}}</li>                
+            @endforeach
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
           <button type="button" class="btn px-4 btn-danger" data-bs-dismiss="modal">Close</button>
         </div>
   
@@ -626,10 +856,249 @@ Employer Dashboard | HR
         })
 
         document.getElementById('company_logo').addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        const fileName = event.target.files[0].name;
-        const fileSizeInMB = (file.size / (1024 * 1024)).toFixed(2);
-        document.getElementById('fileNameDisplay').textContent = fileName;
+            const file = event.target.files[0];
+            const fileName = event.target.files[0].name;
+            const fileSizeInMB = (file.size / (1024 * 1024)).toFixed(2);
+            document.getElementById('fileNameDisplay').textContent = fileName;
+        });
+
+    var tem_title= document.querySelectorAll(".tem_title")
+    var t_title = document.querySelector(".t_title")
+    var t_type = document.querySelector(".t_type")
+    var t_desc = document.querySelector(".t_desc")
+    var t_salary = document.querySelector(".t_salary")
+    var t_level = document.querySelector(".t_level")
+    var tags_skill_list = document.getElementById("tags_skill_list")
+    const tagsList = document.getElementById('tags_list');
+    var _skills_ = document.querySelector("._skills_")
+    var _experience = document.querySelector("._experience")
+    tem_title.forEach(element => {
+        element.addEventListener("click", () => {
+            var val_ = element.innerText
+            console.log(val_)
+            const job = jobs.find(job => job.job_title.toLowerCase() === val_.toLowerCase());
+            if (job) {
+                tags_skill_list.innerHTML = ""
+                tagsList.innerHTML = ""
+                t_title.value = job.job_title
+                t_type.value = job.job_type
+                t_desc.value = job.job_description
+                t_salary.value = job.salary
+                t_salary.value = job.salary
+                t_level.value = job.level
+                if ( job.skills_needed !== '') {
+                    result = job.skills_needed.map(function(item) {
+                        return item.replace(/[@/]/g, '');
+                    });
+
+                    _skills_.value +=  `${job.skills_needed} @/ `
+
+                    result.forEach(function(item) {
+                        let p = document.createElement('p');
+                        p.textContent = item;
+                        p.classList.add('tag');
+                        p.classList.add('mb-0');
+                        tags_skill_list.appendChild(p);
+                    });
+                }
+
+                if (job.experience !== '') {
+                    const tag = document.createElement('p');
+                    tag.classList.add('tag');
+                    tag.classList.add('mb-0');
+                    tag.textContent = job.experience ;
+                    _experience.value +=  `${job.experience} @/ `
+
+                    tagsList.appendChild(tag);
+                }
+            } else {
+                console.log("not found")
+            }
+        })        
     });
+
+    const jobs = [
+        {
+            job_title: 'Software Engineer',
+            job_description: 'Develop, test, and maintain software applications according to company standards.',
+            job_type: 'Full-Time',
+            skills_needed: ['Java @/ ', 'C++ @/ ', 'Python @/ ', 'Problem Solving @/ ', 'Teamwork @/ '],
+            salary: '8000',
+            experience: '2-5 years',
+            level: 'Mid-Level'
+        },
+        {
+            job_title: 'Marketing Manager',
+            job_description: 'Oversee marketing campaigns and strategies to promote products and services.',
+            job_type: 'Full-Time',
+            skills_needed: ['Digital Marketing @/ ', 'SEO', 'Content Strategy @/ ', 'Leadership @/ ', 'Communication @/ '],
+            salary: '7000',
+            experience: '5-8 years',
+            level: 'Senior-Level'
+        },
+        {
+            job_title: 'Data Scientist',
+            job_description: 'Analyze large datasets to extract insights and help guide decision-making processes.',
+            job_type: 'Full-Time',
+            skills_needed: ['Python  @/ ', 'R @/ ', 'Machine Learning @/ ', 'Data Visualization @/ ', 'Statistics @/ '],
+            salary: '9000',
+            experience: '3-6 years',
+            level: 'Mid-Level'
+        },
+        {
+            job_title: 'Product Designer',
+            job_description: 'Design and create user-centered products with a focus on visual appeal and usability.',
+            job_type: 'Full-Time',
+            skills_needed: ['UX/UI Design @/ ', 'Adobe Creative Suite @/ ', 'Sketch @/ ', 'Wireframing @/ ', 'Prototyping @/ '],
+            salary: '7500',
+            experience: '3-5 years',
+            level: 'Mid-Level'
+        },
+        {
+            job_title: 'Sales Executive',
+            job_description: 'Drive sales growth by identifying and closing new business opportunities.',
+            job_type: 'Full-Time',
+            skills_needed: ['Sales @/ ', 'Negotiation @/ ', 'CRM @/ ', 'Customer Service @/ ', 'Communication @/ '],
+            salary: '6000',
+            experience: '2-4 years',
+            level: 'Entry-Level'
+        },
+        {
+            job_title: 'Project Manager',
+            job_description: 'Manage and oversee projects from initiation to completion, ensuring timely delivery.',
+            job_type: 'Full-Time',
+            skills_needed: ['Project Management @/ ', 'Agile @/ ', 'Leadership @/ ', 'Communication @/ ', 'Budgeting @/ '],
+            salary: '8500',
+            experience: '4-7 years',
+            level: 'Mid-Level'
+        },
+        {
+            job_title: 'Customer Support Specialist',
+            job_description: 'Provide technical and customer service support to clients, resolving issues efficiently.',
+            job_type: 'Full-Time',
+            skills_needed: ['Customer Service @/ ', 'Problem Solving @/ ', 'Communication @/ ', 'Technical Support @/ ', 'CRM @/ '],
+            salary: '4500',
+            experience: '1-3 years',
+            level: 'Entry-Level'
+        },
+        {
+            job_title: 'Human Resources Coordinator',
+            job_description: 'Coordinate HR activities including recruitment, onboarding, and employee relations.',
+            job_type: 'Full-Time',
+            skills_needed: ['HR Management @/ ', 'Recruitment @/ ', 'Employee Relations @/ ', 'Communication @/ ', 'Time Management @/ '],
+            salary: '5000',
+            experience: '2-4 years',
+            level: 'Mid-Level'
+        },
+        {
+            job_title: 'Financial Analyst',
+            job_description: 'Analyze financial data and create reports to assist in business decision-making.',
+            job_type: 'Full-Time',
+            skills_needed: ['Financial Analysis @/ ', 'Excel @/ ', 'Financial Modeling @/ ', 'Analytical Skills @/ ', 'Accounting @/ '],
+            salary: '6500',
+            experience: '2-5 years',
+            level: 'Mid-Level'
+        },
+        {
+            job_title: 'UX/UI Designer',
+            job_description: 'Create and enhance user experiences and interfaces for web and mobile applications.',
+            job_type: 'Full-Time',
+            skills_needed: ['UX Design @/ ', 'UI Design @/ ', 'Prototyping @/ ', 'Wireframing @/ ', 'Adobe Creative Suite @/ '],
+            salary: '7000',
+            experience: '3-5 years',
+            level: 'Mid-Level'
+        },
+        {
+            job_title: 'Mobile App Developer',
+            job_description: 'Develop mobile applications for Android and iOS platforms, ensuring high performance.',
+            job_type: 'Full-Time',
+            skills_needed: ['Java @/ ', 'Swift @/ ', 'Kotlin @/ ', 'Mobile App Development @/ ', 'Problem Solving @/ '],
+            salary: '8000',
+            experience: '2-5 years',
+            level: 'Mid-Level'
+        },
+        {
+            job_title: 'Content Writer',
+            job_description: 'Write and edit content for various digital and print platforms, ensuring quality and accuracy.',
+            job_type: 'Full-Time',
+            skills_needed: ['Writing @/ ', 'Editing @/ ', 'SEO @/ ', 'Content Strategy @/ ', 'Research @/ '],
+            salary: '5000',
+            experience: '1-3 years',
+            level: 'Entry-Level'
+        },
+        {
+            job_title: 'IT Support Technician',
+            job_description: 'Provide technical support and troubleshoot hardware and software issues for end users.',
+            job_type: 'Full-Time',
+            skills_needed: ['Technical Support @/ ', 'Networking @/ ', 'Troubleshooting @/ ', 'Customer Service @/ ', 'Windows/Linux @/ '],
+            salary: '4000',
+            experience: '1-3 years',
+            level: 'Entry-Level'
+        },
+        {
+            job_title: 'Business Development Manager',
+            job_description: 'Identify new business opportunities and develop strategies to grow the company’s market presence.',
+            job_type: 'Full-Time',
+            skills_needed: ['Business Development @/ ', 'Sales @/ ', 'Negotiation @/ ', 'Strategic Planning @/ ', 'Networking @/ '],
+            salary: '8000',
+            experience: '4-7 years',
+            level: 'Mid-Level'
+        },
+        {
+            job_title: 'Graphic Designer',
+            job_description: 'Design visual content for various digital and print media, ensuring brand consistency.',
+            job_type: 'Full-Time',
+            skills_needed: ['Adobe Creative Suite @/ ', 'Typography @/ ', 'Layout Design @/ ', 'Branding @/ ', 'Creativity @/ '],
+            salary: '5000',
+            experience: '2-4 years',
+            level: 'Mid-Level'
+        },
+        {
+            job_title: 'Operations Manager',
+            job_description: 'Oversee daily operations and ensure efficient workflow within the organization.',
+            job_type: 'Full-Time',
+            skills_needed: ['Operations Management @/ ', 'Leadership @/ ', 'Communication @/ ', 'Problem Solving @/ ', 'Logistics @/ '],
+            salary: '8500',
+            experience: '5-8 years',
+            level: 'Senior-Level'
+        },
+        {
+            job_title: 'Social Media Strategist',
+            job_description: 'Develop and implement social media strategies to enhance brand visibility and engagement.',
+            job_type: 'Full-Time',
+            skills_needed: ['Social Media Management @/ ', 'Content Strategy @/ ', 'SEO @/ ', 'Analytics @/ ', 'Creativity @/ '],
+            salary: '5500',
+            experience: '2-4 years',
+            level: 'Mid-Level'
+        },
+        {
+            job_title: 'Front-End Developer',
+            job_description: 'Develop and maintain user-facing features for websites and web applications.',
+            job_type: 'Full-Time',
+            skills_needed: ['HTML @/ ', 'CSS @/ ', 'JavaScript @/ ', 'React @/ ', 'Responsive Design @/ '],
+            salary: '7000',
+            experience: '2-4 years',
+            level: 'Mid-Level'
+        },
+        {
+            job_title: 'Network Administrator',
+            job_description: 'Maintain and monitor network infrastructure, ensuring reliable and secure connectivity.',
+            job_type: 'Full-Time',
+            skills_needed: ['Networking @/ ', 'Cisco @/ ', 'Firewall Management @/ ', 'Troubleshooting @/ ', 'Security @/ '],
+            salary: '6000',
+            experience: '3-5 years',
+            level: 'Mid-Level'
+        },
+        {
+            job_title: 'Quality Assurance Engineer',
+            job_description: 'Test and ensure the quality of software applications, identifying and fixing defects.',
+            job_type: 'Full-Time',
+            skills_needed: ['Testing @/ ', 'Automation @/ ', 'Manual Testing @/ ', 'Problem Solving @/ ', 'Attention to Detail @/ '],
+            salary: '7000',
+            experience: '2-4 years',
+            level: 'Mid-Level'
+        }
+    ];
+
     </script>
 @endpush

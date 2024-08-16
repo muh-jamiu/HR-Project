@@ -214,24 +214,24 @@ Browse All Jobs | HR
 	<x-main-nav :isjobs="$is_jobs"></x-main-nav>
 
     <div class="section1">
-        <h1 class="fw-bold mt-4">There Are {{number_format(count($job_))}} Jobs Here For you!</h1>
-        <p class="fs-5 text-muted mt-3 mb-5">Discover your next career move, freelance gig, or internship</p>
+        <h1 class="fw-bold mt-4">@lang("messages.jobs_here_for_you", ['count' => number_format(count($job_))])</h1>
+        <p class="fs-5 text-muted mt-3 mb-5">@lang("messages.discover_next_career")</p>
         <div class="input_cont mb-3">
             <form action="/search-jobs" method="post">
                 @csrf
-                <input name="search" type="text" placeholder="search job...">
+                <input name="search" type="text" placeholder='{{ __('messages.search_job_placeholder')}}'>
                 <select name="location" id="">
-                    <option value="">Fulltime</option>
-                    <option value="">Partime</option>
-                    <option value="">Hybrid</option>
+                    <option value="">@lang("messages.fulltime")</option>
+                    <option value="">@lang("messages.parttime")</option>
+                    <option value="">@lang("messages.hybrid")</option>
                 </select>
                 <select name="" id="">
-                    <option value="">Location</option>
+                    <option value="">@lang("messages.location")</option>
                     @foreach ($_countries as $item)
                         <option value="{{$item}}">{{$item}}</option>
                     @endforeach
                 </select>
-                <button class="btn">Find Now</button>
+                <button class="btn">@lang("messages.find_now")</button>
             </form>
         </div>
 
@@ -240,67 +240,67 @@ Browse All Jobs | HR
     <div class="section2 d-flex">
         <div class="first">
             <div class="__job__ mb-3">
-                <h5 class="fw-bold mb-3">Recruiting?</h5>
-                <p class="ft">Advertise your jobs to millions of monthly users and search 16.8 million CVs in our database.</p>
-                <button class="btn btn-light mt-4">Post A Job</button>
+                <h5 class="fw-bold mb-3">@lang("messages.recruiting")</h5>
+                <p class="ft">@lang("messages.advertise_jobs")</p>
+                <button class="btn btn-light mt-4">@lang("messages.post_a_job")b</button>
             </div>
 
             <div class="email__ mb-3">
-                <h5 class="fw-bold mb-3">Set job reminder</h5>
-                <p class="text-muted ft">Enter you email address and get job notification.</p>
+                <h5 class="fw-bold mb-3">@lang("messages.set_job_reminder")</h5>
+                <p class="text-muted ft">@lang("messages.job_notification")</p>
                 <div class="input-group flex-nowrap">
                     <span style="background: transparent" class="input-group-text"><i class="fa-regular text-muted fa-envelope"></i></span>
-                    <input style="border:1px solid rgb(231, 231, 231);border-left: none;" type="text" class="form-control" placeholder="Enter email address">
+                    <input style="border:1px solid rgb(231, 231, 231);border-left: none;" type="text" class="form-control" placeholder='{{ __('messages.enter_email')}}'>
                 </div>
-                <button style="width: 100%" class="btn btn-danger mt-4">Submit</button>
+                <button style="width: 100%" class="btn btn-danger mt-4">@lang("messages.submit")</button>
             </div>
 
             <div class="xys_">
                 <div class="mb-4">
-                    <p class="fw-semibold mb-1">Locations</p>
+                    <p class="fw-semibold mb-1">@lang("messages.locations")</p>
                     <div class="input-group flex-nowrap">
                         <span style="background: transparent" class="input-group-text"><i class="fa-solid text-muted fa-location-dot"></i></span>
-                        <input style="border:1px solid rgb(231, 231, 231);border-left: none;" type="text" class="form-control" placeholder="Enter location">
+                        <input style="border:1px solid rgb(231, 231, 231);border-left: none;" type="text" class="form-control" placeholder={{ __('messages.enter_location')}}>
                     </div>
-                    <button style="width: 100%" class="btn btn-primary_ mt-4">Apply Filter</button>
+                    <button style="width: 100%" class="btn btn-primary_ mt-4">@lang("messages.apply_filter")</button>
                 </div>
     
                 <div class="mb-4">
-                    <p class="fw-semibold mb-1">Category</p>
+                    <p class="fw-semibold mb-1">@lang("messages.category")</p>
                     <div class="input-group flex-nowrap">
                         <span style="background: transparent" class="input-group-text"><i class="fa-solid text-muted fa-layer-group"></i></span>
-                        <input style="border:1px solid rgb(231, 231, 231);border-left: none;" type="text" class="form-control" placeholder="Enter Category">
+                        <input style="border:1px solid rgb(231, 231, 231);border-left: none;" type="text" class="form-control" placeholder={{ __('messages.enter_category')}}>
                     </div>
-                    <button style="width: 100%" class="btn btn-primary_ mt-4">Apply Filter</button>
+                    <button style="width: 100%" class="btn btn-primary_ mt-4">@lang("messages.apply_filter")</button>
                 </div>
             </div>
 
             <div class="xys_">    
                 <div class="mb-1">
-                    <p class="fw-semibold mb-1">Job Type</p>
+                    <p class="fw-semibold mb-1">@lang("messages.job_type")</p>
                     <div class="input-group flex-nowrap">
                         <span style="background: transparent" class="input-group-text"><i class="fa-solid text-muted fa-layer-group"></i></span>
-                        <input style="border:1px solid rgb(231, 231, 231);border-left: none;" type="text" class="form-control" placeholder="Job Type">
+                        <input style="border:1px solid rgb(231, 231, 231);border-left: none;" type="text" class="form-control" placeholder={{ __('messages.enter_job_type')}}>
                     </div>
-                    <button style="width: 100%" class="btn btn-primary_ mt-4">Apply Filter</button>
+                    <button style="width: 100%" class="btn btn-primary_ mt-4">@lang("messages.apply_filter")</button>
                 </div>
             </div>
 
             <div class="xys_">    
                 <div class="mb-1">
-                    <p class="fw-semibold mb-1">Experience Level</p>
+                    <p class="fw-semibold mb-1">@lang("messages.experience_level")</p>
                     <div class="input-group flex-nowrap">
                         <span style="background: transparent" class="input-group-text"><i class="fa-solid text-muted fa-layer-group"></i></span>
-                        <input style="border:1px solid rgb(231, 231, 231);border-left: none;" type="text" class="form-control" placeholder="Experience Level">
+                        <input style="border:1px solid rgb(231, 231, 231);border-left: none;" type="text" class="form-control" placeholder='{{ __('messages.enter_experience_level')}}'>
                     </div>
-                    <button style="width: 100%" class="btn btn-primary_ mt-4">Apply Filter</button>
+                    <button style="width: 100%" class="btn btn-primary_ mt-4">@lang("messages.apply_filter")</button>
                 </div>
             </div>
         </div>
 
         <div class="second">
             <div class="d-flex justify-content-between">
-                <p class="mb-0 ft text-muted">Showing <strong>1-10</strong> of <strong> {{number_format(count($job_))}}</strong> jobs</p>
+                <p class="mb-0 ft text-muted">@lang("messages.showing_jobs", ["total" => number_format(count($job_))])</p>
             </div>
             <div class="section3 section4">        
                 <div class="d-flex justify-content- mt-3 flex-wrap">

@@ -223,20 +223,20 @@ HR | Job Board
 
 	<div class="section1 mb-4">
 		<div class="cont">
-			<p class="fw-bold text-primary">BEST JOBS PLACE</p>
-			<h1 class="fw-bold mb-3">The Easiest Way to Get Your New Job</h1>
-			<p class="ft mb-5" style="color: rgb(67, 67, 67)">Each month, more than 3 million job seekers turn to website in their search for work, making over 140,000 applications every single day</p>
+			<p class="fw-bold text-primary">@lang('messages.best_jobs_place')</p>
+			<h1 class="fw-bold mb-3">@lang("messages.easiest_way")</h1>
+			<p class="ft mb-5" style="color: rgb(67, 67, 67)">@lang("messages.monthly_visitors")</p>
 			<div class="input_container">
 				<form action="/search-jobs" method="post">
 					@csrf
-					<input name="search" type="text" placeholder="Search job description, title etc">
+					<input name="search" type="text" placeholder='{{ __('messages.search_placeholder')}}'>
 					<select name="location" id="">
-						<option value="">Select Location</option>
+						<option value="">@lang("messages.select_location")</option>
 						@foreach ($_countries as $item)
 							<option value="{{$item}}">{{$item}}</option>
 						@endforeach
 					</select>
-					<button class="btn mt-3">Find Now</button>
+					<button class="btn mt-3">@lang("messages.find_now")</button>
 				</form>
 			</div>
 		</div>
@@ -256,9 +256,9 @@ HR | Job Board
 
 	
 	<div class="section3 mt-5">
-		<h1 class="fw-bold">Recent Jobs</h1>
+		<h1 class="fw-bold">@lang("messages.recent_jobs")</h1>
 		<div class="d-flex mt-3 justify-content-between">
-			<p class="text-muted ft" style="width:50%">8 new opportunities posted today!</p>
+			<p class="text-muted ft" style="width:50%">@lang("messages.new_opportunities")</p>
 			{{-- <div class="d-flex">
 				<p class="mx-3 tg active">Software</p>
 				<p class="mx-3 tg">Design</p>
@@ -303,11 +303,11 @@ HR | Job Board
 
 	<div class="section5 row mt-5">
 		<div class="col-sm-6 _cbg">			
-			<h1 style="font-size: 4em" class="fw-bold mb-5 -1">The #1 Job Board for Graphic Design Jobs</h1>
-			<p class="text-muted mb-5" style="width: 80%">Search and connect with the right candidates faster. This talent seach gives you the opportunity to find candidates who may be a perfect fit for your role</p>
+			<h1 style="font-size: 4em" class="fw-bold mb-5 -1">@lang("messages.graphic_design_board")</h1>
+			<p class="text-muted mb-5" style="width: 80%">@lang("messages.talent_search")</p>
 			<div class="d-flex">
-				<button class="btn px-4 py-2 text-white bg_">Post A Job</button>
-				<button class="btn mx-3" >Learn More</button>
+				<button class="btn px-4 py-2 text-white bg_">@lang("messages.post_a_job")</button>
+				<button class="btn mx-3" >@lang("messages.learn_more")</button>
 			</div>
 		</div>
 		<div class="col-sm-6 img_">
@@ -316,10 +316,10 @@ HR | Job Board
 	</div>
 
 	<div class="section2 mt-5 mb-4">
-		<h1 class="fw-bold">Browse by category</h1>
+		<h1 class="fw-bold">@lang("messages.browse_by_category")</h1>
 		<div class="d-flex mt-3 justify-content-between">
-			<p class="text-muted ft" style="width:50%">Find the type of work you need, clearly defined and ready to start. Work begins as soon as you purchase and provide requirements.</p>
-			<a href="/browse-jobs?category=all" class="btn btn-outline-dark px-4 py-2" style="height: fit-content">Browse All</a>
+			<p class="text-muted ft" style="width:50%">@lang("messages.find_type_of_work")</p>
+			<a href="/browse-jobs?category=all" class="btn btn-outline-dark px-4 py-2" style="height: fit-content">@lang("messages.browse_all")</a>
 		</div>
 
 		<div class="row mt-3">
@@ -334,9 +334,9 @@ HR | Job Board
 	</div>
 
 	<div class="section3 section4 mt-5">
-		<h1 class="fw-bold">Recommended Jobs</h1>
+		<h1 class="fw-bold">@lang("messages.recommended_jobs")</h1>
 		<div class="d-flex mt-3 justify-content-between">
-			<p class="text-muted ft" style="width:50%">Recommended job opportunities posted today!</p>
+			<p class="text-muted ft" style="width:50%">@lang("messages.recommended_opportunities")</p>
 			{{-- <div class="d-flex">
 				<p class="mx-3 tg active">Software</p>
 				<p class="mx-3 tg">Design</p>

@@ -14,7 +14,207 @@
 ];
 
 $user = $data["user"] ?? [];
+$work = $data["work"] ?? [];
+$education = $data["education"] ?? [];
 $applications = $data["applications"] ?? [];
+$_countries = [
+    "Afghanistan",
+    "Albania",
+    "Algeria",
+    "Andorra",
+    "Angola",
+    "Antigua and Barbuda",
+    "Argentina",
+    "Armenia",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Bahamas",
+    "Bahrain",
+    "Bangladesh",
+    "Barbados",
+    "Belarus",
+    "Belgium",
+    "Belize",
+    "Benin",
+    "Bhutan",
+    "Bolivia",
+    "Bosnia and Herzegovina",
+    "Botswana",
+    "Brazil",
+    "Brunei",
+    "Bulgaria",
+    "Burkina Faso",
+    "Burundi",
+    "Cabo Verde",
+    "Cambodia",
+    "Cameroon",
+    "Canada",
+    "Central African Republic",
+    "Chad",
+    "Chile",
+    "China",
+    "Colombia",
+    "Comoros",
+    "Congo, Democratic Republic of the",
+    "Congo, Republic of the",
+    "Costa Rica",
+    "Croatia",
+    "Cuba",
+    "Cyprus",
+    "Czech Republic",
+    "Denmark",
+    "Djibouti",
+    "Dominica",
+    "Dominican Republic",
+    "East Timor (Timor-Leste)",
+    "Ecuador",
+    "Egypt",
+    "El Salvador",
+    "Equatorial Guinea",
+    "Eritrea",
+    "Estonia",
+    "Eswatini (Swaziland)",
+    "Ethiopia",
+    "Fiji",
+    "Finland",
+    "France",
+    "Gabon",
+    "Gambia",
+    "Georgia",
+    "Germany",
+    "Ghana",
+    "Greece",
+    "Grenada",
+    "Guatemala",
+    "Guinea",
+    "Guinea-Bissau",
+    "Guyana",
+    "Haiti",
+    "Honduras",
+    "Hungary",
+    "Iceland",
+    "India",
+    "Indonesia",
+    "Iran",
+    "Iraq",
+    "Ireland",
+    "Israel",
+    "Italy",
+    "Ivory Coast (Côte d'Ivoire)",
+    "Jamaica",
+    "Japan",
+    "Jordan",
+    "Kazakhstan",
+    "Kenya",
+    "Kiribati",
+    "Korea, North",
+    "Korea, South",
+    "Kosovo",
+    "Kuwait",
+    "Kyrgyzstan",
+    "Laos",
+    "Latvia",
+    "Lebanon",
+    "Lesotho",
+    "Liberia",
+    "Libya",
+    "Liechtenstein",
+    "Lithuania",
+    "Luxembourg",
+    "Madagascar",
+    "Malawi",
+    "Malaysia",
+    "Maldives",
+    "Mali",
+    "Malta",
+    "Marshall Islands",
+    "Mauritania",
+    "Mauritius",
+    "Mexico",
+    "Micronesia",
+    "Moldova",
+    "Monaco",
+    "Mongolia",
+    "Montenegro",
+    "Morocco",
+    "Mozambique",
+    "Myanmar (Burma)",
+    "Namibia",
+    "Nauru",
+    "Nepal",
+    "Netherlands",
+    "New Zealand",
+    "Nicaragua",
+    "Niger",
+    "Nigeria",
+    "North Macedonia (Macedonia)",
+    "Norway",
+    "Oman",
+    "Pakistan",
+    "Palau",
+    "Panama",
+    "Papua New Guinea",
+    "Paraguay",
+    "Peru",
+    "Philippines",
+    "Poland",
+    "Portugal",
+    "Qatar",
+    "Romania",
+    "Russia",
+    "Rwanda",
+    "Saint Kitts and Nevis",
+    "Saint Lucia",
+    "Saint Vincent and the Grenadines",
+    "Samoa",
+    "San Marino",
+    "Sao Tome and Principe",
+    "Saudi Arabia",
+    "Senegal",
+    "Serbia",
+    "Seychelles",
+    "Sierra Leone",
+    "Singapore",
+    "Slovakia",
+    "Slovenia",
+    "Solomon Islands",
+    "Somalia",
+    "South Africa",
+    "South Sudan",
+    "Spain",
+    "Sri Lanka",
+    "Sudan",
+    "Suriname",
+    "Sweden",
+    "Switzerland",
+    "Syria",
+    "Taiwan",
+    "Tajikistan",
+    "Tanzania",
+    "Thailand",
+    "Togo",
+    "Tonga",
+    "Trinidad and Tobago",
+    "Tunisia",
+    "Turkey",
+    "Turkmenistan",
+    "Tuvalu",
+    "Uganda",
+    "Ukraine",
+    "United Arab Emirates",
+    "United Kingdom",
+    "United States",
+    "Uruguay",
+    "Uzbekistan",
+    "Vanuatu",
+    "Vatican City (Holy See)",
+    "Venezuela",
+    "Vietnam",
+    "Yemen",
+    "Zambia",
+    "Zimbabwe"
+];
 @endphp
 
 @section('title')
@@ -312,30 +512,30 @@ Candidate Dashboard | HR
                     <br>
                     <p class="fw-bold mb-2">Work Experience</p>
                     <div class="d-flex">
-                        <button class="btn px-4 btn-primary">Add Work Experience</button>
+                        <button data-bs-toggle="modal" data-bs-target="#work__"  class="btn px-4 btn-primary">Add Work Experience</button>
                     </div>
                     <div class="row mt-4">
-                        @for ($i = 0; $i < 5; $i++)
-                            <div class="col-sm-4 mb-3">
-                                <p class="fw-bold mb-1">Software Developer</p>
-                                <p class="text-muted mb-1 ft">Lagos, Nigeria</p>
-                                <p class="text-muted mb-1 ft">Jan 2018 — Dec 2021</p>
-                            </div>
-                        @endfor
+                        @foreach ($work as $item)
+                        <div class="col-sm-4 mb-3">
+                            <p class="fw-bold  text-capitalize mb-1">{{$item->title}}</p>
+                            <p class="text-muted  text-capitalize mb-1 ft">{{$item->state}}, {{$item->country}}</p>
+                            <p class="text-muted mb-1 ft">{{$item->date}}</p>
+                        </div>                            
+                        @endforeach
                     </div>
 
                     <hr style="color: grey">    
                     <br>
                     <p class="fw-bold mb-2">Education</p>
                     <div class="d-flex">
-                        <button class="btn px-4 btn-primary">Add Education</button>
+                        <button data-bs-toggle="modal" data-bs-target="#education__"  class="btn px-4 btn-primary">Add Education</button>
                     </div>
-                    <div class="row mt-4">
-                        @for ($i = 0; $i < 5; $i++)
-                            <li class="col-sm-4 mb-3">
-                                Cambridge University(2001-2004)
-                            </li>
-                        @endfor
+                    <div class="mt-4">
+                        @foreach ($education as $item)
+                        <li class="mb-3 text-capitalize">
+                            {{$item->name}}({{$item->date}})
+                        </li>                            
+                        @endforeach
                     </div>
                 </div>
 
@@ -343,6 +543,71 @@ Candidate Dashboard | HR
             </div>
         </div>
 
+    </div>
+</div>
+
+<div class="modal fade" id="work__">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h6 class="modal-title">Add Work Experience</h6>
+          <button type="button" class="btn-close ft" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form action="/work" method="post">
+                @csrf
+                <input name="work_name" style="width:100%; border: 1px solid rgb(213, 213, 213); padding:.8em;" class="mb-3" required type="text" placeholder="Enter work title">
+                <select style="width:100%; border: 1px solid rgb(213, 213, 213); padding:.8em;" class="mb-3" required type="text" placeholder="Country" name="work_country" id="">
+                    @foreach ($_countries as $item)
+                        <option value="{{$item}}">{{$item}}</option>
+                    @endforeach
+                </select>
+                <input name="work_state" style="width:100%; border: 1px solid rgb(213, 213, 213); padding:.8em;" class="mb-3" required type="text" placeholder="State">                    
+                <input id="checkdate" name="work_date" style="width:100%; border: 1px solid rgb(213, 213, 213); padding:.8em;" class="mb-3" required type="text" placeholder="From - to">   
+                <input style="width: fit-content" type="submit" value="Add Work Experience" class="btn px-4 py-2 btn-dark mt-4 mb-5" >
+            </form>                 
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn px-4 btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="education__">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h6 class="modal-title">Add Education</h6>
+          <button type="button" class="btn-close ft" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form action="/education" method="post">
+                @csrf
+                <input name="name" style="width:100%; border: 1px solid rgb(213, 213, 213); padding:.8em;" class="mb-3" required type="text" placeholder="Enter institution name">
+                <input name="degree" style="width:100%; border: 1px solid rgb(213, 213, 213); padding:.8em;" class="mb-3" required type="text" placeholder="Degree">                    
+                <input id="checkdate" name="date" style="width:100%; border: 1px solid rgb(213, 213, 213); padding:.8em;" class="mb-3" required type="text" placeholder="From - to">   
+                <input style="width: fit-content" type="submit" value="Add Education" class="btn px-4 py-2 btn-dark mt-4 mb-5" >
+            </form>                 
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn px-4 btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
     </div>
 </div>
 @endsection

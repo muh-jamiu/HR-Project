@@ -2,6 +2,7 @@
 
 @php
 $user = $data["user"] ?? [];
+$branch = $data["branch"] ?? [];
 $skills__ = explode(",", $user->skills);
 use Carbon\Carbon;
 $is_employ = true;
@@ -51,40 +52,32 @@ Employer-{{$user->company_name}} | HR
 
             <div class="mt-5">
                 <h4>Branches</h4>
+                @if (count($branch) == 0)
+                    <p class="text-muted mt-3">This Company does not have any branch added</p>
+                @else
                 <div class="row mt-4">
-                    <div class="col-sm-4 mb-3">
-                        <p class="fw-bold mb-1">Behance Accounting</p>
-                        <p class="text-muted mb-1 ft">Lagos, Nigeria</p>
-                        <p class="text-muted mb-1 ft">Jan 2018 — Dec 2021</p>
-                    </div>
-                    <div class="col-sm-4 mb-3">
-                        <p class="fw-bold mb-1">Behance Accounting</p>
-                        <p class="text-muted mb-1 ft">Lagos, Nigeria</p>
-                        <p class="text-muted mb-1 ft">Jan 2018 — Dec 2021</p>
-                    </div>
-                    <div class="col-sm-4 mb-3">
-                        <p class="fw-bold mb-1">Behance Accounting</p>
-                        <p class="text-muted mb-1 ft">Lagos, Nigeria</p>
-                        <p class="text-muted mb-1 ft">Jan 2018 — Dec 2021</p>
-                    </div>
-                    <div class="col-sm-4 mb-3">
-                        <p class="fw-bold mb-1">Behance Accounting</p>
-                        <p class="text-muted mb-1 ft">Lagos, Nigeria</p>
-                        <p class="text-muted mb-1 ft">Jan 2018 — Dec 2021</p>
-                    </div>
+                    @foreach ($branch as $item)
+                        <div class="col-sm-4 mb-3">
+                            <p class="fw-bold text-capitalize mb-1">{{$item->name}}</p>
+                            <p class="text-muted text-capitalize mb-1 ft">{{$item->state}}, {{$item->country}}</p>
+                            <p class="text-muted mb-1 ft">{{$item->date}}</p>
+                        </div>                        
+                    @endforeach
                 </div>
+                    
+                @endif
             </div>
 
             <hr style="color: rgb(198, 198, 198)">
             
-            <div class="mt-5">
+            {{-- <div class="mt-5">
                 <h4>Vacancies</h4>
                 <ul>
                     <li class="text-muted ft mb-2">Digital Designer - 03 person</li>
                     <li class="text-muted ft mb-2">Digital Marketing - 04 persons</li>
                     <li class="text-muted ft mb-2">Project Manager - 02 persons</li>
                 </ul>
-            </div>
+            </div> --}}
 
         </div>
 
