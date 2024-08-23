@@ -291,7 +291,107 @@ HR | Job Board
         </div>
     </div>
 
+    <div class="section_4 mt-4">
+       <div class="text-center">
+            <h4 class="mt-5">Testimonials From Our Customers</h4>
+            <p class="text-muted ft">Testimonials from our client all over the country</p>
+        </div>
+    </div>
+
+    <div class="section_5 d-flex">
+        <img src="https://superio-appdir.vercel.app/_next/image?url=%2Fimages%2Fresource%2Fimage-2.jpg&w=1200&q=75" alt="">
+        <div class="text_ mx-3">
+            <h1 class="fw-bold">Millions of Jobs. Find the one that suits you.</h1>
+            <p class="text-muted mt-2 mb-4 ft">Search all the open positions on the web. Get your own personalized salary estimate. Read reviews on over 600,000 companies worldwide.</p>
+            <p>Bring to the table win-win survival</p>
+            <p>Capitalize on low hanging fruit to identify</p>
+            <p>But I must explain to you how all this</p>
+            <a href="/browse-jobs" class="btn mt-3 btn-primary">Get Started</a>
+        </div>
+    </div>
+
+    <div class="section_6 mb-5 mt-5 d-flex justify-content-evenly">
+        <div>            
+            <h1 class="fw-bold text-center">4M</h1>
+            <p class="text-muted text-center ft">4 million daily active users</p>
+        </div>
+        <div>            
+            <h1 class="fw-bold text-center">12K</h1>
+            <p class="text-muted text-center ft">Over 12k open job positions</p>
+        </div>
+        <div>            
+            <h1 class="fw-bold text-center">20M</h1>
+            <p class="text-muted text-center ft">Over 20 million stories shared</p>
+        </div>
+    </div>
+
+    <div class="section_8">
+        <div class="text-center mb-5">
+            <h4 class="">Recent News Articles</h4>
+            <p class="text-muted ft">Fresh job related news content posted each day.</p>
+        </div>
+
+        <div style="overflow: scroll" class="d-flex justify-content-start flex-nowrap">
+            @for ($i = 0; $i < 3; $i++)
+                <div class="_box mx-2">
+                    <div class="img">
+                        <img src="https://superio-appdir.vercel.app/_next/image?url=%2Fimages%2Fresource%2Fblog%2F1.jpg&w=1920&q=75" alt="">
+                    </div>
+                    <p class="text-muted mt-2 ft">August 31, 2021</p>
+                    <p class="fw-bold mb-1">Attract Sales And Profits</p>
+                    <p class="text-muted ft">A job ravenously while Far much that one rank beheld after outside....</p>
+                    
+                    <a href="#" class="btn text-primary">Read More</a>
+                </div>       
+            @endfor
+        </div>     
+    </div>
+
+    <div class="section_7 mt-5 mb-5 pt-5 d-flex justify-content-between">
+        <div class="">
+            <h2>Recruiting?</h2>
+            <p class="text-muted mb-5 mt-3 ft">Advertise your jobs to millions of monthly users and search 15.8 million CVs in our database.</p>
+            <a href="/candidates" class="btn px-4 py-3 btn-primary">Start Recruiting Now</a>
+        </div>
+        <img src="https://superio-appdir.vercel.app/images/resource/image-1.png" alt="">
+    </div>
+    <br>
+
+    <hr style="color: rgb(197, 197, 197)">
+
+    <footer class="d-flex mt-5 pb-5 justify-content-evenly">
+        <div class="logo_" style="width: 40%">
+            <h3 class="fw-bold mb-3"><a href="/" class="text-dark text-decoration-none"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""> Logo</a></h3>
+            <p class="ft text-muted">Call us <strong class="text-primary">123 456 7890</strong></p>		
+            <p class="text-muted ft">329 Queensberry Street, North Melbourne VIC 3051, Australia.</p>
+            <p class="text-muted ft">support@superio.com</p>
+        </div>
+        <div class="" style="width: 15%">
+            <li class="list-unstyled fw-bold mb-3">@lang("messages.footer_company")</li>
+            <li class="list-unstyled mb-3 text-muted ft"><a class="text-decoration-none  text-muted ft" href="/">@lang("messages.footer_about_us")</a></li>
+            <li class="list-unstyled mb-3 text-muted ft"><a class="text-decoration-none  text-muted ft" href="/">@lang("messages.footer_our_team")</a></li>
+            <li class="list-unstyled mb-3 text-muted ft"><a class="text-decoration-none  text-muted ft" href="/">@lang("messages.footer_contact_us")</a></li>
+            <li class="list-unstyled mb-3 text-muted ft"><a class="text-decoration-none  text-muted ft" href="/">@lang("messages.footer_products")</a></li>
+        </div>
+        <div class="" style="width: 15%">
+            <li class="list-unstyled fw-bold mb-3">@lang("messages.footer_product")</li>
+            <li class="list-unstyled mb-3 text-muted ft"><a class="text-decoration-none  text-muted ft" href="/">@lang('messages.footer_product')</a></li>
+            <li class="list-unstyled mb-3 text-muted ft"><a class="text-decoration-none  text-muted ft" href="/">@lang("messages.footer_feature")</a></li>
+        </div>
+        <div class="" style="width: 15%">
+            <li class="list-unstyled fw-bold mb-3">@lang("messages.footer_support")</li>
+            <li class="list-unstyled mb-3 text-muted ft"><a class="text-decoration-none  text-muted ft" href="/">@lang("messages.footer_help")</a></li>
+            <li class="list-unstyled mb-3 text-muted ft"><a class="text-decoration-none  text-muted ft" href="/">@lang("messages.footer_privacy")</a></li>
+            <li class="list-unstyled mb-3 text-muted ft"><a class="text-decoration-none  text-muted ft" href="/">@lang("messages.footer_terms")</a></li>
+            <li class="list-unstyled mb-3 text-muted ft"><a class="text-decoration-none  text-muted ft" href="/">@lang("messages.footer_faq")</a></li>
+        </div>
+    </footer>
+    <hr style="color: rgb(197, 197, 197)">
+
+    <p class="text-muted ft mt-3" style="padding: 2em">© 2023 Superio by ib-themes. All Right Reserved.</p>
+
 </div>
+
 
 
 {{-- <div class="landing">

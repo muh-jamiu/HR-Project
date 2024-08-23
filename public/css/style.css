@@ -745,3 +745,61 @@ button:hover, .btn:hover{
 ._land_ .section_3 .type_2{
     background-color: rgba(221, 255, 0, 0.185);
 }
+
+._land_ .section_4{
+    background-image: url("https://superio-appdir.vercel.app/_next/static/media/bg-1.25dbbc41.png");
+    padding: 2em;
+}
+
+._land_ .section_5{
+    padding: 2em;
+    margin-top: 3em;
+}
+
+
+._land_ .section_7{
+    padding: 2em 4em;
+    background-image: url("https://superio-appdir.vercel.app/_next/static/media/bg-1.25dbbc41.png");
+    margin-top: 3em;
+    margin: 2em;
+    border-radius: 10px;
+    overflow: hidden !important;
+    position: relative;
+}
+
+._land_ .section_7 img{
+    width: 300px;
+    position: absolute;
+    right: 0;
+}
+
+
+._land_ .section_8{
+    padding: 4em 1em;
+    background-image: url("https://superio-appdir.vercel.app/_next/static/media/bg-1.25dbbc41.png");
+    margin-top: 3em;
+    overflow: hidden !important;
+    margin-bottom: 9em;
+}
+
+._land_ .section_8 .img{
+    width: 100%;
+    height: 300px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+
+._land_ .section_8 img{
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}
+
+._land_ .section_8  ._box{
+    background-color: white;
+    padding: 1em;
+    width: 450px;
+    border-radius: 6px;
+    min-width: 450px;
+}
