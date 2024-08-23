@@ -213,6 +213,8 @@ $category = [
 	["name" => "Digital Designer", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/business-development.svg"],
 	["name" => "Market Research", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/proof-reading.svg"],
 	["name" => "Human Resource", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/marketing-director.svg"],
+	["name" => "Customer Service", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/proof-reading.svg"],
+	["name" => "Automative Jobs", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/content-writer.svg"],
 ];
 
 $images_ = [
@@ -239,13 +241,13 @@ HR | Job Board
 
     <div class="section_1 d-flex">
         <div class="text_ mt-5">
-            <h1>There Are <span class="text-primary"> 93,178</span> Postings Here For you!</h1>
+            <h1>There Are <span class="text-primary"> {{number_format(count($rand_jobs))}}</span> Postings Here For you!</h1>
             <p class="text-muted ft ftr">Find Jobs, Employment & Career Opportunities</p>
             <div class="inputs_">
                 <form action="/search-jobs" method="post">
                     @csrf
-                    <input name="search" type="text" placeholder="job title, keywords or company name">
-                    <input name="location" type="text" placeholder="city, state or country">
+                    <input name="search" class="mb-3" type="text" placeholder="job title, keywords or company name">
+                    <input name="location" class="mb-3" type="text" placeholder="city, state or country">
                     <button class="btn btn-primary">Find Job</button>
                 </form>
             </div>
@@ -259,7 +261,7 @@ HR | Job Board
 
     <div class="section_2">
         <h4 class="text-center mt-5">Popular Job Categories</h4>
-        <p class="text-muted text-center ft ftr">2020 jobs live - 293 added today.</p>
+        <p class="text-muted text-center ft ftr">{{number_format(count($rand_jobs))}} jobs live - {{number_format(count($rand_jobs))}} added today.</p>
 
         <div class="d-flex _cont flex-wrap justify-content-evenly">
             @foreach ($category as $item)
