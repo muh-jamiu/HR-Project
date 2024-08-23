@@ -851,3 +851,21 @@ button:hover, .btn:hover{
     position: absolute;
     right: 0;
 }
+
+.posit__ .sec{
+    width: 250px;
+    position: absolute;
+    transform: translateY(-30px);
+}
+
+.posit__ .third{
+    width: 250px;
+    position: absolute;
+    transform: translateY(300px) translateX(300px);
+}
+
+.posit__ .larg{
+    width: 250px;
+    position: absolute;
+    transform: translateX(300px);
+}

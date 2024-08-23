@@ -235,7 +235,7 @@ HR | Job Board
         <h3 class="fw-bold"><a href="/" class="text-dark text-decoration-none"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""> Logo</a></h3>
         <div class="d-flex">
             <p class="btn ft ftr text-muted mx-3"><i class="fa-regular fa-user"></i></p>
-            <p type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" class="btn ft ftr text-muted"><i class="fa-regular fa-menu"></i></p>
+            <p type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" class="btn ft ftr text-muted"><i class="fa-solid fa-bars"></i></p>
         </div>
     </div>
 
@@ -246,8 +246,8 @@ HR | Job Board
             <div class="inputs_">
                 <form action="/search-jobs" method="post">
                     @csrf
-                    <input name="search" class="mb-3" type="text" placeholder="job title, keywords or company name">
-                    <input name="location" class="mb-3" type="text" placeholder="city, state or country">
+                    <input name="search" required class="mb-3" type="text" placeholder="job title, keywords or company name">
+                    <input name="location" required class="mb-3" type="text" placeholder="city, state or country">
                     <button class="btn btn-primary">Find Job</button>
                 </form>
             </div>
@@ -255,6 +255,10 @@ HR | Job Board
         </div>
 
         <div class="img_">
+            <div class="posit__ mt-3">
+                <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/banner/congratulation.svg" alt="" class="sec">
+                <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/banner/web-dev.svg" alt="" class="third">
+            </div>
             <img class="all_" src="https://superio-appdir.vercel.app/_next/image?url=%2Fimages%2Fresource%2Fbanner-img-1.png&w=1920&q=75" alt="">
         </div>
     </div>
@@ -287,14 +291,14 @@ HR | Job Board
         <div class="d-flex _cont flex-wrap justify-content-evenly">
             
 			@foreach ($rand_jobs as $item)
-            <a href="/job/title/{{$item->id}}" class="_box d-flex text-decoration-none">
+            <a href="/job/{{str_replace(" ", "-", $item->title)}}/{{$item->id}}" class="_box d-flex text-decoration-none">
                 <div class="icon_ text-center text-primary">
-                    <img src="{{$item->avatar}}" alt="">
+                    <img src="{{$item->avatar ?? 'https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/marketing-director.svg'}}" alt="">
                 </div>
                 <div class="mx-3">
                     <h6 class="text-dark text-capitalize">{{$item->title}}</h6>
                     <div class="d-flex mb-2">
-                        <p class="mb-0 info_ text-muted fts_"><i class="fa-solid fa-bag-shopping"></i> Segment</p>
+                        <p class="mb-0 info_ text-muted fts_"><i class="fa-solid fa-bag-shopping"></i> {{str_replace("-", " ", $item->employment_type)}}</p>
                         <p class="mb-0 info_ text-muted text-capitalize fts_"><i class="fa-solid fa-location-dot"></i> {{$item->state}}, {{$item->country}}</p>
                         <p class="mb-0 info_ text-muted text-capitalize fts_"><i class="fa-regular fa-clock"></i> {{Carbon::create($item->created_at)->format('l F j, Y')}}</p>
                         <p class="mb-0 info_ text-muted text-capitalize fts_"><i class="fa-solid fa-sack-dollar"></i> ${{number_format($item->salary)}}</p>
