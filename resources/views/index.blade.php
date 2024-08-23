@@ -202,6 +202,9 @@ $_countries = [
     "Zambia",
     "Zimbabwe"
 ];
+
+$islogin = session("hr_id");
+
 $category = [
 	["name" => "Content Writer", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/content-writer.svg"],
 	["name" => "Marketing Director", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/marketing-director.svg"],
@@ -210,7 +213,13 @@ $category = [
 	["name" => "Digital Designer", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/business-development.svg"],
 	["name" => "Market Research", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/proof-reading.svg"],
 	["name" => "Human Resource", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/marketing-director.svg"],
-]
+];
+
+$images_ = [
+    "https://superio-appdir.vercel.app/_next/image?url=%2Fimages%2Fresource%2Fblog%2F2.jpg&w=1920&q=75",
+    "https://superio-appdir.vercel.app/_next/image?url=%2Fimages%2Fresource%2Fblog%2F1.jpg&w=1920&q=75",
+    "https://superio-appdir.vercel.app/_next/image?url=%2Fimages%2Fresource%2Fblog%2F3.jpg&w=1920&q=75"
+];
 @endphp
 
 @section('title')
@@ -223,8 +232,8 @@ HR | Job Board
     <div class="top d-flex justify-content-between">
         <h3 class="fw-bold"><a href="/" class="text-dark text-decoration-none"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""> Logo</a></h3>
         <div class="d-flex">
-            <p class="btn ft ftr text-muted mx-3">icon</p>
-            <p class="btn ft ftr text-muted">icon</p>
+            <p class="btn ft ftr text-muted mx-3"><i class="fa-regular fa-user"></i></p>
+            <p type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" class="btn ft ftr text-muted"><i class="fa-regular fa-menu"></i></p>
         </div>
     </div>
 
@@ -233,9 +242,12 @@ HR | Job Board
             <h1>There Are <span class="text-primary"> 93,178</span> Postings Here For you!</h1>
             <p class="text-muted ft ftr">Find Jobs, Employment & Career Opportunities</p>
             <div class="inputs_">
-                <input type="text" placeholder="job title, keywords or company name">
-                <input type="text" placeholder="city, state or country">
-                <button class="btn btn-primary">Find Job</button>
+                <form action="/search-jobs" method="post">
+                    @csrf
+                    <input name="search" type="text" placeholder="job title, keywords or company name">
+                    <input name="location" type="text" placeholder="city, state or country">
+                    <button class="btn btn-primary">Find Job</button>
+                </form>
             </div>
             <p class="text-muted ft ftr"><strong>Popular Searches</strong> : Designer, Developer, Web, IOS, PHP, Senior, Engineer,</p>
         </div>
@@ -250,15 +262,17 @@ HR | Job Board
         <p class="text-muted text-center ft ftr">2020 jobs live - 293 added today.</p>
 
         <div class="d-flex _cont flex-wrap justify-content-evenly">
-            @for ($i = 1; $i < 10; $i++)
-            <div class="_box d-flex">
-                <div class="icon_ text-center text-primary">icon</div>
+            @foreach ($category as $item)
+            <a href="/browse-jobs?category={{$item["name"]}}" class="_box text-decoration-none d-flex">
+                <div class="icon_ text-center text-primary">
+                    <img src="{{$item["image"]}}" alt="">
+                </div>
                 <div class="mx-3">
-                    <h6>Accounting / Finance</h6>
+                    <h6 class="text-dark">{{$item["name"]}}</h6>
                     <p class="text-muted ft">(2 open positions)</p>
                 </div>
-            </div>                
-            @endfor
+            </a>                
+            @endforeach
         </div>
 
     </div>
@@ -269,43 +283,76 @@ HR | Job Board
         <h4 class="text-center mt-5">Featured Jobs</h4>
         <p class="text-muted text-center ft ftr">Know your worth and find the job that qualify your life</p>
         <div class="d-flex _cont flex-wrap justify-content-evenly">
-            @for ($i = 1; $i < 10; $i++)
-            <div class="_box d-flex">
-                <div class="icon_ text-center text-primary">icon</div>
+            
+			@foreach ($rand_jobs as $item)
+            <a href="/job/title/{{$item->id}}" class="_box d-flex text-decoration-none">
+                <div class="icon_ text-center text-primary">
+                    <img src="{{$item->avatar}}" alt="">
+                </div>
                 <div class="mx-3">
-                    <h6>Software Engineer (Android), Libraries</h6>
+                    <h6 class="text-dark text-capitalize">{{$item->title}}</h6>
                     <div class="d-flex mb-2">
-                        <p class="mb-0 info_ text-muted ft">Segment</p>
-                        <p class="mb-0 info_ text-muted ft">Country</p>
-                        <p class="mb-0 info_ text-muted ft">Time</p>
-                        <p class="mb-0 info_ text-muted ft">Salary</p>
+                        <p class="mb-0 info_ text-muted fts_"><i class="fa-solid fa-bag-shopping"></i> Segment</p>
+                        <p class="mb-0 info_ text-muted text-capitalize fts_"><i class="fa-solid fa-location-dot"></i> {{$item->state}}, {{$item->country}}</p>
+                        <p class="mb-0 info_ text-muted text-capitalize fts_"><i class="fa-regular fa-clock"></i> {{Carbon::create($item->created_at)->format('l F j, Y')}}</p>
+                        <p class="mb-0 info_ text-muted text-capitalize fts_"><i class="fa-solid fa-sack-dollar"></i> ${{number_format($item->salary)}}</p>
                     </div>
 
-                    <div class="d-flex">
-                        <p class="info_1 text-primary type_1 mb-0 ft">Full time</p>
-                        <p class="info_1 type_2 text-warning mb-0 ft">Part time</p>
+                    <div class="d-flex mt-3">
+                        <p class="info_1 text-primary type_1 text-capitalize mb-0 ft">{{str_replace("-", " ", $item->employment_type)}}</p>
+                        <p class="info_1 type_2 text-warning text-capitalize mb-0 ft">{{$item->level}}</p>
                     </div>
                 </div>
-            </div>                
-            @endfor
+            </a>                
+            @endforeach
         </div>
     </div>
 
-    <div class="section_4 mt-4">
+    {{-- <div class="section_4 mt-4">
        <div class="text-center">
             <h4 class="mt-5">Testimonials From Our Customers</h4>
             <p class="text-muted ft">Testimonials from our client all over the country</p>
         </div>
-    </div>
+        <div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+            <!-- Indicators/dots -->
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+              <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+              <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+            </div>
+          
+            <!-- The slideshow/carousel -->
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="la.jpg" alt="Los Angeles" class="d-block w-100">
+              </div>
+              <div class="carousel-item">
+                <img src="chicago.jpg" alt="Chicago" class="d-block w-100">
+              </div>
+              <div class="carousel-item">
+                <img src="ny.jpg" alt="New York" class="d-block w-100">
+              </div>
+            </div>
+          
+            <!-- Left and right controls/icons -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </button>
+          </div>
+    </div> --}}
 
     <div class="section_5 d-flex">
         <img src="https://superio-appdir.vercel.app/_next/image?url=%2Fimages%2Fresource%2Fimage-2.jpg&w=1200&q=75" alt="">
-        <div class="text_ mx-3">
+        <div class="text_ mx-4">
             <h1 class="fw-bold">Millions of Jobs. Find the one that suits you.</h1>
             <p class="text-muted mt-2 mb-4 ft">Search all the open positions on the web. Get your own personalized salary estimate. Read reviews on over 600,000 companies worldwide.</p>
-            <p>Bring to the table win-win survival</p>
-            <p>Capitalize on low hanging fruit to identify</p>
-            <p>But I must explain to you how all this</p>
+            <p><i class="fa-solid fa-check text-success mx-2"></i> Bring to the table win-win survival</p>
+            <p><i class="fa-solid fa-check text-success mx-2"></i> Capitalize on low hanging fruit to identify</p>
+            <p><i class="fa-solid fa-check text-success mx-2"></i> But I must explain to you how all this</p>
             <a href="/browse-jobs" class="btn mt-3 btn-primary">Get Started</a>
         </div>
     </div>
@@ -335,7 +382,7 @@ HR | Job Board
             @for ($i = 0; $i < 3; $i++)
                 <div class="_box mx-2">
                     <div class="img">
-                        <img src="https://superio-appdir.vercel.app/_next/image?url=%2Fimages%2Fresource%2Fblog%2F1.jpg&w=1920&q=75" alt="">
+                        <img src="{{$images_[$i]}}" alt="">
                     </div>
                     <p class="text-muted mt-2 ft">August 31, 2021</p>
                     <p class="fw-bold mb-1">Attract Sales And Profits</p>
@@ -389,6 +436,37 @@ HR | Job Board
     <hr style="color: rgb(197, 197, 197)">
 
     <p class="text-muted ft mt-3" style="padding: 2em">© 2023 Superio by ib-themes. All Right Reserved.</p>
+
+    
+    <div class="offcanvas offcanvas-start" id="demo">
+        <div class="offcanvas-header">
+            <h3 class="fw-bold"><a href="/" class="text-dark text-decoration-none"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""> Logo</a></h3>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+        </div>
+
+        <hr style="color: rgb(197, 197, 197)">
+
+        <div class="offcanvas-body">
+            <li class="list-unstyled"><a href="/" class="text-dark active text-decoration-none">@lang("messages.nav_home")</a></li>
+            <li class="list-unstyled"><a href="/browse-jobs" class="text-dark text-decoration-none">@lang("messages.nav_browse_jobs")</a></li>
+            <li class="list-unstyled" ><a href="/employers" class="text-dark text-decoration-none">@lang("messages.nav_employers")</a></li>
+            <li class="list-unstyled"><a href="/candidates" class="text-dark text-decoration-none">@lang("messages.nav_candidates")</a></li>
+            @if ($islogin)
+                <li class="list-unstyled"><a href="/account-check" class="text-dark text-decoration-none">@lang('messages.nav_dashboard')</a></li>        
+            @else
+                <li class="list-unstyled"><a href="/login" class="text-dark text-decoration-none">Login</a></li>        
+                <li class="list-unstyled"><a href="/signup" class="text-dark text-decoration-none">@lang("messages.nav_get_started")</a></li>        
+            @endif
+            <li class="list-unstyled"><a href="/contact-us" class="text-dark text-decoration-none">@lang("messages.nav_contact_us")</a></li>
+            <a style="width: 100%" href="/login" class="btn p-3 mb-1 btn-primary">Job Post</a>
+
+            <hr style="color: rgb(197, 197, 197)">
+
+            <p class="text-muted ft">Call Us <strong class="fw-bold mb-3 text-primary">0123456789</strong></p>            
+            <p class="text-muted ft">329 Queensberry Street, North Melbourne VIC 3051, Australia.</p>
+            <p class="text-muted ft">support@superio.com</p>
+        </div>
+    </div>
 
 </div>
 
@@ -544,6 +622,8 @@ HR | Job Board
 	<x-footer></x-footer>
 </div> --}}
 
-    
 @endsection
+
+@push('javascript')
+@endpush
 

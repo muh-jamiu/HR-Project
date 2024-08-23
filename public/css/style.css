@@ -700,10 +700,15 @@ button:hover, .btn:hover{
 
 ._land_ .section_2  .icon_{
     background-color: rgba(0, 0, 255, 0.085);
-    padding: .7em;
+    padding: .8em;
     border-radius: 9px;
-    font-size: 1.5em;
     margin-right: .5em;
+    height: fit-content;
+}
+
+._land_ .section_2  .icon_ img{
+    width: 30px;
+    height: 30px;
 }
 
 
@@ -711,20 +716,40 @@ button:hover, .btn:hover{
     padding: 2em;
 }
 
+.fts_{
+    font-size: 12px !important;
+    white-space: nowrap;
+}
+
 ._land_ .section_3  ._box{
     border: 1px solid rgba(195, 195, 195, 0.233);
     padding: 2em 1em;
     border-radius: 6px;
-    min-width: 560px;
+    min-width: 530px;
+    width: 530px;
+    max-width: 530px;
     margin-bottom: 2em;
+    transition: .2s;
 }
 
+._land_ .section_3  ._box:hover{
+    transition: .2s;
+    background-color: rgba(0, 0, 255, 0.078);
+    color: white !important;
+}
+
+
 ._land_ .section_3  .icon_{
-    background-color: rgba(0, 0, 255, 0.085);
-    padding: .7em;
-    border-radius: 9px;
-    font-size: 1.5em;
+    padding: .2em;
+    border-radius: 50%;
     margin-right: .5em;
+}
+
+._land_ .section_3  .icon_ img{
+    width: 80px;
+    height: 80px;
+    border-radius: 6px;
+    object-fit: cover;
 }
 
 ._land_ .section_3 .info_{
@@ -802,4 +827,27 @@ button:hover, .btn:hover{
     width: 450px;
     border-radius: 6px;
     min-width: 450px;
+}
+
+._land_ .offcanvas li{
+    margin-bottom: 2em !important;
+    position: relative;
+}
+
+._land_ .offcanvas .active{
+    color: blue !important;
+}
+
+._land_ .offcanvas {
+    width: 300px !important;
+}
+
+._land_ .offcanvas li a:hover{
+    color: blue;
+}
+
+._land_ .offcanvas li::after{
+    content: ">";
+    position: absolute;
+    right: 0;
 }
