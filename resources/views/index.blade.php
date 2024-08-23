@@ -218,7 +218,83 @@ HR | Job Board
 @endsection
 
 @section("content")
-<div class="landing">
+
+<div class="_land_">
+    <div class="top d-flex justify-content-between">
+        <h3 class="fw-bold"><a href="/" class="text-dark text-decoration-none"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""> Logo</a></h3>
+        <div class="d-flex">
+            <p class="btn ft ftr text-muted mx-3">icon</p>
+            <p class="btn ft ftr text-muted">icon</p>
+        </div>
+    </div>
+
+    <div class="section_1 d-flex">
+        <div class="text_ mt-5">
+            <h1>There Are <span class="text-primary"> 93,178</span> Postings Here For you!</h1>
+            <p class="text-muted ft ftr">Find Jobs, Employment & Career Opportunities</p>
+            <div class="inputs_">
+                <input type="text" placeholder="job title, keywords or company name">
+                <input type="text" placeholder="city, state or country">
+                <button class="btn btn-primary">Find Job</button>
+            </div>
+            <p class="text-muted ft ftr"><strong>Popular Searches</strong> : Designer, Developer, Web, IOS, PHP, Senior, Engineer,</p>
+        </div>
+
+        <div class="img_">
+            <img class="all_" src="https://superio-appdir.vercel.app/_next/image?url=%2Fimages%2Fresource%2Fbanner-img-1.png&w=1920&q=75" alt="">
+        </div>
+    </div>
+
+    <div class="section_2">
+        <h4 class="text-center mt-5">Popular Job Categories</h4>
+        <p class="text-muted text-center ft ftr">2020 jobs live - 293 added today.</p>
+
+        <div class="d-flex _cont flex-wrap justify-content-evenly">
+            @for ($i = 1; $i < 10; $i++)
+            <div class="_box d-flex">
+                <div class="icon_ text-center text-primary">icon</div>
+                <div class="mx-3">
+                    <h6>Accounting / Finance</h6>
+                    <p class="text-muted ft">(2 open positions)</p>
+                </div>
+            </div>                
+            @endfor
+        </div>
+
+    </div>
+
+    <hr style="color: rgb(197, 197, 197)">
+
+    <div class="section_3">
+        <h4 class="text-center mt-5">Featured Jobs</h4>
+        <p class="text-muted text-center ft ftr">Know your worth and find the job that qualify your life</p>
+        <div class="d-flex _cont flex-wrap justify-content-evenly">
+            @for ($i = 1; $i < 10; $i++)
+            <div class="_box d-flex">
+                <div class="icon_ text-center text-primary">icon</div>
+                <div class="mx-3">
+                    <h6>Software Engineer (Android), Libraries</h6>
+                    <div class="d-flex mb-2">
+                        <p class="mb-0 info_ text-muted ft">Segment</p>
+                        <p class="mb-0 info_ text-muted ft">Country</p>
+                        <p class="mb-0 info_ text-muted ft">Time</p>
+                        <p class="mb-0 info_ text-muted ft">Salary</p>
+                    </div>
+
+                    <div class="d-flex">
+                        <p class="info_1 text-primary type_1 mb-0 ft">Full time</p>
+                        <p class="info_1 type_2 text-warning mb-0 ft">Part time</p>
+                    </div>
+                </div>
+            </div>                
+            @endfor
+        </div>
+    </div>
+
+</div>
+
+
+{{-- <div class="landing">
 	<x-main-nav :ishome="$ishome"></x-main-nav>
 
 	<div class="section1 mb-4">
@@ -259,14 +335,6 @@ HR | Job Board
 		<h1 class="fw-bold">@lang("messages.recent_jobs")</h1>
 		<div class="d-flex mt-3 justify-content-between">
 			<p class="text-muted ft" style="width:50%">@lang("messages.new_opportunities")</p>
-			{{-- <div class="d-flex">
-				<p class="mx-3 tg active">Software</p>
-				<p class="mx-3 tg">Design</p>
-				<p class="mx-3 tg">Marketing</p>
-				<p class="mx-3 tg">Service</p>
-				<p class="mx-3 tg">Writing</p>
-				<p class="mx-3 tg">Health Care</p>
-			</div> --}}
 		</div>
 
 		<div class="d-flex mt-3" style="overflow: scroll">
@@ -337,14 +405,6 @@ HR | Job Board
 		<h1 class="fw-bold">@lang("messages.recommended_jobs")</h1>
 		<div class="d-flex mt-3 justify-content-between">
 			<p class="text-muted ft" style="width:50%">@lang("messages.recommended_opportunities")</p>
-			{{-- <div class="d-flex">
-				<p class="mx-3 tg active">Software</p>
-				<p class="mx-3 tg">Design</p>
-				<p class="mx-3 tg">Marketing</p>
-				<p class="mx-3 tg">Service</p>
-				<p class="mx-3 tg">Writing</p>
-				<p class="mx-3 tg">Health Care</p>
-			</div> --}}
 		</div>
 
 		<div class="d-flex justify-content-evenly mt-3 flex-wrap">
@@ -376,41 +436,13 @@ HR | Job Board
 				</div>		
 			</a>	
 			@endforeach
-			{{-- @for ($i = 0; $i < 6; $i++)
-			<a href="/job/title/{{$i}}" class="text-decoration-none text-dark">
-				<div class="col-sm-4 cont_">
-					<div class="img">
-						<img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">
-					</div>
-					<div class="p-3">
-						<div class="d-flex mt-2 mb-4 justify-content-between">
-							<h6 class="mb-0 text-muted mt-1 ">
-								<img class="mx-2" width="20" height="20" style="border-radius: 50%" src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-1.png" alt="">Company Name</h6>
-							<button style="background-color: rgba(45, 249, 45, 0.088)" class="btn text-success ft px-4 py-1">Fulltime</button>
-						</div>
-						<h4 class="mt-3 mb-3">Senior Full Stack Engineer, Creator Success Full Time</h4>
-						<div class="d-flex">
-							<p class="ft text-muted"><i class="fa-regular fa-clock"></i> 3 mins ago</p>
-							<p class="ft text-muted mx-3"><i class="fa-solid fa-location-dot"></i> Chicago</p>
-						</div>
-						<div class="d-flex mt-2 mb-3 justify-content-between">
-							<p class="fs-5 text-muted"><span class="cl fw-bold">$3200</span>/Month</p>
-							<div class="d-flex mt-1">
-								<i class="fa-regular btn text-primary fa-thumbs-up"></i>
-								<i class="fa-regular btn text-danger fa-thumbs-down"></i>
-							</div>
-						</div>
-					</div>
-				</div>		
-			</a>		
-			@endfor --}}
 		</div>
 	</div>
 
 	<hr style="color: rgb(183, 183, 183)">
 
 	<x-footer></x-footer>
-</div>
+</div> --}}
 
     
 @endsection
