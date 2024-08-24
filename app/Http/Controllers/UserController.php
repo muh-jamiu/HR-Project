@@ -135,7 +135,7 @@ class UserController extends Controller
         ]);
 
 
-        $role = request()->role ?? "candidate";
+        $role = request()->first_name ? "candidate" : "employer";
         $user->first_name = request()->first_name;
         $user->last_name = request()->last_name;
         $user->username = request()->username;

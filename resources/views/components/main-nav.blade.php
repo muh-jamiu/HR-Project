@@ -9,7 +9,48 @@
     $lang = session("locale");
 @endphp
 
-<div class="navbar d-flex flex-start">
+<div class="_land_">
+    <div class="top d-flex justify-content-between">
+        <h3 class="fw-bold"><a href="/" class="text-dark text-decoration-none"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""> Logo</a></h3>
+        <div class="d-flex">
+            <p class="btn um_ ft ftr text-muted mx-3"><i class="fa-regular fa-user"></i></p>
+            <p type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" class="btn ft ftr text-muted"><i class="fa-solid fa-bars"></i></p>
+        </div>
+    </div>
+
+    <div class="offcanvas offcanvas-start" id="demo">
+        <div class="offcanvas-header">
+            <h3 class="fw-bold"><a href="/" class="text-dark text-decoration-none"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""> Logo</a></h3>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+        </div>
+
+        <hr style="color: rgb(197, 197, 197)">
+
+        <div class="offcanvas-body">
+            <li class="list-unstyled"><a href="/" class="text-dark active text-decoration-none">@lang("messages.nav_home")</a></li>
+            <li class="list-unstyled"><a href="/browse-jobs" class="text-dark text-decoration-none">@lang("messages.nav_browse_jobs")</a></li>
+            <li class="list-unstyled" ><a href="/employers" class="text-dark text-decoration-none">@lang("messages.nav_employers")</a></li>
+            <li class="list-unstyled"><a href="/candidates" class="text-dark text-decoration-none">@lang("messages.nav_candidates")</a></li>
+            @if ($islogin)
+                <li class="list-unstyled"><a href="/account-check" class="text-dark text-decoration-none">@lang('messages.nav_dashboard')</a></li>        
+            @else
+                <li class="list-unstyled"><a href="/login" class="text-dark text-decoration-none">Login</a></li>        
+                <li class="list-unstyled"><a href="/signup" class="text-dark text-decoration-none">@lang("messages.nav_get_started")</a></li>        
+            @endif
+            <li class="list-unstyled"><a href="/contact-us" class="text-dark text-decoration-none">@lang("messages.nav_contact_us")</a></li>
+            <a style="width: 100%" href="/login" class="btn p-3 mb-1 btn-primary">Job Post</a>
+
+            <hr style="color: rgb(197, 197, 197)">
+
+            <p class="text-muted ft">Call Us <strong class="fw-bold mb-3 text-primary">0123456789</strong></p>            
+            <p class="text-muted ft">329 Queensberry Street, North Melbourne VIC 3051, Australia.</p>
+            <p class="text-muted ft">support@superio.com</p>
+        </div>
+    </div>
+</div>
+
+
+{{-- <div class="navbar d-flex flex-start">
     <h3 class="fw-bold"><a href="/" class="text-dark text-decoration-none"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""> Logo</a></h3>
     <div class="dropdown flags_">
         <button type="button" class="btn bg__ text-muted dropdown-toggle" data-bs-toggle="dropdown">
@@ -46,5 +87,4 @@
         <li class="list-unstyled"><a href="/signup" class="btn btn-danger text-decoration-none">@lang("messages.nav_get_started")</a></li>        
     @endif
     <li class="list-unstyled {{$iscontact ? "active" : ""}}"><a href="/contact-us" class="text-dark text-decoration-none">@lang("messages.nav_contact_us")</a></li>
-    {{-- <li class="list-unstyled {{$isabout ? "active" : ""}} "><a href="/about-us" class="text-dark text-decoration-none">About Us</a></li> --}}
-</div>
+</div> --}}

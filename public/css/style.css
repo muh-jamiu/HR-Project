@@ -401,14 +401,13 @@ body{
 
 .login{
     /* position: fixed; */
-    background-color: var(--primary);
+    background-color: white;
 }
 
 .login .form{
-    background-color: var(--primary);
-    background-image: url("../img/patern.svg");
+    background-color: white;
     background-repeat: no-repeat;
-    width: 43%;
+    width: 55%;
     height: 100vh;
     padding: 1em;
 
@@ -493,21 +492,37 @@ body{
     border: none;
     outline: none;
     font-size: 12px;
+    background-color: rgba(204, 204, 204, 0.226);
+}
+
+.nav_{
+    margin-left: .7em;
+}
+
+.nav_ a{
+    background-color: rgba(0, 64, 255, 0.126);
+    padding: .7em 4em !important;
+}
+
+.nav_ .active{
+    background-color: #34a853 !important;
 }
 
 .login .form input{
-    padding: .7em;
+    padding: .8em;
     width: 80%;
     border-radius: 6px;
     margin-top: 2em;
     border: none;
     outline: none;
+    background-color: rgba(204, 204, 204, 0.226);
 }
 
 .login .img{
-    width: 60%;
+    width: 45%;
     height: 100vh;
     overflow: hidden;
+    
 }
 
 .__reg{    
@@ -868,4 +883,151 @@ button:hover, .btn:hover{
     width: 250px;
     position: absolute;
     transform: translateX(300px);
+}
+
+.login  button{
+    margin-left: 3.8em;
+}
+
+@media screen and (max-width: 780px) {
+    .login .img{
+        display: none !important;
+    }
+
+    .login .nav_ li{
+        margin-bottom: 1em !important;
+    }
+
+    .login .form{
+        width: 100% !important;
+    }
+
+    .login input{
+        width: 100% !important;
+    }
+
+    .login  button{
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+
+    ._land_ .section_1 .img_{
+        display: none !important;
+    }
+
+    ._land_ .section_3 ._box{
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        overflow: scroll !important;
+    }
+    
+    ._land_ .top{    
+        padding-left: 1em !important;
+        padding-right: 1em !important;
+    }
+
+    ._land_ .section_2 ._cont{
+        padding-left: 0em !important;
+        padding-right: 0em !important;    
+    }
+
+    ._land_ .section_5{
+        padding: 0em !important;;
+    }
+
+    ._land_ .section_7{
+        margin: 0 !important;
+        padding: 2em 2em !important;
+    }
+
+    ._land_ .section_3 ._cont{
+        padding: 0 !important;
+    }
+
+    ._land_ .section_6{
+        padding: 1em !important;
+    }
+
+    ._land_ .section_7 img{
+        display: none !important;
+    }
+
+    ._land_ .section_5 img{
+        display: none !important;
+    }
+
+    .um_{
+        display: none !important;
+    }
+
+    ._land_ .section_1 {
+        padding-left: 1em !important;
+        padding-right: 1em !important;
+    }
+
+    .jobs .section2 .first{
+        display: none !important;
+    }
+
+    .jobs .navbar li{
+        display: none !important;
+    }
+
+    .jobs .navbar .dropdown{
+        display: none !important;
+    }
+
+    .jobs .section1{
+        padding-left: 1em !important;
+        padding-right: 1em !important;
+    }
+
+    .jobs .section2 .cont_{
+        width: 100% !important;
+    }
+
+    .jobs .section4 .d-flex a {
+        width: 100% !important;
+    }
+
+    .jobs .section1 .input_cont input, .jobs .section1 .input_cont select{
+        width: 90% !important;
+    }
+
+    .jobs .section1 .input_cont button{
+        margin-left: 1em !important;
+        margin-top: 1em;
+    }
+
+    .dashboard_ .sidebar__{
+        width: 0% !important;
+        padding: 0 !important;
+    }
+
+    .dashboard_ .mainbar__{
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+
+    .dashboard_ .top_bar_{
+        width: 100% !important;
+    }
+
+    .dashboard_ .d_section2{
+        padding-left: 1em !important;
+        padding-right: 1em !important;
+    }
+
+    .dashboard_ .d_section2 .box_{
+        width: 100% !important;
+    }
+
+    .dashboard_ .section3_d .cont_{
+        width: 100% !important;
+    }
+
+    .dashboard_ .section3_d .d-flex a {
+        width: 100% !important;
+    }
 }
