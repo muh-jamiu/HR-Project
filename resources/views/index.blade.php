@@ -222,6 +222,8 @@ $images_ = [
     "https://superio-appdir.vercel.app/_next/image?url=%2Fimages%2Fresource%2Fblog%2F1.jpg&w=1920&q=75",
     "https://superio-appdir.vercel.app/_next/image?url=%2Fimages%2Fresource%2Fblog%2F3.jpg&w=1920&q=75"
 ];
+
+$lang = session("locale");
 @endphp
 
 @section('title')
@@ -231,35 +233,80 @@ HR | Job Board
 @section("content")
 
 <div class="_land_">
-    <div class="top d-flex justify-content-between">
-        <h3 class="fw-bold"><a href="/" class="text-dark text-decoration-none"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""> Logo</a></h3>
-        <div class="d-flex">
+    <div style="background: transparent !important" class="top mobile_nav d-flex justify-content-between d-none">
+        <h3 data-bs-toggle="offcanvas" data-bs-target="#demo" class="fw-bold"><a style="height: fit-content" href="#" class="text-dark text-decoration-none"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""> Logo</a></h3>
+        {{-- <div class="d-flex">
             <p class="btn um_ ft ftr text-muted mx-3"><i class="fa-regular fa-user"></i></p>
-            <p type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" class="btn ft ftr text-muted"><i class="fa-solid fa-bars"></i></p>
-        </div>
+            <p type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" class="btn ft ftr text-muted">s<i class="fa-solid fa-bars"></i></p>
+        </div> --}}
     </div>
 
-    <div class="section_1 sections_all d-flex">
-        <div class="text_ mt-5">
-            <h1>There Are <span class="text-primary"> {{number_format(count($rand_jobs))}}</span> Postings Here For you!</h1>
-            <p class="text-muted ft ftr">Find Jobs, Employment & Career Opportunities</p>
-            <div class="inputs_">
-                <form action="/search-jobs" method="post">
-                    @csrf
-                    <input name="search" required class="mb-3" type="text" placeholder="job title, keywords or company name">
-                    <input name="location" required class="mb-3" type="text" placeholder="city, state or country">
-                    <button class="btn btn-primary">Find Job</button>
-                </form>
+    <div class="section_1 sections_all">
+        <div style="background: transparent !important" class="top mb-5 web_nav d-flex justify-content-between">
+            <h3 class="fw-bold"><a href="/" class="text-dark text-decoration-none"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""> Logo</a></h3>
+            <div class="_all_links d-flex">
+                <div class="dropdown flags_" style="margin-right: 3em">
+                    <button type="button" class="btn bg__ text-muted dropdown-toggle" data-bs-toggle="dropdown">
+                        @if ($lang == "en")
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1280px-Flag_of_the_United_Kingdom.svg.png" alt=""> English                
+                        @endif
+                        @if ($lang == "fr")
+                        <img src="https://m.media-amazon.com/images/I/4109Z2o0HuL._AC_UF894,1000_QL80_.jpg" alt=""> French                
+                        @endif
+                        @if ($lang == "de")
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScBXsZhOLWG9aaZzvy5KdAR39CVFsvM2e3DA&s" alt=""> German                
+                        @endif
+            
+                        @if (!$lang)
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1280px-Flag_of_the_United_Kingdom.svg.png" alt=""> English                
+                        @endif
+                        
+                    </button>
+
+                    <ul class="dropdown-menu">
+                        <li><h5 class="dropdown-header">Choose Language</h5></li>
+                        <li><hr class="dropdown-divider"></hr></li>
+                        <li><a class="text-muted fr mt-3 mb-3 dropdown-item" href="/lang/en"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1280px-Flag_of_the_United_Kingdom.svg.png" alt=""> English</a></li>
+                        <li><a class="text-muted fr mb-3 dropdown-item" href="/lang/de"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScBXsZhOLWG9aaZzvy5KdAR39CVFsvM2e3DA&s" alt=""> German</a></li>
+                        <li><a class="text-muted fr mb-3 dropdown-item" href="/lang/fr"><img src="https://m.media-amazon.com/images/I/4109Z2o0HuL._AC_UF894,1000_QL80_.jpg" alt=""> French</a></li>
+                    </ul>
+                </div>
+                <li class="list-unstyled"><a href="/" class="text-decoration-none active">Home</a></li>
+                <li class="list-unstyled"><a href="/browse-jobs" class="text-decoration-none">Find Jobs</a></li>
+                <li class="list-unstyled"><a href="/employers" class="text-decoration-none">Employers</a></li>
+                <li class="list-unstyled"><a href="/candidates" class="text-decoration-none">Candidates</a></li>
+                <li class="list-unstyled"><a href="/contact-us" class="text-decoration-none">Contact Us</a></li>
+                 @if ($islogin)                
+                    <a href="/account-check" class="btn _btnl">Dashboard</a>
+                @else
+                    <a href="/login" class="btn _btnl">Login / Register</a>
+                    <a href="/login" class="btn btn-primary">Post Job</a>                
+                @endif
             </div>
-            <p class="text-muted ft ftr"><strong>Popular Searches</strong> : Designer, Developer, Web, IOS, PHP, Senior, Engineer,</p>
         </div>
 
-        <div class="img_">
-            <div class="posit__ mt-3">
-                <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/banner/congratulation.svg" alt="" class="sec">
-                <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/banner/web-dev.svg" alt="" class="third">
+        <div class="d-flex">
+            <div class="text_ mt-5">
+                <h1 style="font-size: 3.5em">There Are <span class="text-primary"> {{number_format(count($rand_jobs))}}</span> Postings Here For you!</h1>
+                <p class="text-muted ft ftr">Find Jobs, Employment & Career Opportunities</p>
+                <div class="inputs_">
+                    <form action="/search-jobs" method="post">
+                        @csrf
+                        <input name="search" required class="mb-3" type="text" placeholder="job title, keywords or company name">
+                        <input name="location" required class="mb-3" type="text" placeholder="city, state or country">
+                        <button class="btn btn-primary">Find Job</button>
+                    </form>
+                </div>
+                <p class="text-muted ft ftr"><strong>Popular Searches</strong> : Designer, Developer, Web, IOS, PHP, Senior, Engineer,</p>
             </div>
-            <img class="all_" src="https://superio-appdir.vercel.app/_next/image?url=%2Fimages%2Fresource%2Fbanner-img-1.png&w=1920&q=75" alt="">
+
+            <div class="img_">
+                <div class="posit__ mt-3">
+                    <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/banner/congratulation.svg" alt="" class="sec">
+                    <img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/banner/web-dev.svg" alt="" class="third">
+                </div>
+                <img class="all_" src="https://superio-appdir.vercel.app/_next/image?url=%2Fimages%2Fresource%2Fbanner-img-1.png&w=1920&q=75" alt="">
+            </div>
         </div>
     </div>
 
@@ -275,7 +322,7 @@ HR | Job Board
                 </div>
                 <div class="mx-3">
                     <h6 class="text-dark">{{$item["name"]}}</h6>
-                    <p class="text-muted ft">(2 open positions)</p>
+                    <p class="text-muted ft">(Open positions)</p>
                 </div>
             </a>                
             @endforeach
@@ -297,7 +344,7 @@ HR | Job Board
                 </div>
                 <div class="mx-3">
                     <h6 class="text-dark text-capitalize">{{$item->title}}</h6>
-                    <div class="d-flex mb-2">
+                    <div class="d-flex flex-wrap mb-2">
                         <p class="mb-0 info_ text-muted fts_"><i class="fa-solid fa-bag-shopping"></i> {{str_replace("-", " ", $item->employment_type)}}</p>
                         <p class="mb-0 info_ text-muted text-capitalize fts_"><i class="fa-solid fa-location-dot"></i> {{$item->state}}, {{$item->country}}</p>
                         <p class="mb-0 info_ text-muted text-capitalize fts_"><i class="fa-regular fa-clock"></i> {{Carbon::create($item->created_at)->format('l F j, Y')}}</p>
@@ -316,7 +363,7 @@ HR | Job Board
 
     <div class="section_5 sections_all d-flex">
         <img src="https://superio-appdir.vercel.app/_next/image?url=%2Fimages%2Fresource%2Fimage-2.jpg&w=1200&q=75" alt="">
-        <div class="text_ mx-4">
+        <div style="margin-left: 4em" class="text_">
             <h1 class="fw-bold">Millions of Jobs. Find the one that suits you.</h1>
             <p class="text-muted mt-2 mb-4 ft">Search all the open positions on the web. Get your own personalized salary estimate. Read reviews on over 600,000 companies worldwide.</p>
             <p><i class="fa-solid fa-check text-success mx-2"></i> Bring to the table win-win survival</p>
@@ -427,7 +474,32 @@ HR | Job Board
                 <li class="list-unstyled"><a href="/signup" class="text-dark text-decoration-none">@lang("messages.nav_get_started")</a></li>        
             @endif
             <li class="list-unstyled"><a href="/contact-us" class="text-dark text-decoration-none">@lang("messages.nav_contact_us")</a></li>
-            <a style="width: 100%" href="/login" class="btn p-3 mb-1 btn-primary">Job Post</a>
+            <div class="dropdown flags_" style="margin-right: 3em">
+                <button type="button" class="btn bg__ text-muted dropdown-toggle" data-bs-toggle="dropdown">
+                    @if ($lang == "en")
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1280px-Flag_of_the_United_Kingdom.svg.png" alt=""> English                
+                    @endif
+                    @if ($lang == "fr")
+                    <img src="https://m.media-amazon.com/images/I/4109Z2o0HuL._AC_UF894,1000_QL80_.jpg" alt=""> French                
+                    @endif
+                    @if ($lang == "de")
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScBXsZhOLWG9aaZzvy5KdAR39CVFsvM2e3DA&s" alt=""> German                
+                    @endif
+        
+                    @if (!$lang)
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1280px-Flag_of_the_United_Kingdom.svg.png" alt=""> English                
+                    @endif
+                    
+                </button>
+
+                <ul class="dropdown-menu">
+                    <li><h5 class="dropdown-header">Choose Language</h5></li>
+                    <li><hr class="dropdown-divider"></hr></li>
+                    <li><a class="text-muted fr mt-3 mb-3 dropdown-item" href="/lang/en"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1280px-Flag_of_the_United_Kingdom.svg.png" alt=""> English</a></li>
+                    <li><a class="text-muted fr mb-3 dropdown-item" href="/lang/de"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScBXsZhOLWG9aaZzvy5KdAR39CVFsvM2e3DA&s" alt=""> German</a></li>
+                    <li><a class="text-muted fr mb-3 dropdown-item" href="/lang/fr"><img src="https://m.media-amazon.com/images/I/4109Z2o0HuL._AC_UF894,1000_QL80_.jpg" alt=""> French</a></li>
+                </ul>
+            </div>
 
             <hr style="color: rgb(197, 197, 197)">
 

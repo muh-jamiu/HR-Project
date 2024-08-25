@@ -116,4 +116,7 @@ return [
     'footer_privacy' => 'Privacy',
     'footer_help' => 'Help',
     'footer_terms' => 'Terms',
+
+    // new dash
+    
 ];

@@ -673,10 +673,51 @@ button:hover, .btn:hover{
     /* background-color: #fff; */
     background-image: url("https://superio-appdir.vercel.app/_next/static/media/bg-1.25dbbc41.png");
     padding: 4em 2em;
+    padding-top: 0em !important;
+}
+
+._land_ .section_1 .top{
+    padding: 0em !important;
+    padding-top: 1em !important;
+}
+
+.web_nav li{
+    margin-right: 3em;
+    margin-top: .5em;
+}
+
+.web_nav li a{
+    color: black;
+    transition: .2s;
+}
+
+.web_nav ._btnl{
+    background-color: rgba(0, 0, 255, 0.099);
+    color: blue;
+    margin-right: 3em;
+    padding: .5em 2em;
+    font-size: 12px;
+    margin-top: .3em;
+}
+
+.web_nav .btn{
+    height: fit-content;
+    padding: .5em 2em;
+    font-size: 12px;
+    margin-top: .3em;
+}
+
+.web_nav li a:hover{
+    color: blue;
+    transition: .2s;
+}
+
+.web_nav li .active{
+    color: blue;    
 }
 
 .img_ .all_ {
-    width: 400px;
+    width: 500px;
     margin-left: 1em;
 }
 
@@ -1030,4 +1071,21 @@ button:hover, .btn:hover{
     .dashboard_ .section3_d .d-flex a {
         width: 100% !important;
     }
+
+    ._land_ .section_1 .inputs_ input{
+        width: 100% !important;
+    }
+
+    .section_5 .text_{
+        margin-left: 1em !important;
+    }
+
+    .web_nav{
+        display: none !important;
+    }
+
+    .mobile_nav{
+        display: inline-flex !important;
+    }
+
 }

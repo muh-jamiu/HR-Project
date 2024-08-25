@@ -305,7 +305,7 @@ Browse All Jobs | HR
             <div class="section3 section4">        
                 <div class="d-flex justify-content- mt-3 flex-wrap">
                     @foreach ($jobs as $job)
-                    <a style="width: 100% !important" href="/job/{{str_replace(" ", "_", $job->title)}}/{{$job->id}}" class="text-decoration-none text-dark">
+                    <a  href="/job/{{str_replace(" ", "_", $job->title)}}/{{$job->id}}" class="text-decoration-none text-dark">
                         <div class="cont_">
                             <div class="img">
                                 <img src="{{$job->avatar ?? "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/jobs/job-3.png"}}" alt="">
