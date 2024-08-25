@@ -206,15 +206,15 @@ $_countries = [
 $islogin = session("hr_id");
 
 $category = [
-	["name" => "Content Writer", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/content-writer.svg"],
-	["name" => "Marketing Director", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/marketing-director.svg"],
-	["name" => "System Analyst", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/system-analyst.svg"],
-	["name" => "Marketing & Communication", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/marketing.svg"],
-	["name" => "Digital Designer", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/business-development.svg"],
-	["name" => "Market Research", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/proof-reading.svg"],
-	["name" => "Human Resource", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/marketing-director.svg"],
-	["name" => "Customer Service", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/proof-reading.svg"],
-	["name" => "Automative Jobs", "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/content-writer.svg"],
+	["name" =>  __('messages.content_writer'), "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/content-writer.svg"],
+	["name" =>  __('messages.marketing_director'), "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/marketing-director.svg"],
+	["name" =>  __('messages.system_analyst'), "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/system-analyst.svg"],
+	["name" =>  __('messages.marketing_communication'), "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/marketing.svg"],
+	["name" =>  __('messages.digital_designer'), "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/business-development.svg"],
+	["name" =>  __('messages.market_research'), "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/proof-reading.svg"],
+	["name" =>  __('messages.human_resource'), "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/marketing-director.svg"],
+	["name" =>  __('messages.customer_service'), "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/proof-reading.svg"],
+	["name" =>  __('messages.automotive_jobs'), "image" => "https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/icons/content-writer.svg"],
 ];
 
 $images_ = [
@@ -271,33 +271,33 @@ HR | Job Board
                         <li><a class="text-muted fr mb-3 dropdown-item" href="/lang/fr"><img src="https://m.media-amazon.com/images/I/4109Z2o0HuL._AC_UF894,1000_QL80_.jpg" alt=""> French</a></li>
                     </ul>
                 </div>
-                <li class="list-unstyled"><a href="/" class="text-decoration-none active">Home</a></li>
-                <li class="list-unstyled"><a href="/browse-jobs" class="text-decoration-none">Find Jobs</a></li>
-                <li class="list-unstyled"><a href="/employers" class="text-decoration-none">Employers</a></li>
-                <li class="list-unstyled"><a href="/candidates" class="text-decoration-none">Candidates</a></li>
-                <li class="list-unstyled"><a href="/contact-us" class="text-decoration-none">Contact Us</a></li>
+                <li class="list-unstyled"><a href="/" class="text-decoration-none active">@lang("messages.n_home")</a></li>
+                <li class="list-unstyled"><a href="/browse-jobs" class="text-decoration-none">@lang("messages.n_find_jobs")</a></li>
+                <li class="list-unstyled"><a href="/employers" class="text-decoration-none">@lang("messages.n_employers")</a></li>
+                <li class="list-unstyled"><a href="/candidates" class="text-decoration-none">@lang("messages.n_candidates")</a></li>
+                <li class="list-unstyled"><a href="/contact-us" class="text-decoration-none">@lang("messages.n_contact_us")</a></li>
                  @if ($islogin)                
-                    <a href="/account-check" class="btn _btnl">Dashboard</a>
+                    <a href="/account-check" class="btn _btnl">@lang("messages.n_dashboard")</a>
                 @else
-                    <a href="/login" class="btn _btnl">Login / Register</a>
-                    <a href="/login" class="btn btn-primary">Post Job</a>                
+                    <a href="/login" class="btn _btnl">@lang("messages.n_login_register")</a>
+                    <a href="/login" class="btn btn-primary">@lang("messages.n_post_job")</a>                
                 @endif
             </div>
         </div>
 
         <div class="d-flex">
             <div class="text_ mt-5">
-                <h1 style="font-size: 3.5em">There Are <span class="text-primary"> {{number_format(count($rand_jobs))}}</span> Postings Here For you!</h1>
-                <p class="text-muted ft ftr">Find Jobs, Employment & Career Opportunities</p>
+                <h1 style="font-size: 3.5em">@lang("messages.n_n1", ["count" => number_format(count($rand_jobs))])</h1>
+                <p class="text-muted ft ftr">@lang("messages.n_n2")</p>
                 <div class="inputs_">
                     <form action="/search-jobs" method="post">
                         @csrf
-                        <input name="search" required class="mb-3" type="text" placeholder="job title, keywords or company name">
-                        <input name="location" required class="mb-3" type="text" placeholder="city, state or country">
-                        <button class="btn btn-primary">Find Job</button>
+                        <input name="search" required class="mb-3" type="text" placeholder="{{ __('messages.search_placeholder')}}">
+                        <input name="location" required class="mb-3" type="text" placeholder="{{ __('messages.location')}}">
+                        <button class="btn btn-primary">@lang("messages.n_find_jobs")</button>
                     </form>
                 </div>
-                <p class="text-muted ft ftr"><strong>Popular Searches</strong> : Designer, Developer, Web, IOS, PHP, Senior, Engineer,</p>
+                <p class="text-muted ft ftr">@lang("messages.n_popular_searches")</p>
             </div>
 
             <div class="img_">
@@ -311,8 +311,8 @@ HR | Job Board
     </div>
 
     <div class="section_2 sections_all">
-        <h4 class="text-center mt-5">Popular Job Categories</h4>
-        <p class="text-muted text-center ft ftr">{{number_format(count($rand_jobs))}} jobs live - {{number_format(count($rand_jobs))}} added today.</p>
+        <h4 class="text-center mt-5">@lang("messages.n_popular_job_categories")</h4>
+        <p class="text-muted text-center ft ftr">@lang("messages.n_jobs_live", ["count" => number_format(count($rand_jobs)), 'today' => number_format(count($rand_jobs))]) </p>
 
         <div class="d-flex _cont flex-wrap justify-content-evenly">
             @foreach ($category as $item)
@@ -322,7 +322,7 @@ HR | Job Board
                 </div>
                 <div class="mx-3">
                     <h6 class="text-dark">{{$item["name"]}}</h6>
-                    <p class="text-muted ft">(Open positions)</p>
+                    <p class="text-muted ft">(@lang("messages.n_n4"))</p>
                 </div>
             </a>                
             @endforeach
@@ -333,8 +333,8 @@ HR | Job Board
     <hr style="color: rgb(197, 197, 197)">
 
     <div class="section_3 sections_all">
-        <h4 class="text-center mt-5">Featured Jobs</h4>
-        <p class="text-muted text-center ft ftr">Know your worth and find the job that qualify your life</p>
+        <h4 class="text-center mt-5">@lang("messages.n_featured_jobs")</h4>
+        <p class="text-muted text-center ft ftr">@lang("messages.n_know_your_worth")</p>
         <div class="d-flex _cont flex-wrap justify-content-evenly">
             
 			@foreach ($rand_jobs as $item)
@@ -364,8 +364,8 @@ HR | Job Board
     <div class="section_5 sections_all d-flex">
         <img src="https://superio-appdir.vercel.app/_next/image?url=%2Fimages%2Fresource%2Fimage-2.jpg&w=1200&q=75" alt="">
         <div style="margin-left: 4em" class="text_">
-            <h1 class="fw-bold">Millions of Jobs. Find the one that suits you.</h1>
-            <p class="text-muted mt-2 mb-4 ft">Search all the open positions on the web. Get your own personalized salary estimate. Read reviews on over 600,000 companies worldwide.</p>
+            <h1 class="fw-bold">@lang("messages.n_millions_of_jobs")</h1>
+            <p class="text-muted mt-2 mb-4 ft">@lang("messages.n_search").</p>
             <p><i class="fa-solid fa-check text-success mx-2"></i> Bring to the table win-win survival</p>
             <p><i class="fa-solid fa-check text-success mx-2"></i> Capitalize on low hanging fruit to identify</p>
             <p><i class="fa-solid fa-check text-success mx-2"></i> But I must explain to you how all this</p>
@@ -412,9 +412,9 @@ HR | Job Board
 
     <div class="section_7 sections_all mt-5 mb-5 pt-5 d-flex justify-content-between">
         <div class="">
-            <h2>Recruiting?</h2>
-            <p class="text-muted mb-5 mt-3 ft">Advertise your jobs to millions of monthly users and search 15.8 million CVs in our database.</p>
-            <a href="/candidates" class="btn px-4 py-3 btn-primary">Start Recruiting Now</a>
+            <h2>@lang("messages.n_recruiting")</h2>
+            <p class="text-muted mb-5 mt-3 ft">@lang("messages.n_n3")</p>
+            <a href="/candidates" class="btn px-4 py-3 btn-primary">@lang("messages.n_start_recruiting_now")</a>
         </div>
         <img src="https://superio-appdir.vercel.app/images/resource/image-1.png" alt="">
     </div>

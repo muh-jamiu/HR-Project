@@ -118,5 +118,46 @@ return [
     'footer_terms' => 'Terms',
 
     // new dash
+    // resources/lang/en/messages.php
+    'n_n1' => 'There Are :count Postings Here For you!',
+    'n_n2' => "
+    Find Jobs, Employment & Career Opportunities",
+    'n_n3' => "Advertise your jobs to millions of monthly users and search 15.8 million CVs in our database.",
+    "n_n4" => "Open Position",
     
+    'content_writer' => 'Content Writer',
+    'marketing_director' => 'Marketing Director',
+    'system_analyst' => 'System Analyst',
+    'marketing_communication' => 'Marketing & Communication',
+    'digital_designer' => 'Digital Designer',
+    'market_research' => 'Market Research',
+    'human_resource' => 'Human Resource',
+    'customer_service' => 'Customer Service',
+    'automotive_jobs' => 'Automotive Jobs',
+
+
+    'n_logo' => 'Logo',
+    'n_home' => 'Home',
+    'n_find_jobs' => 'Find Jobs',
+    'n_employers' => 'Employers',
+    'n_candidates' => 'Candidates',
+    'n_contact_us' => 'Contact Us',
+    'n_dashboard' => 'Dashboard',
+    'n_login_register' => 'Login / Register',
+    'n_post_job' => 'Post Job',
+    'n_popular_job_categories' => 'Popular Job Categories',
+    'n_jobs_live' => ':count jobs live - :today added today.',
+    'n_featured_jobs' => 'Featured Jobs',
+    'n_know_your_worth' => 'Know your worth and find the job that qualify your life',
+    'n_millions_of_jobs' => 'Millions of Jobs. Find the one that suits you.',
+    'n_recruiting' => 'Recruiting?',
+    'n_start_recruiting_now' => 'Start Recruiting Now',
+    'n_choose_language' => 'Choose Language',
+    'n_english' => 'English',
+    'n_french' => 'French',
+    'n_german' => 'German',
+    'n_get_started' => 'Get Started',
+    'n_search' => 'Search all the open positions on the web. Get your own personalized salary estimate. Read reviews on over 600,000 companies worldwide.',
+    'n_popular_searches' => 'Popular Searches: Designer, Developer, Web, IOS, PHP, Senior, Engineer,',
+
 ];
