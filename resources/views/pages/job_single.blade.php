@@ -16,9 +16,11 @@ use Carbon\Carbon;
 @section("content")
 <div class="jobs job_single">
 	<x-main-nav :isjobs="$is_jobs"></x-main-nav>
+    <input class="d-none" id="textToCopy"  value="{{request()->url()}}" type="text" name="">
 
     <div class="section1">
         <h1 class="fw-bold mt-4 text-capitalize">{{$job->title}}</h1>
+        <p onclick="copyText()" style="float: right" id="btn_copy" class="btn btn-primary">Shareable Link</p>
         <p class="fs-5 text-muted mt-3 mb-5">Discover your next career move, freelance gig, or internship</p>
     </div>
     
@@ -241,6 +243,26 @@ use Carbon\Carbon;
         document.getElementById('fileNameDisplay').textContent = fileName;
         document.getElementById('fileZise').textContent = ` | ${fileSizeInMB}mb`;
     });
+
+    function copyText() {
+        // Get the text field
+        var copyText = document.getElementById("textToCopy");
+        var btn_copy = document.getElementById("btn_copy");
+
+        // Select the text field
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); // For mobile devices
+
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(copyText.value);
+        btn_copy.classList.add("btn-dark")
+        btn_copy.classList.remove("btn-primary")
+
+        btn_copy.innerHTML = "Link Copied"
+
+        // Alert the copied text (optional)
+        alert("Copied the text: " + copyText.value);
+    }
 </script>
     
 @endpush

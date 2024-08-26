@@ -10,6 +10,15 @@ body{
     transition: .5s;
 }
 
+
+/* ::-webkit-scrollbar{
+    display: block !important;
+}
+
+::-webkit-scrollbar-button{
+    display: block !important;
+} */
+
 #body_.active{
     opacity: 1.0;
     transition: .5s;
@@ -206,10 +215,6 @@ body{
 
 .section4 .cont_{
     width: 340px !important;
-}
-
-::-webkit-scrollbar{
-    display: none !important;
 }
 
 .section3 .cont_ .img{
