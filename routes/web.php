@@ -65,6 +65,16 @@ Route::post('/login', [UserController::class, 'loginUser']);
 
 Route::get('/logOut', [UserController::class, 'logOut']);
 
+Route::get('/admin-panel', [UserController::class, 'admin']);
+
+Route::get('/admin-login', [UserController::class, 'admin_login']);
+
+Route::get('/delete-user/{id}', [UserController::class, 'deleteUser']);
+
+Route::get('/delete-job/{id}', [UserController::class, 'deleteJob']);
+
+Route::get('/delete-application/{id}', [UserController::class, 'deleteApplc']);
+
 Route::get('/automated-questions/{job_title}/{job_id}', [UserController::class, 'automated_questions'])->middleware("notLogin");
 
 Route::get('/technical-questions/{job_title}/{job_id}', [UserController::class, 'technical_questions'])->middleware("notLogin");

@@ -169,5 +169,25 @@
     background-color: #3f69ff1f;
 }
 
-.job_single pre{
+
+.admins_ .sidebar__{
+    background-color: black;
+    width: 20%;
+}
+
+.admins_ .mainbar__{
+    width: 80%;
+    margin-left: 20%;
+}
+
+.admins_ .top_bar_{
+    width: 100% !important;
+}
+
+.ftrs_{
+    font-size: 12px !important;
+}
+
+.admins_ .d_section2{
+    
 }

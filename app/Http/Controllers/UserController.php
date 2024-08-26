@@ -64,6 +64,49 @@ class UserController extends Controller
         return view("index", compact("data"));
     }
 
+    public function admin_login(){
+        return view("dashboard.admin_login");
+    }
+
+
+    public function admin(){ 
+        $user = $this->getUser(session("hr_id"));
+        $role = $user ? $user->role : null;
+
+        if($role != "admin"){
+            return back()->with("msg", "Unauthorized");
+        }
+
+        $data["employer"] = User::where("role", "company")->get();
+        $data["candidate"] = User::where("role", "candidate")->get();
+        $data["applications"] = Application::all();
+        $data["jobs"] = Job::all();
+        $data["user"] = $this->getUser(session("hr_id"));
+
+        return view("dashboard.admin", compact("data"));
+    }
+
+    public function deleteUser($id){
+        $user =  User::find($id);
+        $user->delete();
+
+        return back()->with("msg", "User was deleted successfully");
+    }
+
+    public function deleteJob($id){
+        $job =  Job::find($id);
+        $job->delete();
+
+        return back()->with("msg", "Job was deleted successfully");
+    }
+
+    public function deleteApplc($id){
+        $job =  Application::find($id);
+        $job->delete();
+
+        return back()->with("msg", "Application was deleted successfully");
+    }
+
     public function candidateDash(){
         $data["education"] = $this->getEducation();
         $data["work"] = $this->getWork();
@@ -94,6 +137,8 @@ class UserController extends Controller
 
         if($role == "company"){
             return redirect("/employer-dashboard");   
+        }else if($role == "admin"){
+            return redirect("/admin-panel"); 
         }else{
             return redirect("/candidate-dashboard"); 
         }
