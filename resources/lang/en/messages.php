@@ -160,4 +160,32 @@ return [
     'n_search' => 'Search all the open positions on the web. Get your own personalized salary estimate. Read reviews on over 600,000 companies worldwide.',
     'n_popular_searches' => 'Popular Searches: Designer, Developer, Web, IOS, PHP, Senior, Engineer,',
 
+    // login
+
+    'l_login_to_continue' => 'Login to continue',
+    'l_candidate' => 'Candidate',
+    'l_employer' => 'Employer',
+    'l_enter_email' => 'Enter email address',
+    'l_password_placeholder' => '********',
+    'l_login_button' => 'Login',
+    'l_no_account' => 'Don\'t have an account?',
+    'l_signup_instead' => 'Sign up instead',
+
+    // register
+
+    's_create_hr_account' => 'Create a Free HR Account',
+    's_candidate' => 'Candidate',
+    's_employer' => 'Employer',
+    's_first_name' => 'First Name',
+    's_last_name' => 'Last Name',
+    's_username' => 'Username',
+    's_company_name' => 'Company Name',
+    's_company_type' => 'Company Type',
+    's_phone_number' => 'Phone Number',
+    's_email_placeholder' => 'Enter email address',
+    's_password_placeholder' => 'Password',
+    's_sign_up_button' => 'Sign up',
+    's_already_have_account' => 'Already have an account?',
+    's_login_instead' => 'Login instead',
+
 ];

@@ -152,5 +152,33 @@ return [
     'n_search' => 'Recherchez tous les postes disponibles sur le web. Obtenez votre estimation salariale personnalisée. Lisez les avis sur plus de 600 000 entreprises dans le monde entier.',
     'n_popular_searches' => 'Recherches populaires : Designer, Développeur, Web, IOS, PHP, Senior, Ingénieur,',
 
+    // login
+
+    'l_login_to_continue' => 'Connectez-vous pour continuer',
+    'l_candidate' => 'Candidat',
+    'l_employer' => 'Employeur',
+    'l_enter_email' => 'Entrez l\'adresse e-mail',
+    'l_password_placeholder' => '********',
+    'l_login_button' => 'Se connecter',
+    'l_no_account' => 'Vous n\'avez pas de compte ?',
+    'l_signup_instead' => 'Inscrivez-vous à la place',
+
+    // register
+
+    's_create_hr_account' => 'Créer un compte RH gratuit',
+    's_candidate' => 'Candidat',
+    's_employer' => 'Employeur',
+    's_first_name' => 'Prénom',
+    's_last_name' => 'Nom de famille',
+    's_username' => 'Nom d\'utilisateur',
+    's_company_name' => 'Nom de l\'entreprise',
+    's_company_type' => 'Type d\'entreprise',
+    's_phone_number' => 'Numéro de téléphone',
+    's_email_placeholder' => 'Entrez l\'adresse e-mail',
+    's_password_placeholder' => 'Mot de passe',
+    's_sign_up_button' => 'S\'inscrire',
+    's_already_have_account' => 'Vous avez déjà un compte ?',
+    's_login_instead' => 'Connectez-vous à la place',
+
 ];
 

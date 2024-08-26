@@ -140,8 +140,8 @@ Admin Panel | HR
                         <thead class="">
                             <tr>
                                 <th class="ftrs_ text-muted" scope="col">Job Title</th>
-                                <th class="ftrs_ text-muted" scope="col">Employer Email</th>
-                                <th class="ftrs_ text-muted" scope="col">Employer Phone</th>
+                                <th class="ftrs_ text-muted" scope="col">Application Email</th>
+                                <th class="ftrs_ text-muted" scope="col">Application Phone</th>
                                 <th class="ftrs_ text-muted" scope="col">Country</th>
                                 <th class="ftrs_ text-muted" scope="col">Employment Type</th>
                                 <th class="ftrs_ text-muted" scope="col">Applied Date</th>
@@ -152,12 +152,13 @@ Admin Panel | HR
                             @foreach ($applications as $item)
                             @php
                                 $jobs = App\Models\Job::where(["id" => $item->job_id])->first();
+                                $users_ = App\Models\User::find($item->userId);
                                 $company_ = App\Models\User::where(["id" => $jobs->company_id])->first();
                             @endphp
                             <tr>
                                 <td class="ftrs_ text-capitalize text-muted"><a class="text-decoration-none text-muted" href="/application/{{str_replace(" ", "_", $item->job_title)}}/{{$item->id}}">{{$item->job_title}}</a></td>
-                                <td class="ftrs_ text-muted">{{$jobs->email}}</td>
-                                <td class="ftrs_ text-capitalize text-muted">{{$jobs->phone}}</td>
+                                <td class="ftrs_ text-muted">{{$users_->email ?? "N/A"}}</td>
+                                <td class="ftrs_ text-capitalize text-muted">{{$users_->phone ?? "N/A"}}</td>
                                 <td class="ftrs_ text-capitalize text-muted">{{$jobs->country}}</td>
                                 <td class="ftrs_ text-capitalize text-muted">{{$jobs->employment_type}}</td>
                                 <td class="ftrs_ text-muted">{{Carbon::create($item->created_at)->format('l F j, Y')}}</td>
@@ -166,7 +167,7 @@ Admin Panel | HR
                                         <div class="dropdown">
                                             <i class="fa-solid fa-ellipsis btn" data-bs-toggle="dropdown"></i>
                                             <ul class="dropdown-menu bg-light">
-                                                <li><a href="/delete-application/{{$item->id}}" class="dropdown-header text-decoration-none mt-2 ft mb-0 text-white btn btn-danger">Delete Job</a></li>
+                                                <li><a href="/delete-application/{{$item->id}}" class="dropdown-header text-decoration-none mt-2 ft mb-0 text-white btn btn-danger">Delete Application</a></li>
                                             </ul>
                                         </div>
                                     </div>

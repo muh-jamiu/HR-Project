@@ -18,62 +18,63 @@ Sign up to continue | HR
 
     <div class="form" style="height: 100vh; overflow:scroll">
         <br>
-            <div class="text-center">
-                <h4 class="mb-4 text-dark" >Create a Free HR Account</h4>   
-
-                <div class="nav nav_ d-flex justify-content-evenly nav-pills">
-                    <li class="nav-item">
-                      <a class="nav-link active" data-bs-toggle="pill" href="#home"><i class="fa-regular fa-user"></i> Candidate</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link mx-4" data-bs-toggle="pill" href="#menu1"><i class="fa-regular fa-bag-shopping"></i> Employer</a>
-                    </li>
+        <div class="text-center">
+            <h4 class="mb-4 text-dark">{{ __('messages.s_create_hr_account') }}</h4>   
+        
+            <div class="nav nav_ d-flex justify-content-evenly nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="pill" href="#home"><i class="fa-regular fa-user"></i> {{ __('messages.s_candidate') }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-4" data-bs-toggle="pill" href="#menu1"><i class="fa-regular fa-bag-shopping"></i> {{ __('messages.s_employer') }}</a>
+                </li>
+            </div>
+        
+            @if ($errors->any())
+                <div class="alert mt-2 alert-danger">
+                    @foreach ($errors->all() as $error)
+                        <li style="width: fit-content" class="list-unstyled mb-0">{{ $error }}</li>
+                    @endforeach
                 </div>
-
-                @if ($errors->any())
-                    <div class="alert mt-2 alert-danger">
-                        @foreach ($errors->all() as $error)
-                            <li style="width: fit-content" class="list-unstyled mb-0">{{ $error }}</li>
-                        @endforeach
-                    </div>
-                @endif
-                @if (session("msg"))
-                    <div class="alert alert-danger mt-2 text-center">
-                        <li style="width: fit-content" class="list-unstyled">{{session("msg")}}</li>
-                    </div>
-                @endif
-
-                <div class="tab-content">
-                    <div class="tab-pane container active" id="home">  
-                        <form action="/register?role={{$role}}" method="POST">  
-                            @csrf    
-                            <input class="cdi" name="first_name" required type="text" placeholder="First Name" value="{{old('first_name')}}">
-                            <input class="cdi" name="last_name" required value="{{old('last_name')}}" type="text" placeholder="Last Name">       
-                            <input class="cdi" name="username" required value="{{old('username')}}" type="text" placeholder="Username">   
+            @endif
+            @if (session("msg"))
+                <div class="alert alert-danger mt-2 text-center">
+                    <li style="width: fit-content" class="list-unstyled">{{ session("msg") }}</li>
+                </div>
+            @endif
+        
+            <div class="tab-content">
+                <div class="tab-pane container active" id="home">  
+                    <form action="/register?role={{$role}}" method="POST">  
+                        @csrf    
+                        <input class="cdi" name="first_name" required type="text" placeholder="{{ __('messages.s_first_name') }}" value="{{ old('first_name') }}">
+                        <input class="cdi" name="last_name" required value="{{ old('last_name') }}" type="text" placeholder="{{ __('messages.s_last_name') }}">       
+                        <input class="cdi" name="username" required value="{{ old('username') }}" type="text" placeholder="{{ __('messages.s_username') }}">   
             
-                            <input name="email" required value="{{old('email')}}" type="email" placeholder="Enter email address">
-                            <input name="password" required type="password" placeholder="Password">
-                            <br>
-                            <button style="width: 80%" class="btn p-3 mt-4 mx-5 btn-primary">Sign up</button>
-                        </form>
-                    </div>
-
-                    <div class="tab-pane container fade" id="menu1">  
-                        <form action="/register?role={{$role}}" method="POST">
-                            @csrf
-                            <input class="d-none cpi" name="company_name" required type="text" placeholder="Company Name" value="{{old('company_name')}}">
-                            <input class="cpi" name="company_type" required type="text" placeholder="Company Type" value="{{old('company_type')}}">                    
-                            <input class="cpi" name="phone" required type="text" placeholder="Phone Number" value="{{old('phone')}}">
+                        <input name="email" required value="{{ old('email') }}" type="email" placeholder="{{ __('messages.s_email_placeholder') }}">
+                        <input name="password" required type="password" placeholder="{{ __('messages.s_password_placeholder') }}">
+                        <br>
+                        <button style="width: 80%" class="btn p-3 mt-4 mx-5 btn-primary">{{ __('messages.s_sign_up_button') }}</button>
+                    </form>
+                </div>
+        
+                <div class="tab-pane container fade" id="menu1">  
+                    <form action="/register?role={{$role}}" method="POST">
+                        @csrf
+                        <input class="d-none cpi" name="company_name" required type="text" placeholder="{{ __('messages.s_company_name') }}" value="{{ old('company_name') }}">
+                        <input class="cpi" name="company_type" required type="text" placeholder="{{ __('messages.s_company_type') }}" value="{{ old('company_type') }}">                    
+                        <input class="cpi" name="phone" required type="text" placeholder="{{ __('messages.s_phone_number') }}" value="{{ old('phone') }}">
             
-                            <input name="email" required value="{{old('email')}}" type="email" placeholder="Enter email address">
-                            <input name="password" required type="password" placeholder="Password">
-                            <br>
-                            <button style="width: 80%" class="btn p-3 mt-4 mx-5 btn-primary">Sign up</button>
-                        </form>
-                    </div>
+                        <input name="email" required value="{{ old('email') }}" type="email" placeholder="{{ __('messages.s_email_placeholder') }}">
+                        <input name="password" required type="password" placeholder="{{ __('messages.s_password_placeholder') }}">
+                        <br>
+                        <button style="width: 80%" class="btn p-3 mt-4 mx-5 btn-primary">{{ __('messages.s_sign_up_button') }}</button>
+                    </form>
                 </div>
             </div>
-        <p class="text-center mt-5 text-muted ft">Already have an account? <a href="/login" class="text-decoration-none text-primary">Login instead</a></p>
+        </div>
+        <p class="text-center mt-5 text-muted ft">{{ __('messages.s_already_have_account') }} <a href="/login" class="text-decoration-none text-primary">{{ __('messages.s_login_instead') }}</a></p>
+        
     </div>
 </div>
 

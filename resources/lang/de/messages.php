@@ -149,4 +149,31 @@ return [
     'n_search' => 'Durchsuchen Sie alle offenen Stellen im Web. Erhalten Sie Ihre persönliche Gehaltsschätzung. Lesen Sie Bewertungen über mehr als 600.000 Unternehmen weltweit.',
     'n_popular_searches' => 'Beliebte Suchen: Designer, Entwickler, Web, IOS, PHP, Senior, Ingenieur,',
 
+
+    'l_login_to_continue' => 'Einloggen, um fortzufahren',
+    'l_candidate' => 'Kandidat',
+    'l_employer' => 'Arbeitgeber',
+    'l_enter_email' => 'E-Mail-Adresse eingeben',
+    'l_password_placeholder' => '********',
+    'l_login_button' => 'Anmelden',
+    'l_no_account' => 'Sie haben kein Konto?',
+    'l_signup_instead' => 'Stattdessen registrieren',
+
+    // register
+
+    's_create_hr_account' => 'Erstellen Sie ein kostenloses HR-Konto',
+    's_candidate' => 'Kandidat',
+    's_employer' => 'Arbeitgeber',
+    's_first_name' => 'Vorname',
+    's_last_name' => 'Nachname',
+    's_username' => 'Benutzername',
+    's_company_name' => 'Firmenname',
+    's_company_type' => 'Unternehmenstyp',
+    's_phone_number' => 'Telefonnummer',
+    's_email_placeholder' => 'E-Mail-Adresse eingeben',
+    's_password_placeholder' => 'Passwort',
+    's_sign_up_button' => 'Anmelden',
+    's_already_have_account' => 'Sie haben bereits ein Konto?',
+    's_login_instead' => 'Stattdessen einloggen',
+
 ];

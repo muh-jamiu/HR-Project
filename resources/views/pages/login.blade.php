@@ -16,14 +16,14 @@ Login to continue | HR
     <div class="form">
         <br>
             <div class="text-center">
-                <h4 class="text-center mb-5 mt-4 text-dark" >Login to continue</h4>
+                <h4 class="text-center mb-5 mt-4 text-dark">{{ __('messages.l_login_to_continue') }}</h4>
 
                 <div class="nav nav_ d-flex mb-4 justify-content-evenly nav-pills">
                     <li class="nav-item">
-                      <a class="nav-link active" data-bs-toggle="pill" href="#home"><i class="fa-regular fa-user"></i> Candidate</a>
+                        <a class="nav-link active" data-bs-toggle="pill" href="#home"><i class="fa-regular fa-user"></i> {{ __('messages.l_candidate') }}</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link mx-4" data-bs-toggle="pill" href="#menu1"><i class="fa-solid fa-bag-shopping"></i> Employer</a>
+                        <a class="nav-link mx-4" data-bs-toggle="pill" href="#menu1"><i class="fa-solid fa-bag-shopping"></i> {{ __('messages.l_employer') }}</a>
                     </li>
                 </div>
 
@@ -39,30 +39,30 @@ Login to continue | HR
                         <li style="width: fit-content" class="list-unstyled">{{session("msg")}}</li>
                     </div>
                 @endif
-                
+
                 <div class="tab-content">
                     <div class="tab-pane container active" id="home">
                         <form action="/login" method="post">
                             @csrf
-                            <input name="email" value="{{old('email')}}" required type="email" placeholder="Enter email address">
-                            <input name="password" type="password" placeholder="********">
+                            <input name="email" value="{{ old('email') }}" required type="email" placeholder="{{ __('messages.l_enter_email') }}">
+                            <input name="password" type="password" placeholder="{{ __('messages.l_password_placeholder') }}">
                             <br>
-                            <button style="width: 80%" class="btn p-3 mt-4 mx-5 btn-primary">Login</button>
+                            <button style="width: 80%" class="btn p-3 mt-4 mx-5 btn-primary">{{ __('messages.l_login_button') }}</button>
                         </form>
                     </div>
 
                     <div class="tab-pane container fade" id="menu1">
                         <form action="/login" method="post">
                             @csrf
-                            <input name="email" value="{{old('email')}}" required type="email" placeholder="Enter email address">
-                            <input name="password" type="password" placeholder="********">
+                            <input name="email" value="{{ old('email') }}" required type="email" placeholder="{{ __('messages.l_enter_email') }}">
+                            <input name="password" type="password" placeholder="{{ __('messages.l_password_placeholder') }}">
                             <br>
-                            <button style="width: 80%" class="btn p-3 mt-4 mx-5 btn-primary">Login</button>
+                            <button style="width: 80%" class="btn p-3 mt-4 mx-5 btn-primary">{{ __('messages.l_login_button') }}</button>
                         </form>
                     </div>
                 </div>
+                <p class="text-center mt-5 text-muted ft">{{ __('messages.l_no_account') }} <a href="/signup" class="text-decoration-none text-primary">{{ __('messages.l_signup_instead') }}</a></p>
             </div>
-        <p class="text-center mt-5 text-muted ft">Don't have an account? <a href="/signup" class="text-decoration-none text-primary">Sign up instead</a></p>
     </div>
 </div>
 @endsection
