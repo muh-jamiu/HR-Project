@@ -406,7 +406,7 @@ Employer Dashboard | HR
 @endsection
 
 @section("content")
-<div class="dashboard_ d-flex">
+<div class="dashboard_ admins_ d-flex">
     <div class="sidebar__">
         <div class="d-flex justify-content-between">
             <div class="logo"><a href="/"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""></a> </div>
