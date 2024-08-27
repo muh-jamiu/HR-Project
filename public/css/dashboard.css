@@ -9,6 +9,38 @@
     overflow: scroll;
 }
 
+.dashboard_{
+    max-width: 1440px;
+    margin: auto auto;
+}
+
+@media screen and (min-width: 1620px) {
+    .dashboard_ .mainbar__{
+        margin-left: 22% !important;
+    }
+}
+
+
+@media screen and (min-width: 1820px) {
+    .dashboard_ .mainbar__{
+        margin-left: 25% !important;
+    }
+}
+
+@media screen and (min-width: 2020px) {
+    .dashboard_ .mainbar__{
+        margin-left: 32% !important;
+    }
+}
+
+@media screen and (min-width: 2620px) {
+    .dashboard_ .mainbar__{
+        margin-left: 50% !important;
+    }
+}
+
+
+
 .sidebar__.toggle{
     width: 0% !important;
     transition: .2s;
@@ -181,7 +213,7 @@
 }
 
 .admins_ .top_bar_{
-    width: 100% !important;
+    width: 80% !important;
 }
 
 .ftrs_{
