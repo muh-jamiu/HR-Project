@@ -23,6 +23,7 @@
     
     @vite('resources/js/app.js')
     <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 <body id="body_">

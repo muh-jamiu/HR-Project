@@ -77,11 +77,27 @@ class UserController extends Controller
             return back()->with("msg", "Unauthorized");
         }
 
+        $data["chart"] = User::selectRaw('DATE(created_at) as date, COUNT(*) as count')
+        ->groupBy('date')
+        ->orderBy('date')
+        ->get();
+
+        $data["chartjob"] = Job::selectRaw('DATE(created_at) as date, COUNT(*) as count')
+        ->groupBy('date')
+        ->orderBy('date')
+        ->get();
+
+        $data["chartapps"] = Application::selectRaw('DATE(created_at) as date, COUNT(*) as count')
+        ->groupBy('date')
+        ->orderBy('date')
+        ->get();
+
         $data["employer"] = User::where("role", "company")->get();
         $data["candidate"] = User::where("role", "candidate")->get();
         $data["applications"] = Application::all();
         $data["jobs"] = Job::all();
         $data["user"] = $this->getUser(session("hr_id"));
+        // dd($data["chart"]);
 
         return view("dashboard.admin", compact("data"));
     }

@@ -133,6 +133,18 @@ Admin Panel | HR
                         </div>
                     </div>
 
+                    <canvas id="appsCreationChart" width="400" height="200"></canvas>
+                    <hr>
+                    <br>
+                    <br>
+                    <canvas id="userCreationChart" width="400" height="200"></canvas>
+                    <hr>
+                    <br>
+                    <br>
+                    <canvas id="jobCreationChart" width="400" height="200"></canvas>
+                    <hr>
+                    <br>
+                    <br>
                 </div>
 
                 <div class="tab-pane container fade" id="jobs">                   
@@ -339,5 +351,99 @@ Admin Panel | HR
             sidebar__.classList.toggle("toggle");
             top_bar_.classList.toggle("toggle");
         })
+
+        // Pass Laravel data to JavaScript
+        var userDates = @json($data["chart"]->pluck('date'));
+        var userCounts = @json($data["chart"]->pluck('count'));
+        var formattedDates = userDates.map(date => {
+            let options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(date).toLocaleDateString(undefined, options);
+        });
+
+        var ctx = document.getElementById('userCreationChart').getContext('2d');
+        var userCreationChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: formattedDates,  // X-axis labels
+                datasets: [{
+                    label: 'Total Number of Users Join',
+                    data: userCounts, // Y-axis data
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var jobDates = @json($data["chartjob"]->pluck('date'));
+        var jobCounts = @json($data["chartjob"]->pluck('count'));
+        var formattedDates = jobDates.map(date => {
+            let options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(date).toLocaleDateString(undefined, options);
+        });
+
+        var ctx = document.getElementById('jobCreationChart').getContext('2d');
+        var jobCreationChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: formattedDates,  // X-axis labels
+                datasets: [{
+                    label: 'Total Number of Job Posted',
+                    data: jobCounts, // Y-axis data
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        var appsDates = @json($data["chartapps"]->pluck('date'));
+        var appsCounts = @json($data["chartapps"]->pluck('count'));
+        var formattedDates = appsDates.map(date => {
+            let options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(date).toLocaleDateString(undefined, options);
+        });
+
+        var ctx = document.getElementById('appsCreationChart').getContext('2d');
+        var appsCreationChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: formattedDates,  // X-axis labels
+                datasets: [{
+                    label: 'Total Number of Applications over time',
+                    data: appsCounts, // Y-axis data
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function (value){
+                                return Number.isInteger(value) ? value : null
+                            },
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
     </script>
 @endpush
