@@ -837,9 +837,9 @@ Employer Dashboard | HR
                         <div class="price_box">
                             <div class="text-center mb-4 mt-3">
                                 <h6 class="fw-semibold text-muted">Enterprise Plan</h6>
-                                <h1 class="fw-bold text-muted mt-3"><sup class="ft ftr">$</sup>29.99</h1>
+                                <h1 class="fw-bold text-muted mt-3"><sup class="ft ftr">$</sup>99.99</h1>
                                 <p class="text-muted ft ftr">Every month</p>
-                                <a href="/subscription?price=29.99&plan=Monthly Enterprise Plan" class="btn-dark _pur_ px-5 btn">Purchase</a>
+                                <a href="/subscription?price=99.99&plan=Monthly Enterprise Plan" class="btn-dark _pur_ px-5 btn">Purchase</a>
                             </div>
                             <div class="mb-3">
                                 <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Resume Scanning and parsing</p>
@@ -913,7 +913,7 @@ Employer Dashboard | HR
                         
                         <div class="price_box">
                             <div class="text-center mb-4 mt-3">
-                                <h6 class="fw-semibold text-muted">Basic Plan</h6>
+                                <h6 class="fw-semibold text-muted">Enterprise Plan</h6>
                                 <h1 class="fw-bold text-muted mt-3"><sup class="ft ftr">$</sup>959.90</h1>
                                 <p class="text-muted ft ftr">Monthly / $79.99</p>
                                 <a href="/subscription?price=959.90&plan=Annual Enterprise Plan" class="btn-dark _pur_ px-5 btn">Purchase</a>
