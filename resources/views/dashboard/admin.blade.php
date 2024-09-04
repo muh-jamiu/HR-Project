@@ -17,7 +17,7 @@ Admin Panel | HR
 <div class="dashboard_ admins_ d-flex">
     <div class="sidebar__">
         <div class="d-flex justify-content-between">
-            <div class="logo"><a href="/"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""></a> </div>
+            <div class="logo"><a href="/"><img style="width: 100px;  transform:translateY(-20px)" src="/img/logo_.png" alt=""></a> </div>
             <div class="">
                 <p class="mb-0 btn text-white"><i class="fa-regular fa-bell"></i></p>
             </div>

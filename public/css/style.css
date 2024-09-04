@@ -1094,3 +1094,7 @@ button:hover, .btn:hover{
     }
 
 }
+
+._blg_::-webkit-scrollbar{
+    display: none !important;
+}

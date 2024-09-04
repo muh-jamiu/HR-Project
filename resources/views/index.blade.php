@@ -223,6 +223,31 @@ $images_ = [
     "https://superio-appdir.vercel.app/_next/image?url=%2Fimages%2Fresource%2Fblog%2F3.jpg&w=1920&q=75"
 ];
 
+$blogt = [
+    "15 High-Paying Future Jobs Shaped by AI Technology: Top Career 
+Opportunities for 2030",
+    "Which Jobs Will Thrive in the Age of AI? Top Careers That Will Endure and 
+Those at Risk",
+    "Top IT Skills for 2030: Expert Predictions on the Most In-Demand Technical 
+Abilities",
+];
+
+$blogI = [
+    "As artificial intelligence (AI) continues to evolve, it's reshaping the job market in 
+unprecedented ways. The emergence of AI technology is creating new career opportunities 
+that promise high salaries and exciting prospects. To navigate this future landscape, it's 
+crucial to understand which roles are likely to thrive in this new era. This blog post explores 
+15 high-paying jobs shaped by AI technology that will be in demand by 2030.",
+    "As AI continues to advance, its impact on various professions is becoming increasingly 
+evident. Understanding which jobs are likely to endure and which are at risk of automation is 
+essential for career planning in the AI era. This blog post examines the careers that will thrive
+despite AI advancements and those that might face challenges.",
+    "The rapid evolution of technology is shaping the future of IT careers. To remain competitive 
+and relevant, IT professionals must develop skills that align with emerging trends. This blog 
+post outlines the top IT skills for 2030 based on expert predictions and offers guidance on 
+how to acquire these essential abilities.",
+];
+
 $lang = session("locale");
 @endphp
 
@@ -234,16 +259,12 @@ HR | Job Board
 
 <div class="_land_">
     <div style="background: transparent !important" class="top mobile_nav d-flex justify-content-between d-none">
-        <h3 data-bs-toggle="offcanvas" data-bs-target="#demo" class="fw-bold"><a style="height: fit-content" href="#" class="text-dark text-decoration-none"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""> Logo</a></h3>
-        {{-- <div class="d-flex">
-            <p class="btn um_ ft ftr text-muted mx-3"><i class="fa-regular fa-user"></i></p>
-            <p type="button" data-bs-toggle="offcanvas" data-bs-target="#demo" class="btn ft ftr text-muted">s<i class="fa-solid fa-bars"></i></p>
-        </div> --}}
+        <h3 data-bs-toggle="offcanvas" data-bs-target="#demo" class="fw-bold"><a style="height: fit-content" href="#" class="text-dark text-decoration-none"><img style="width: 70px" src="/img/logo_.png" alt=""></a></h3>
     </div>
 
     <div class="section_1 sections_all">
         <div style="background: transparent !important" class="top mb-5 web_nav d-flex justify-content-between">
-            <h3 class="fw-bold"><a href="/" class="text-dark text-decoration-none"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""> Logo</a></h3>
+            <h3 class="fw-bold"><a href="/" class="text-dark text-decoration-none"><img style="width: 100px;  transform:translateY(-20px)" src="/img/logo_.png" alt=""></a></h3>
             <div class="_all_links d-flex">
                 <div class="dropdown flags_" style="margin-right: 3em">
                     <button type="button" class="btn bg__ text-muted dropdown-toggle" data-bs-toggle="dropdown">
@@ -394,18 +415,18 @@ HR | Job Board
             <p class="text-muted ft">Fresh job related news content posted each day.</p>
         </div>
 
-        <div style="overflow: scroll" class="d-flex justify-content-start flex-nowrap">
+        <div style="overflow: scroll" class="d-flex _blg_ justify-content-start flex-nowrap">
             @for ($i = 0; $i < 3; $i++)
-                <div class="_box mx-2">
+                <a href="/blogs?title={{str_replace(" ", "_", $blogt[$i])}}" class="_box mx-2 mb-4 text-decoration-none">
                     <div class="img">
                         <img src="{{$images_[$i]}}" alt="">
                     </div>
-                    <p class="text-muted mt-2 ft">August 31, 2021</p>
-                    <p class="fw-bold mb-1">Attract Sales And Profits</p>
-                    <p class="text-muted ft">A job ravenously while Far much that one rank beheld after outside....</p>
+                    <p class="text-muted mt-2 ft">August 31, 2024</p>
+                    <p class="fw-bold text-muted mb-1">{{$blogt[$i]}}</p>
+                    <p class="text-muted ft">{{$blogI[$i]}}</p>
                     
-                    <a href="#" class="btn text-primary">Read More</a>
-                </div>       
+                    {{-- <a href="#" class="btn text-primary">Read More</a> --}}
+                </a>       
             @endfor
         </div>     
     </div>
@@ -423,11 +444,16 @@ HR | Job Board
     <hr style="color: rgb(197, 197, 197)">
 
     <footer class="d-flex mt-5 pb-5 justify-content-evenly">
-        <div class="logo_" style="width: 40%">
-            <h3 class="fw-bold mb-3"><a href="/" class="text-dark text-decoration-none"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""> Logo</a></h3>
-            <p class="ft text-muted">Call us <strong class="text-primary">123 456 7890</strong></p>		
-            <p class="text-muted ft">329 Queensberry Street, North Melbourne VIC 3051, Australia.</p>
-            <p class="text-muted ft">support@superio.com</p>
+        <div class="logo_" style="width: 40%; transform:translateY(-70px)">
+            <h3 class="fw-bold mb-3"><a href="/" class="text-dark text-decoration-none"><img style="width: 220px" src="/img/logo_.png" alt=""></a></h3>
+            <p class="text-muted ft">Welcome to Ai-SmartRecuiter.com, your ultimate AI-powered resume analysis platform 
+                designed to streamline the hiring process for medium to large companies. Founded by 
+                Salaheddine Rchouma, a dedicated Business Analytics and Data Science student with 
+                extensive experience in the field, our company is proudly based in Rabat, Morocco. At Ai-
+                SmartRecuiter, we leverage advanced AI technology to automate resume scanning, evaluate 
+                candidates' technical and soft skills, and provide a comprehensive scoring system to help HR 
+                professionals make informed hiring decisions with ease and efficiency. Join us in 
+                revolutionizing the recruitment landscape with cutting-edge solutions tailored to meet your </p>
         </div>
         <div class="" style="width: 15%">
             <li class="list-unstyled fw-bold mb-3">@lang("messages.footer_company")</li>
@@ -456,7 +482,7 @@ HR | Job Board
     
     <div class="offcanvas offcanvas-start" id="demo">
         <div class="offcanvas-header">
-            <h3 class="fw-bold"><a href="/" class="text-dark text-decoration-none"><img src="https://wp.alithemes.com/html/jobhub/frontend/assets/imgs/theme/favicon.svg" alt=""> Logo</a></h3>
+            <h3 class="fw-bold"><a href="/" class="text-dark text-decoration-none"><img style="width: 70px" src="/img/logo_.png" alt=""></a></h3>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
         </div>
 

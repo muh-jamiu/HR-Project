@@ -37,6 +37,10 @@ Route::get('/about-us', function () {
     return view("pages.about");
 });
 
+Route::get('/blogs', function () {
+    return view("pages.blogs");
+});
+
 Route::get('/login', function () {
     return view("pages.login");
 })->middleware("isLogin");

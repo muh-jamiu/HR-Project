@@ -82,7 +82,6 @@
 }
 
 .dashboard_ .sidebar__ li.active{
-    background-color: rgba(128, 128, 128, 0.136);
     padding: .7em .7em;
     border-radius: 3px;
 }
@@ -220,7 +219,7 @@
 
 
 .admins_ .sidebar__{
-    background-color: black;
+    background-color: #1e293b;
     width: 20%;
 }
 
@@ -239,4 +238,8 @@
 
 .admins_ .d_section2{
     
+}
+
+.sidebar__::-webkit-scrollbar{
+    display: none !important;
 }
