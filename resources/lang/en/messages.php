@@ -28,8 +28,8 @@ return [
     'hybrid' => 'Hybrid',
     'location' => 'Location',
     'find_now' => 'Find Now',
-    'recruiting' => 'Recruiting?',
-    'advertise_jobs' => 'Advertise your jobs to millions of monthly users and search 16.8 million CVs in our database.',
+    'recruiting' => 'Are you an HR Professional?',
+    'advertise_jobs' => 'Publish your jobs to thousands of monthly users and find a perfect match with our AI powered recruitment process.',
     'post_a_job' => 'Post A Job',
     'set_job_reminder' => 'Set job reminder',
     'job_notification' => 'Enter your email address and get job notification.',
@@ -60,7 +60,7 @@ return [
     // candidate
     'cand_title' => 'There Are :count Candidates Here For You!',
     'subtitle' => 'Discover your next career move, freelance gig, or internship',
-    'recruiting_title' => 'Recruiting?',
+    'recruiting_title' => 'Are you an HR Professional?',
     'recruiting_text' => 'Advertise your jobs to millions of monthly users and search 16.8 million CVs in our database.',
     'post_job' => 'Post A Job',
     'set_reminder' => 'Set job reminder',
@@ -120,8 +120,7 @@ return [
     // new dash
     // resources/lang/en/messages.php
     'n_n1' => 'There Are :count Postings Here For you!',
-    'n_n2' => "
-    Find Jobs, Employment & Career Opportunities",
+    'n_n2' => "Streamline Your HR Processes with Our AI-Powered Efficiency",
     'n_n3' => "Advertise your jobs to millions of monthly users and search 15.8 million CVs in our database.",
     "n_n4" => "Open Position",
     
@@ -149,15 +148,15 @@ return [
     'n_jobs_live' => ':count jobs live - :today added today.',
     'n_featured_jobs' => 'Featured Jobs',
     'n_know_your_worth' => 'Know your worth and find the job that qualify your life',
-    'n_millions_of_jobs' => 'Millions of Jobs. Find the one that suits you.',
-    'n_recruiting' => 'Recruiting?',
+    'n_millions_of_jobs' => 'Simplify Recruitment and Talent Management',
+    'n_recruiting' => 'Are you an HR Professional?',
     'n_start_recruiting_now' => 'Start Recruiting Now',
     'n_choose_language' => 'Choose Language',
     'n_english' => 'English',
     'n_french' => 'French',
     'n_german' => 'German',
     'n_get_started' => 'Get Started',
-    'n_search' => 'Search all the open positions on the web. Get your own personalized salary estimate. Read reviews on over 600,000 companies worldwide.',
+    'n_search' => 'Discover how our AI-Powered HR Platform can transform your hiring process. From intelligent candidate scoring and automated exam generation tailored to specific roles designed for ease of use. we provide the tools you need to make HR management seamless',
     'n_popular_searches' => 'Popular Searches: Designer, Developer, Web, IOS, PHP, Senior, Engineer,',
 
     // login

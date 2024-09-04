@@ -246,16 +246,6 @@ Platform Candidates | HR
                 <button class="btn btn-light mt-4">@lang("messages.post_a_job")b</button>
             </div>
 
-            <div class="email__ mb-3">
-                <h5 class="fw-bold mb-3">@lang("messages.set_job_reminder")</h5>
-                <p class="text-muted ft">@lang("messages.job_notification")</p>
-                <div class="input-group flex-nowrap">
-                    <span style="background: transparent" class="input-group-text"><i class="fa-regular text-muted fa-envelope"></i></span>
-                    <input style="border:1px solid rgb(231, 231, 231);border-left: none;" type="text" class="form-control" placeholder='{{ __('messages.enter_email')}}'>
-                </div>
-                <button style="width: 100%" class="btn btn-danger mt-4">@lang("messages.submit")</button>
-            </div>
-
             <div class="xys_">
                 <div class="mb-4">
                     <p class="fw-semibold mb-1">@lang("messages.locations")</p>

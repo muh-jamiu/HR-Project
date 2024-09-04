@@ -366,25 +366,25 @@ HR | Job Board
         <div style="margin-left: 4em" class="text_">
             <h1 class="fw-bold">@lang("messages.n_millions_of_jobs")</h1>
             <p class="text-muted mt-2 mb-4 ft">@lang("messages.n_search").</p>
-            <p><i class="fa-solid fa-check text-success mx-2"></i> Bring to the table win-win survival</p>
-            <p><i class="fa-solid fa-check text-success mx-2"></i> Capitalize on low hanging fruit to identify</p>
-            <p><i class="fa-solid fa-check text-success mx-2"></i> But I must explain to you how all this</p>
+            <p><i class="fa-solid fa-check text-success mx-2"></i> Elevate your HR operations</p>
+            <p><i class="fa-solid fa-check text-success mx-2"></i> Optimize your recruitment strategy</p>
+            <p><i class="fa-solid fa-check text-success mx-2"></i> Utilize advanced AI tools to streamline your hiring process</p>
             <a href="/browse-jobs" class="btn mt-3 btn-primary">Get Started</a>
         </div>
     </div>
 
     <div class="section_6 sections_all mb-5 mt-5 d-flex justify-content-evenly">
         <div>            
-            <h1 class="fw-bold text-center">4M</h1>
-            <p class="text-muted text-center ft">4 million daily active users</p>
+            <h1 class="fw-bold text-center">50+</h1>
+            <p class="text-muted text-center ft">Over 50 AI features at your disposal</p>
         </div>
         <div>            
-            <h1 class="fw-bold text-center">12K</h1>
-            <p class="text-muted text-center ft">Over 12k open job positions</p>
+            <h1 class="fw-bold text-center">100+</h1>
+            <p class="text-muted text-center ft">Hundreds of jobs posted daily</p>
         </div>
         <div>            
-            <h1 class="fw-bold text-center">20M</h1>
-            <p class="text-muted text-center ft">Over 20 million stories shared</p>
+            <h1 class="fw-bold text-center">600</h1>
+            <p class="text-muted text-center ft">Get the right candidate in time</p>
         </div>
     </div>
 

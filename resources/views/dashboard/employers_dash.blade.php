@@ -20,6 +20,7 @@ $pending_job = $data["pending_job"] ?? [];
 $decline_job = $data["decline_job"] ?? [];
 $applications = $data["applications"] ?? [];
 $branch = $data["branch"] ?? [];
+$is_due = $data["is_due"] ?? false;
 $_countries = [
     "Afghanistan",
     "Albania",
@@ -427,7 +428,7 @@ Employer Dashboard | HR
         </div>
 
         <div class="mt-4">
-            <p class="fw-bold mb-0" style="color: purple">Dashboard</p>
+            <p class="fw-bold text-muted mb-0" style="color: purple">Dashboard</p>
             <li class="list-unstyled active"><a href="" class="text-decoration-none">
                 <i class="fa-solid fa-house-user"></i> Overview
             </a></li>
@@ -491,6 +492,9 @@ Employer Dashboard | HR
             </form>
             @if (session("msg"))
             <p style="position: absolute; font-size:12px" class="ftr alert alert-success mt-3">{{session("msg")}}</p>                
+            @endif
+            @if ($is_due)
+            <p style="position: fix; font-size:12px; bottom: 0" class="ftr alert alert-danger mt-5">Your free trial has expired, Please subscribe to any of our plan in the pricing section to continue enjoying uninterrupted access to our service.</p>                  
             @endif
         </div>
 
@@ -654,6 +658,12 @@ Employer Dashboard | HR
                 </div>
 
                 <div class="tab-pane container all_input fade" id="new_job">
+                    @if ($is_due)
+                    <div>
+                        <h6 class="text-muted">Please you need to subscribe before using this section </h6>
+                        <p style="position: absolute; font-size:12px" class="ftr alert alert-danger mt-3">Your free trial has expired, Please subscribe to any of our plan in the pricing section to continue enjoying uninterrupted access to our service</p>                            
+                    </div>                        
+                    @else                        
                     <form id="form_s" action="/create-job" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="d-flex justify-content-between mb-4">
@@ -737,6 +747,7 @@ Employer Dashboard | HR
                         <br>
                         <br>
                     </form>
+                    @endif
                 </div>
 
                 <div class="tab-pane container fade" id="applicant">
@@ -773,7 +784,157 @@ Employer Dashboard | HR
                     </div>
                 </div>
 
-                <div class="tab-pane container fade" id="price">price</div>
+                <div class="tab-pane container price__ fade" id="price">
+                    <h2 class="fw-bold text-muted">Monthly Prices</h2>
+                    <p class="text-muted mb-5">Choose your monthly pricing plan.</p>
+                    <div class="d-flex justify-content-evenly">
+                        <div class="price_box">
+                            <div class="text-center mb-4 mt-3">
+                                <h6 class="fw-semibold text-muted">Basic Plan</h6>
+                                <h1 class="fw-bold text-muted mt-3"><sup class="ft ftr">$</sup>29.99</h1>
+                                <p class="text-muted ft ftr">Every month</p>
+                                <a href="/subscription?price=29.99&plan=Monthly Basic Plan" class="btn-primary px-5 btn">Purchase</a>
+                            </div>
+                            <div class="mb-3">
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-primary"></i> Resume Scanning and parsing</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-primary"></i> Automated initial screening questions</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-primary"></i> Basic candidates scoring</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-primary"></i> Email notifications</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-primary"></i> Up to 50 resumes/month</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> Customizable screening questions</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> Detailed analytics dashboard</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> Integration with job boards (Indeed, LinkedIn)</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> Custom company branding</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> Unlimited resumes</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> Team collaboration tools</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> AI-powered interview scheduling</p>
+                            </div>
+                        </div>
+                        
+                        <div class="price_box">
+                            <div class="text-center mb-4 mt-3">
+                                <h6 class="fw-semibold text-muted">Professional Plan</h6>
+                                <h1 class="fw-bold text-muted mt-3"><sup class="ft ftr">$</sup>59.99</h1>
+                                <p class="text-muted ft ftr">Every month</p>
+                                <a href="/subscription?price=59.99&plan=Monthly Professional Plan" class="btn-success px-5 btn">Purchase</a>
+                            </div>
+                            <div class="mb-3">
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Resume Scanning and parsing</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Automated initial screening questions</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Advanced candidates scoring</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Email notifications</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Up to 200 resumes/month</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Customizable screening questions</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Detailed analytics dashboard</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Integration with job boards (Indeed, LinkedIn)</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> Custom company branding</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> Unlimited resumes</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> Team collaboration tools</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> AI-powered interview scheduling</p>
+                            </div>
+                        </div>
+                        
+                        <div class="price_box">
+                            <div class="text-center mb-4 mt-3">
+                                <h6 class="fw-semibold text-muted">Enterprise Plan</h6>
+                                <h1 class="fw-bold text-muted mt-3"><sup class="ft ftr">$</sup>29.99</h1>
+                                <p class="text-muted ft ftr">Every month</p>
+                                <a href="/subscription?price=29.99&plan=Monthly Enterprise Plan" class="btn-dark px-5 btn">Purchase</a>
+                            </div>
+                            <div class="mb-3">
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Resume Scanning and parsing</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Automated initial screening questions</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Advanced candidates scoring</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Email notifications</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Unlimited resumes</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Customizable screening questions</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Detailed analytics dashboard</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Integration with job boards (Indeed, LinkedIn)</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Custom company branding</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Team collaboration tools</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> AI-powered interview scheduling</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <br>
+                    <hr>
+                    <br>
+
+                    <h2 class="fw-bold text-muted">Yearly Prices</h2>
+                    <p class="text-muted mb-5">Save 20% with annual subscription.</p>
+                    <div class="d-flex justify-content-evenly">
+                        <div class="price_box">
+                            <div class="text-center mb-4 mt-3">
+                                <h6 class="fw-semibold text-muted">Basic Plan</h6>
+                                <h1 class="fw-bold text-muted mt-3"><sup class="ft ftr">$</sup>287.90</h1>
+                                <p class="text-muted ft ftr">Monthly / $23.99</p>
+                                <a href="/subscription?price=287.90&plan=Annual Basic Plan" class="btn-primary px-5 btn">Purchase</a>
+                            </div>
+                            <div class="mb-3">
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-primary"></i> Resume Scanning and parsing</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-primary"></i> Automated initial screening questions</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-primary"></i> Basic candidates scoring</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-primary"></i> Email notifications</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-primary"></i> Up to 50 resumes/month</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> Customizable screening questions</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> Detailed analytics dashboard</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> Integration with job boards (Indeed, LinkedIn)</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> Custom company branding</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> Unlimited resumes</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> Team collaboration tools</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> AI-powered interview scheduling</p>
+                            </div>
+                        </div>
+                        
+                        <div class="price_box">
+                            <div class="text-center mb-4 mt-3">
+                                <h6 class="fw-semibold text-muted">Professional Plan</h6>
+                                <h1 class="fw-bold text-muted mt-3"><sup class="ft ftr">$</sup>575.90</h1>
+                                <p class="text-muted ft ftr">Monthly / $47.99</p>
+                                <a href="/subscription?price=47.99&plan=Annual Professional Plan" class="btn-success px-5 btn">Purchase</a>
+                            </div>
+                            <div class="mb-3">
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Resume Scanning and parsing</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Automated initial screening questions</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Advanced candidates scoring</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Email notifications</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Up to 200 resumes/month</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Customizable screening questions</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Detailed analytics dashboard</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Integration with job boards (Indeed, LinkedIn)</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> Custom company branding</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> Unlimited resumes</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> Team collaboration tools</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-times text-danger"></i> AI-powered interview scheduling</p>
+                            </div>
+                        </div>
+                        
+                        <div class="price_box">
+                            <div class="text-center mb-4 mt-3">
+                                <h6 class="fw-semibold text-muted">Basic Plan</h6>
+                                <h1 class="fw-bold text-muted mt-3"><sup class="ft ftr">$</sup>959.90</h1>
+                                <p class="text-muted ft ftr">Monthly / $79.99</p>
+                                <a href="/subscription?price=959.90&plan=Annual Enterprise Plan" class="btn-dark px-5 btn">Purchase</a>
+                            </div>
+                            <div class="mb-3">
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Resume Scanning and parsing</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Automated initial screening questions</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Advanced candidates scoring</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Email notifications</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Unlimited resumes</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Customizable screening questions</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Detailed analytics dashboard</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Integration with job boards (Indeed, LinkedIn)</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Custom company branding</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Team collaboration tools</p>
+                                <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> AI-powered interview scheduling</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
 

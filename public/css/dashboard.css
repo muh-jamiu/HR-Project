@@ -39,6 +39,23 @@
     }
 }
 
+.price__ .price_box{
+    box-shadow: .1em .1em 1em rgba(128, 128, 128, 0.099);
+    width: 300px;
+    border-radius: 10px;
+    margin-right: 1em;
+    padding: 1em;
+    background-color: white;
+}
+
+.price__ .price_box .mb-3 i{
+    margin-right: .5em !important;
+}
+
+.price__ .price_box .mb-3 p{
+    font-size: 12px !important;
+}
+
 
 
 .sidebar__.toggle{

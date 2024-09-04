@@ -35,6 +35,7 @@ use function imagepng;
 use function imagedestroy;
 use PayPal\Auth\OAuthTokenCredential;
 use Exception;
+use App\Services\PayPalService;
 
 class UserController extends Controller
 {
@@ -42,8 +43,9 @@ class UserController extends Controller
     protected $pdf;
     protected $googleGeminiService;
     private $apiContext;
+    protected $payPalService;
 
-    public function __construct(GoogleGeminiService $googleGeminiService, Pdf $pdf)
+    public function __construct(GoogleGeminiService $googleGeminiService, Pdf $pdf, PayPalService $payPalService)
     {
         $this->googleGeminiService = $googleGeminiService;
         $this->pdf = $pdf;
@@ -56,6 +58,7 @@ class UserController extends Controller
         $this->apiContext->setConfig([
             'mode' => 'sandbox',
         ]);
+        $this->payPalService = $payPalService;
     }
 
     public function index(){ 
@@ -139,6 +142,10 @@ class UserController extends Controller
         $data["approved_job"] = Job::where(["company_id" => session("hr_id"), "status" => "approve"])->orderBy("created_at", "desc")->get();
         $data["pending_job"] = Job::where(["company_id" => session("hr_id"), "status" => "pending"])->orderBy("created_at", "desc")->get();
         $data["decline_job"] = Job::where(["company_id" => session("hr_id"), "status" => "decline"])->orderBy("created_at", "desc")->get();
+        $data["is_due"] = false;
+        if ($data["user"]->created_at->lt(Carbon::now()->subDays(10))) {
+            $data["is_due"] = true;
+        }
         return view("dashboard.employers_dash", compact("data"));
     }
 
@@ -762,23 +769,6 @@ class UserController extends Controller
     }
 
 
-    // public function skills_questions($title, $id){
-    //     $user = $this->getUser(session("hr_id"));
-        
-    //     if($user->bio){
-    //         $questions = $this->technicalGemini($user->bio);
-    //     }
-
-    //     if($user->skills){
-    //         $questions = $this->technicalGemini($user->skills);
-    //     }
-
-    //     $data["job"] = Job::find($id);
-    //     $data["questions"] = explode("\n", $questions);
-    //     $data["company"] = User::find($data["job"]->company_id);
-    //     return view("pages.skills_questions", compact("data"));
-    // }
-
     public function post_skills_questions(){
         $job_id = session("job_id");
         $request = request()->all();
@@ -862,42 +852,35 @@ class UserController extends Controller
         }
     }
 
+    public function paypalSuccess(Request $request)
+    {
+        $paymentId = $request->query('paymentId');
+        $payerId = $request->query('PayerID');
+
+        $payment = $this->payPalService->executePayment($paymentId, $payerId);
+
+        if ($payment->getState() == 'approved') {
+            return "Payment successful!";
+        }
+
+        return "Payment failed!";
+    }
+
 
     public function createPaypalTransaction(Request $request)
     {
-        $payer = new Payer();
-        $payer->setPaymentMethod('paypal');
+        $payment = $this->payPalService->createPayment(100, 'USD', 'Payment Description');
+        $payment = json_decode($payment);
 
-        $amount = new Amount();
-        $amount->setTotal('20.00');
-        $amount->setCurrency('USD');
-
-        $transaction = new Transaction();
-        $transaction->setAmount($amount);
-        $transaction->setDescription('T-shirt');
-
-        $redirectUrls = new RedirectUrls();
-        $redirectUrls->setReturnUrl(route('stripe_succss'))
-            ->setCancelUrl(route('stripe_succss'));
-
-        $payment = new Payment();
-        $payment->setIntent('sale')
-            ->setPayer($payer)
-            ->setTransactions([$transaction])
-            ->setRedirectUrls($redirectUrls);
-
-        try {
-            dd($this->apiContext);
-            $payment->create($this->apiContext);
-            dd($payment);
-            return redirect($payment->getApprovalLink());
-        } catch (PayPalConnectionException $ex) {
-            dd($ex);
+        if (isset($payment->id)) {
+            if($payment->links[1]){
+                $url = $payment->links[1]->href;
+                return redirect($url);
+            }else{
+                return back()->with("msg",'Something went wrong, Please try again');
+            }
         }
-        catch (Exception $ex) {
-            dd($$ex);
-            return redirect()->back()->with('error', 'Something went wrong.');
-        }
+        return back()->with("msg",'Something went wrong, Please try again');
     }
 
     public function createBranch(Branch $branch){

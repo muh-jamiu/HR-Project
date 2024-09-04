@@ -100,8 +100,8 @@ Route::post('/create-job', [UserController::class, 'createJob']);
 Route::post('/create-application', [UserController::class, 'createApplication']);
 Route::get('/create-application', [UserController::class, 'createApplication'])->middleware("notLogin");
 
-Route::get('/stripe-sucess', [UserController::class, 'stripe_success'])->name("stripe_succss")->middleware("notLogin");
-Route::get('/stripe-fail', [UserController::class, 'stripe_fail'])->name("stripe_fail")->middleware("notLogin");
+Route::get('/stripe-sucess', [UserController::class, 'paypalSuccess'])->name("stripe_succss")->middleware("notLogin");
+Route::get('/stripe-fail', [UserController::class, 'paypalSuccess'])->name("stripe_fail")->middleware("notLogin");
 
 Route::post('/search/{type}', [UserController::class, 'searchUser']);
 
@@ -113,7 +113,7 @@ Route::post('/stripe', [UserController::class, 'pay_with_stripe']);
 
 Route::post('/stripe-transfer', [UserController::class, 'stripeTransfer']);
 
-Route::any('create-paypal-transaction', [UserController::class, 'createPaypalTransaction'])->name('paypal.transaction');
+Route::get('subscription', [UserController::class, 'createPaypalTransaction'])->name('paypal.transaction');
 
 Route::get('lang/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'de', 'fr'])) {
