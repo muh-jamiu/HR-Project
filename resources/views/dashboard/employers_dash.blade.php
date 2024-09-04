@@ -793,7 +793,7 @@ Employer Dashboard | HR
                                 <h6 class="fw-semibold text-muted">Basic Plan</h6>
                                 <h1 class="fw-bold text-muted mt-3"><sup class="ft ftr">$</sup>29.99</h1>
                                 <p class="text-muted ft ftr">Every month</p>
-                                <a href="/subscription?price=29.99&plan=Monthly Basic Plan" class="btn-primary px-5 btn">Purchase</a>
+                                <a href="/subscription?price=29.99&plan=Monthly Basic Plan" class="btn-primary _pur_ px-5 btn">Purchase</a>
                             </div>
                             <div class="mb-3">
                                 <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-primary"></i> Resume Scanning and parsing</p>
@@ -816,7 +816,7 @@ Employer Dashboard | HR
                                 <h6 class="fw-semibold text-muted">Professional Plan</h6>
                                 <h1 class="fw-bold text-muted mt-3"><sup class="ft ftr">$</sup>59.99</h1>
                                 <p class="text-muted ft ftr">Every month</p>
-                                <a href="/subscription?price=59.99&plan=Monthly Professional Plan" class="btn-success px-5 btn">Purchase</a>
+                                <a href="/subscription?price=59.99&plan=Monthly Professional Plan" class="btn-success _pur_ px-5 btn">Purchase</a>
                             </div>
                             <div class="mb-3">
                                 <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Resume Scanning and parsing</p>
@@ -839,7 +839,7 @@ Employer Dashboard | HR
                                 <h6 class="fw-semibold text-muted">Enterprise Plan</h6>
                                 <h1 class="fw-bold text-muted mt-3"><sup class="ft ftr">$</sup>29.99</h1>
                                 <p class="text-muted ft ftr">Every month</p>
-                                <a href="/subscription?price=29.99&plan=Monthly Enterprise Plan" class="btn-dark px-5 btn">Purchase</a>
+                                <a href="/subscription?price=29.99&plan=Monthly Enterprise Plan" class="btn-dark _pur_ px-5 btn">Purchase</a>
                             </div>
                             <div class="mb-3">
                                 <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Resume Scanning and parsing</p>
@@ -870,7 +870,7 @@ Employer Dashboard | HR
                                 <h6 class="fw-semibold text-muted">Basic Plan</h6>
                                 <h1 class="fw-bold text-muted mt-3"><sup class="ft ftr">$</sup>287.90</h1>
                                 <p class="text-muted ft ftr">Monthly / $23.99</p>
-                                <a href="/subscription?price=287.90&plan=Annual Basic Plan" class="btn-primary px-5 btn">Purchase</a>
+                                <a href="/subscription?price=287.90&plan=Annual Basic Plan" class="btn-primary _pur_ px-5 btn">Purchase</a>
                             </div>
                             <div class="mb-3">
                                 <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-primary"></i> Resume Scanning and parsing</p>
@@ -893,7 +893,7 @@ Employer Dashboard | HR
                                 <h6 class="fw-semibold text-muted">Professional Plan</h6>
                                 <h1 class="fw-bold text-muted mt-3"><sup class="ft ftr">$</sup>575.90</h1>
                                 <p class="text-muted ft ftr">Monthly / $47.99</p>
-                                <a href="/subscription?price=47.99&plan=Annual Professional Plan" class="btn-success px-5 btn">Purchase</a>
+                                <a href="/subscription?price=47.99&plan=Annual Professional Plan" class="btn-success _pur_ px-5 btn">Purchase</a>
                             </div>
                             <div class="mb-3">
                                 <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Resume Scanning and parsing</p>
@@ -916,7 +916,7 @@ Employer Dashboard | HR
                                 <h6 class="fw-semibold text-muted">Basic Plan</h6>
                                 <h1 class="fw-bold text-muted mt-3"><sup class="ft ftr">$</sup>959.90</h1>
                                 <p class="text-muted ft ftr">Monthly / $79.99</p>
-                                <a href="/subscription?price=959.90&plan=Annual Enterprise Plan" class="btn-dark px-5 btn">Purchase</a>
+                                <a href="/subscription?price=959.90&plan=Annual Enterprise Plan" class="btn-dark _pur_ px-5 btn">Purchase</a>
                             </div>
                             <div class="mb-3">
                                 <p class="list-unstyled text-muted"><i class="fa fa-solid fa-check text-success"></i> Resume Scanning and parsing</p>
@@ -1005,7 +1005,15 @@ Employer Dashboard | HR
 @endsection
 
 @push('javascript')
-    <script>
+    <script>        
+        var _pur_= document.querySelectorAll("._pur_")
+        _pur_.forEach(element => {
+            element.addEventListener("click", () => {
+                element.innerHTML = "Please wait <div class='spinner-border spinner-border-sm text-white'></div>"
+            })        
+        });
+
+
         var __sliders = document.querySelector(".__sliders")
         var sidebar__ = document.querySelector(".sidebar__")
         var mainbar__ = document.querySelector(".mainbar__")
