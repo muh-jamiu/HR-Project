@@ -119,9 +119,15 @@ return [
 
     // new dash
     // resources/lang/en/messages.php
-    'n_n1' => 'There Are :count Postings Here For you!',
+    'n_n1' => 'Revolutionize Recruitment: Empower Your Hiring Process with AI',
     'n_n2' => "Streamline Your HR Processes with Our AI-Powered Efficiency",
-    'n_n3' => "Advertise your jobs to millions of monthly users and search 15.8 million CVs in our database.",
+    'n_n3' => "Publish your job openings to 
+    millions of engaged users and 
+    access a comprehensive database 
+    of candidate profiles. Optimize 
+    your recruitment with AI-driven 
+    insights and tools designed to 
+    simplify your HR tasks",
     "n_n4" => "Open Position",
     
     'content_writer' => 'Content Writer',

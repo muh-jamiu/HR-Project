@@ -16,8 +16,21 @@ About Us | HR
         <h1 class="fw-bold mt-4">About Us</h1>
         <p class="fs-5 text-muted mt-3 mb-5">Discover your next career move, freelance gig, or internship</p>
     </div>
-    <button id="checkout-button">Checkout</button>
-    <button id="paypal-checkout-button">Pay with PayPal</button>
+
+    <img class="mx-5" style="width: 320px" src="/img/logo_.png" alt="">
+
+    <p class="text-muted" style="padding:4em; line-height:30px; padding-top:0em">
+        Welcome to Ai-SmartRecuiter.com, your ultimate AI-powered resume analysis platform 
+            designed to streamline the hiring process for medium to large companies. Founded by 
+            Salaheddine Rchouma, a dedicated Business Analytics and Data Science student with 
+            extensive experience in the field, our company is proudly based in Rabat, Morocco. At Ai-
+            SmartRecuiter, we leverage advanced AI technology to automate resume scanning, evaluate 
+            candidates' technical and soft skills, and provide a comprehensive scoring system to help HR 
+            professionals make informed hiring decisions with ease and efficiency. Join us in 
+            revolutionizing the recruitment landscape with cutting-edge solutions tailored to meet your 
+    </p>
+
+    <hr>
 
 
 	<x-footer></x-footer>
