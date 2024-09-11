@@ -1,4 +1,4 @@
-<footer class="d-flex mt-5 justify-content-evenly">
+<footer class="d-flex _footer_ mt-5 justify-content-evenly">
     <div class="logo_" style="width: 40%; transform:translateY(-70px)">
         <h3 class="fw-bold mb-3"><a href="/" class="text-dark text-decoration-none"><img style="width: 220px" src="/img/logo_.png" alt=""></a></h3>
         <p class="ft text-muted"></p>			

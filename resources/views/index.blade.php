@@ -260,6 +260,7 @@ HR | Job Board
 <div class="_land_">
     <div style="background: transparent !important" class="top mobile_nav d-flex justify-content-between d-none">
         <h3 data-bs-toggle="offcanvas" data-bs-target="#demo" class="fw-bold"><a style="height: fit-content" href="#" class="text-dark text-decoration-none"><img style="width: 70px" src="/img/logo_.png" alt=""></a></h3>
+        <div data-bs-toggle="offcanvas" data-bs-target="#demo" style="position:absolute; right:0; font-size:1.5em" class="mx-3 mt-2"><i class="fa-solid fa-bars"></i></div>
     </div>
 
     <div class="section_1 sections_all">

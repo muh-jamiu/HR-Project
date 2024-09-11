@@ -1093,6 +1093,25 @@ button:hover, .btn:hover{
         display: inline-flex !important;
     }
 
+    .contact ._section1{
+        padding: 1em !important;
+    }
+
+    .contact ._section1 .first, .contact ._section1 .sec{
+        width: 100%;
+        margin-bottom: 3em;
+        margin-right: 0em !important;
+    }
+
+    ._footer_{
+        display: block !important;
+    }
+
+    ._footer_ div{
+        padding: 0em 4em;
+        width: 100% !important;
+    }
+
 }
 
 ._blg_::-webkit-scrollbar{
