@@ -494,12 +494,7 @@ HR | Job Board
                     <li><a class="text-muted fr mb-3 dropdown-item" href="/lang/fr"><img src="https://m.media-amazon.com/images/I/4109Z2o0HuL._AC_UF894,1000_QL80_.jpg" alt=""> French</a></li>
                 </ul>
             </div>
-
-            <hr style="color: rgb(197, 197, 197)">
-
-            <p class="text-muted ft">Call Us <strong class="fw-bold mb-3 text-primary">0123456789</strong></p>            
-            <p class="text-muted ft">329 Queensberry Street, North Melbourne VIC 3051, Australia.</p>
-            <p class="text-muted ft">support@superio.com</p>
+<br>
         </div>
     </div>
 

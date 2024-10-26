@@ -106,11 +106,7 @@
                 </ul>
             </div>
 
-            <hr style="color: rgb(197, 197, 197)">
-
-            <p class="text-muted ft">Call Us <strong class="fw-bold mb-3 text-primary">0123456789</strong></p>            
-            <p class="text-muted ft">329 Queensberry Street, North Melbourne VIC 3051, Australia.</p>
-            <p class="text-muted ft">support@superio.com</p>
+            <br>
         </div>
     </div>
 </div>

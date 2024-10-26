@@ -17,19 +17,7 @@ Contact Us | HR
         <p class="fs-5 text-muted mt-3 mb-5">@lang("messages.con_subtitle")</p>
     </div>
 
-    <div class="d-flex _section1 mt-5 flex-wrap">
-        <div class="first">
-            <div class="head">
-                <h6>@lang("messages.con_office_address")</h6>
-            </div>
-            <div class="mt-4 _sec__">
-                <p class="text-muted mt-4"><strong>@lang("messages.con_phonecon_phone")</strong>:- (+21) 124 123 4546</p>
-                <p class="text-muted"><strong>@lang("messages.con_website")</strong>:- www.example.com</p>
-                <p class="text-muted"><strong>@lang("messages.con_email")</strong>:- info@example.com</p>
-                <p class="text-muted mb-4"><strong>@lang("messages.con_address")</strong>:- @lang("messages.con_address_details")</p>
-            </div>
-        </div>
-
+    <div class="d- _section1 mt-5 flex-wrap">
         <div class="sec">
             <div class="head">
                 <h6>@lang("messages.con_contact_form")</h6>
